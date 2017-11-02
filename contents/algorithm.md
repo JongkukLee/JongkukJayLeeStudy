@@ -185,7 +185,7 @@ r = func(tri, 3, 4, 2);
 
 ## Linked List ##
 The member variables of linked list are a data and a link that points to another node.<br />
-The linked list is the data structure that is non-contiguous storage, has variable size, and access the random pointer.<br />
+The linked list is the data structure that is non-contiguous storage, has variable size, access the random pointer, can **reverse iteration**.<br />
 Figure1 shows the arrangement of the linked list in memory and the conceptional arragement of it.<br />
 
 ### Figure1. Physical and Logical concept of linked list ###
@@ -224,14 +224,21 @@ InsertBefore function receives the information of current node, and a new node w
 |---|---|
 |**Delete function** receives the information of  current node, <br />and a new node will be deleted after  the current node. The <br />next of current node refers to the next information of deleted node. The next  of current information is disconnected.|![Image]({{ site.globalurl }}/contents/img/doublelinkedlist4.jpg)|
 
+## Stack ##
 
+>Stack is a data structure with the same entrance and exit, and block the bottom. Stack is "LAST IN-FIRST OUT" (LIFO), which mean that the fisrt input data will be poped in the last order. The operations are push and pop. <br />
 
+To implement stack, there are a using array way (array stack) and a using list (list stack). The skeletone of array stack includes an exceptions, its constructor/destructor, helper functions, push/pop/getTop/removeAll functions, and some fields are needed to store data, to represent the insert/delete positions, and to represent the size of array. Also, the skeletone of list includes exceptions, its  constructor/destructor, helper functions, push/pop/getTop/removeAll functions, and a field is needed to store data.<br />
+Note that actually, simplelist is stack itself!<br />
 
+## Queue ##
 
+Queue is a data structure with seperate entrance and exit, and open both entrance and exit. Stack is "FIRST IN FIRST OUT" (FIFO), which mean that the fisrt put data will be gotten in the first. The operations are put and get. <br />
+To implement queque, there are a using array way (array queue) and a using list way (list queue). In terms of array queue, we have to use circular queue. Why is the circular queue is needed? While putting and getting queue in array queue, the position of queue will go to the end of array. Therefore, when it arrives at the end of array, we have to copy all elements to the beginning of array; on the other hand, the circular queue do not need to copy.<br />
 
+### circular queue operation ###
 
+In this figure, front points the position to get data, and rear points the empty space to put data. 
 
-
-
-
+![Image]({{ site.globalurl }}/contents/img/queue1.jpg)
 
