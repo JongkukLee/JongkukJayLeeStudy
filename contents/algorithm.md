@@ -18,7 +18,7 @@ In function `int gcd(int u, int v)`,
 3. If u becomes 0, then v is greatest common divisor.
 ```
 
-```cpp
+```java
 int gcd(int u, int v) 
 {
 
@@ -50,7 +50,7 @@ In function `int gcd(int u, int v)`,
 3. v is 0, then the greatest common divisor is u.
 ```
 
-```
+```java
 int gcd (int u, int v) 
 {
     int t; // the temporary variable for exchange u and v
@@ -71,7 +71,7 @@ Recusive function is calling itself.<br />
 Recusive function have to two factors; one is that it must have the stop point; the sencond is that the argument must be reduced.<br />    
 v value is continuously reduce, and once it will be 0, return u value as greatest common divisor; otherwise, recusive function will call itself until v becomes 0.<br /> 
 
-```
+```java
 int gcd_recursion(int u, int v) 
 {
     if (v == 0) // it is the stop pointer 
@@ -82,6 +82,101 @@ int gcd_recursion(int u, int v)
 ```
 
 >**NOTE: recusive function can provide more conprehensive source code; however, it uses more cost to call function.**  
+
+## Array ##
+Array is collection of data of same type: (int, float, double, char), which uses contiguous storage in a memory, the fixed size, and it can approach to the memory with index (0, 1, 2, ..., n).
+
+How to project mulit-dimensions array like one-dimension array?
+
+Here is two-dimensions array: 
+
+```java
+int average(int m[][], int n1, int n2) 
+{
+    int i, j;
+    int sum = 0;
+    for (i = 0; i < n1; i++)
+        for (j = 0; j < n2; j++)
+            sum += m[i][j];
+    return sum/(3 * 3);
+}
+int array[3][3];
+int average = average(array, 3, 3);
+```
+
+We can use two-dimensions array like one-dimentsion array: 
+
+```java
+int average(int m[][], int n1, int n2) 
+{
+    int i, j;
+    int sum = 0;
+    for (i = 0; i < n1; i++)
+        for (j = 0; j < n2; j++)
+            sum += m[i * n2 + j];
+    return sum/(n1 * n2);
+}
+int array[3][3];
+int average = average(array, 3, 3);
+```
+
+Multi-demensions array also has same way:
+
+```java
+int tri[3][4][2];
+int func(int t[][4][2]) 
+{
+    // .....
+}
+r = func(tri);
+```
+
+We can use it like one-dimension array:
+
+```java
+int tri[3][4][2];
+int func(int m[][][], int n1, int n2, int n3) 
+{
+    // .....
+    sum += m[i * n2 * n3 + j * n3 + k];
+}
+r = func(tri, 3, 4, 2);
+```
+
+## Linked List ##
+The member variables of linked list are a data and a link that points to another node.<br />
+The linked list is the data structure that is non-contiguous storage, has variable size, and access the random pointer.<br />
+Figure1 shows the arrangement of the linked list in memory and the conceptional arragement of it.<br />
+
+![Image]({{ site.globalurl }}/contents/img/linkedlist1.jpg)
+
+### simple linked list ###
+The simple linked list is simple one way linked list, which has data and next pointer. The operations are initialization, destruction, insertNext, deleteNext, and iteration & retrieval. <br />
+
+Simple list skeleton uses a class template, node struct to represent the node, includes the constructor, insert, and delete operation. <br />
+In constructor, the head node and tail node are created, and connect with each other.
+Insert function receives the information of current node, and a new node will be inserted after the current node. The next of new node is assigned the information of current. The next of current information refers to the informaton of new node. <br />
+
+Delete function receives the information of current node, and a new node will be deleted after the current node. The next of current node refers to the next information of deleted node. The next of current information is disconnected. <br />
+
+## Doubly Linked List ##
+
+Doubly linked list is two way linked list, and each node has two fields for refering to the previous and to the next node information. As operation, there are initialization, destruction, insertNext, insertBefore, deleteAt, iteration & retrieval.<br />
+
+In constructor, the head node and tail node are created, and the previous of head node refers to itself, the next refers to the information of tail. The previous of tail node refers to the information of head, and the next refers to itself.<br /> 
+InsertNext function is very similar to the simple linked list, which receives the information of current node, and a new node will be inserted after the current node. The next of new node assigns to the information of the next field of current. The next of current information refers to the informaton of new node. <br />
+InsertBefore function receives the information of current node, and a new node will be inserted before the current node. The previous of new node assigns the information of the prevous field of current. The previous of current information refers to the informaton of new node. <br />
+
+Delete function receives the information of current node, and a new node will be deleted after the current node. The next of current node refers to the next information of deleted node. The next of current information is disconnected. <br />
+
+
+
+
+
+
+
+
+
 
 
 
