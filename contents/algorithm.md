@@ -242,3 +242,16 @@ In this figure, front points the position to get data, and rear points the empty
 
 ![Image]({{ site.globalurl }}/contents/img/queue1.jpg)
 
+When the 'front' and 'rear' refer to the same index of array, we call it **'Empty condition'**, and whenever element value is assigned to array, the rear refers to the next index. If the rear is located the right before the front, we call it 'Full condition'. <br />
+
+The skeletone of circular queue includes an exceptions, its constructor/destructor, helper functions, put/get/increase/decrease functions, and some fields are needed to store data, to represent the number of data, and to represent the size of array. Also, the skeletone of ListQueue includes exceptions, its constructor/destructor, helper functions, put/get functions, and a field is needed to store data.<br />
+
+
+
+[DSA555](https://cathyatseneca.gitbooks.io/data-structures-and-algorithms/content/)
+
+Postfix notation
+
+
+
+
