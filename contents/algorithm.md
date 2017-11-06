@@ -246,11 +246,250 @@ When the 'front' and 'rear' refer to the same index of array, we call it **'Empt
 
 The skeletone of circular queue includes an exceptions, its constructor/destructor, helper functions, put/get/increase/decrease functions, and some fields are needed to store data, to represent the number of data, and to represent the size of array. Also, the skeletone of ListQueue includes exceptions, its constructor/destructor, helper functions, put/get functions, and a field is needed to store data.<br />
 
-
-
 [DSA555](https://cathyatseneca.gitbooks.io/data-structures-and-algorithms/content/)
 
-Postfix notation
+## Notation ##
+
+Infix notation is that there is an operator between two operands (ex: A + B), and postfix potation is that there is operator after two operands (A B +); on the other hand, prefix notation is that there is an operator before two operands (+ A B). <br />
+
+### Post notation ###
+To change infix notation to postfix notation, 
+
+1. use the precedence of operator: '(' : 0, +-: 1, */ : 2
+2. If meeting '(', push operand from stack
+3. If meeting ')', add element to the result until getting '(', and throw away '('
+4. If meeting operator, pop and add the element to the result until getting lower operator, and throw away itself.
+5. add operands
+6. When all input is complete, pop the rest all operators and add them to the result.
+
+![Image]({{ site.globalurl }}/contents/img/postfix1.jpg)
+
+To calculate th postfix, 
+1. push the operator from stack when meeting operand.
+2. pop two times operator, operate two values, and push the result in stack.
+3. Last one reamining in stack is the final result
+
+![Image]({{ site.globalurl }}/contents/img/postfix2.jpg)
+
+## Tree ##
+
+> Tree is a nonlinear data structure, which is consisted of node (vertex) and link (edge). Node has data, and linke represents the relationship between two nodes. Tree has at least a root, which is the top level node. All nodes have a parent node except root, but node can have serveral children node. The path from a node to other is unique.
+
+### Binary Tree ###
+
+> All nodes have less than or equal two nodes: left child and right child. Parse three is used to fomular calculation, heap tree is used to sort, and binary search tree is for searching.<br />
+
+Another categorization is: 
+
+|Complete Binary Tree|Perfect Binary Tree|
+|---|---|
+|all level node is filled with <br />except the last node, and last <br />nodes are left node.|all level nodes are filled with|
+|![Image]({{ site.globalurl }}/contents/img/binary1.jpg)|![Image]({{ site.globalurl }}/contents/img/binary2.jpg)|
+
+There are two way to create binary tree: array and linkedlist. Array is effective in complete binary tree case, and is used heap sort algorithm. <br />
+
+|---|---|
+|To intialize the tree structure, we may use the start node <br />and the end node to use nodes between the start and end nodes with <br />the same logic.|![Image]({{ site.globalurl }}/contents/img/tree1.jpg)|
+
+The root node is the left of the start node. All leaf nodes refer to the end node. Binary tree skeleton has node struct, start / end node, constructor / desctructor, removeAll function.
+![Image]({{ site.globalurl }}/contents/img/tree2.jpg)
+ 
+To visit all nodes, **tree traversal** is used, which are stack-based and queque-based traversal. Stack-based traversal has **'pre-order'**, **'post-order'**, and **'in-order'**, and queue-based traversal has '**level-order**'. 
+
+Let's move to inplemenation of traversal. To visit all of nodes of the below tree,
+![Image]({{ site.globalurl }}/contents/img/tree3.jpg)
+
+|pre-order|in-order|post-order|level-order|
+|1. visit to root, 2. visit to left subtree, 3. visit to right subtree.|1. visit to left subtree, 2. visit to root, 3. visit to right subtree.|1. visit to left subtree, 2. visit to right subtree, 3. visit to root|level-order traversal is to visit from top to bottom, and frm left to right.|
+|![Image]({{ site.globalurl }}/contents/img/tree4.jpg)|![Image]({{ site.globalurl }}/contents/img/tree5.jpg)|![Image]({{ site.globalurl }}/contents/img/tree6.jpg)||
+|A->B->D->G->H->E->C->F->I|G->D->H->B->E->A->C->I->F|G->H->D->E->B->I->F->C->A|A->B->C->D->E->F->G->H->I|
+
+Generally, in pre-order traversal, recusive can be converted non-converted way using stack.
+
+```cpp
+void BinaryTree::PreOrderTraverse_Stack(Node *pNode) 
+{
+    ListStack<Node*> stack;
+    stack.Push(pNode);
+    while (!stack.IsEmpty()) 
+    {
+        pNode = stack.Pop();
+        if (pNode != m_pNodeTail) 
+        {
+            Visit(pNode);
+            stack.Push(pNode->pRight);
+            stack.Push(pNode->pLeft);
+        }
+    }
+}
+```
+Level-order traversal shows how to visit all node with queue.
+
+```cpp
+void BinaryTree::LevelOrderTraverse(Node *pNode) 
+{
+    ListQueue<Node*> queue;
+    queue.Put(pNode);
+    while (!queue.IsEmpty()) 
+    {
+        pNode = queue.Get();
+        if (pNode != m_pNodeTail) 
+        {
+            Visit(pNode);
+            queue.Put(pNode->pLeft);
+            queue.Put(pNode->pRight);
+        }
+    }
+}
+```
+Now, you can demonstrate algotrithm of pre-order traversal and level-order traversal with stack and queue respectively.
+
+|pre-order|level-order|
+|---|---|
+|![Image]({{ site.globalurl }}/contents/img/tree7.jpg)|![Image]({{ site.globalurl }}/contents/img/tree8.jpg)|
+
+### Parse Tree ###
+Parse tree is to consist a tree according to operation precedence. Operator is located in root, and operand is located on child. All operator is **non terminal**, and Operand is **terminal node**.
+
+How do you make parse tree using post notation?
+
+To make parse, first create operand node, and push it to stack. Also, create operator node. After that, pop a node from stack, and make it as right child, and pop another node from stack, and make it as left child. Loop from 1 and 2. The last node of stack becomes root.
+
+```cpp
+//1. push operand node to stack
+//2. create operator node
+//    1. pop a node from stack, and make it as right child
+//    2. pop another node from stack, and make it as left child
+//    3. push operator Node to stack
+//3. the last node of stack is root
+
+void ParseTree::BuildParseTree(const String& strPostfix) 
+{
+    Node *pNode;
+    int i = 0;
+    ListStack<Node*> NodeStack;
+    RemoveAll();
+    while (strPostfix[i]) {
+        while (strPostfix[i] == ' ')
+            i++; // ignore space
+        
+        pNode = new Node;
+
+        if (IsOperator(strPostfix[i])) 
+        {
+            pNode->data = strPostfix[i];
+            i++;
+            pNode->pRight = NodeStack.Pop();
+            pNode->pLeft = NodeStack.Pop();
+        }
+        else 
+        {
+            do {
+                pNode->data += strPostfix[i];
+                i++;
+            } while (strPostfix[i] != ' ' &&
+                i < strPostfix.GetLength());
+            
+            pNode->pLeft = m_pNodeTail;
+            pNode->pRight = m_pNodeTail;
+        }
+        NodeStack.Push(pNode);
+    }
+    m_pNodeHead->pLeft = NodeStack.Pop();
+}
+```
+Through the above logic, fomular ((A+B)*(C-D))/E+(F*G) will become the below parse three.
+
+![Image]({{ site.globalurl }}/contents/img/tree9.jpg)
+
+Let's demonstrate how the parse tree is created in stack.
+
+|---|---|
+|![Image]({{ site.globalurl }}/contents/img/tree10.jpg)|![Image]({{ site.globalurl }}/contents/img/tree11.jpg)|
+
+Note that in parse tree:
+1. in-order traverse can illustrate infix notaion.
+2. pre-order traverse can illustrate prefix notation.
+3. post-order traverse can inllustrate postfix notation.
+
+## Recursion ##
+
+Recursive Function calls itself and there are divide and conquer strategy in it. . One example is tree traversal.
+
+```cpp
+void BinaryTree::PreOrderTraverse(Node *pNode) 
+{
+    if (pNode != m_pNodeTail) 
+    {
+        Visit(pNode);
+        PreOrderTraverse(pNode->pLeft);
+        PreOrderTraverse(pNode->pRight);
+    }
+}
+```
+
+Recusive function has to meet two needs: the problem becomes smaller and there is the exit condition. In factorial algorithm, line `if (n == 0)` is the exit condition, and line `n * factorial(n – 1)` makes the size of theproblem smaller.
+
+```cpp
+int factorial (int n) 
+{
+    if (n == 0) // exit condition
+        return 1;
+    else
+        return n * factorial(n – 1); // the problem size become smaller
+}
+```
+
+### Fibonacci ###
+Fibonacci sequence is the series of the numbers, which defines that **"every number after the first two is the sum of the two preceding ones: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, .."** ([WIKIPIDA](https://en.wikipedia.org/wiki/Fibonacci_number)).
+<br /><br />
+The relation can be defined: F<sub>n</sub> = F<sub>n-1</sub> + F<sub>n-2</sub>, F<sub>1</sub> = F<sub>2</sub> =0
+<br />
+
+The source code example of fibonacci is :
+```cpp
+int fibonacci(int n) 
+{
+    if (n == 1 || n == 2)
+        return 1;
+    else
+        return fibonacci(n – 1) + fibonacci(n – 2);
+}
+```
+
+Figure recusive 1 shows how it can be demonstrated in a parse tree structure. To find the number of sequence 5th in fibonacci, input the value of 5 in ``int fibonacci(n)``. So, it calls ``fibonacci(5)``, and ``fibonacci(5)`` has two leaf nodes: ``fibonacci(4)`` and ``fibonacci(3)``. ``fibonacci(4)`` also has two leaf nodes: ``fibonacci(3)`` and ``fibonacci(2)``. Since we already deinfine the value of ``fibonacci(1)`` and ``fibonacci(2)`` as **'1'**, when adding all return values, the result is **'5'**.
+
+#### Figure recusive 1. recusive tree diagram for fibonacci ####
+![Image]({{ site.globalurl }}/contents/img/recusive1.jpg)
+
+Consider how we can write fibonacci as non-recusive function.
+```cpp
+int fibonacci_nr(int n) 
+{
+    int r = 0;
+    int a = 1;
+    int b = 1;
+    if (n == 1 || n == 2)
+        return 1;
+    while (n-- > 2) 
+    {
+        r = a + b;
+        a = b;
+        b = r;
+    }
+    return r;
+}
+```
+This table shows the operating step of the above source code.
+#### Table recusive 1. non-recusive function ####
+
+|step|	a|	b|	r1|
+|---|---|---|---|
+|1	|1	|1	|2|
+|2	|1	|r1	|3|
+|3	|2	|r2	|5|
+
+
 
 
 
