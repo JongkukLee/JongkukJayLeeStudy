@@ -5,89 +5,86 @@ layout: default
 ---
 
 ## Tell me about yourself. ##
->Thank you for giving me the opportunity to have an interview here. My name is Jongkuk Lee, but call me Jay. I came from South Korea. I will be graduating from Seneca College Computer Programming Developer Course in the end of this year. But, I already worked as Java programming developer in Korea for about 10 years. I could improve the developing skill of Java application and the understanding ability of a database system through several projects. In 2004, I participated in the performance innovation (PI) project of one of biggest steel maker in the world, POSCO, which is used Java component-based development (CBD) architecture. This project has contributed to improving the business processes of customer's company via efficient managing steel production activities from plan to ship. After that, I have been recognized the IT technical skills and the sense of responsibility and was selected as maintenance team member for providing IT service to customers until 2015. As a hobby, I enjoy swimming because it is relaxing and helps me be health physically and mentally. Also, I am still interested in computer programming because computers and the Internet are very important to our lives. That is why I am applying for a job with your company.
+>Thank you for giving me the opportunity to have an interview here. My name is Jongkuk Lee, but you can also call me Jay. I came from South Korea. I worked as Java web programmer in POSCO manufacturing system maintenance team for over 10 years. I learned many programming skills and company culture from my previous company. But I want to get another opportunity to improve myself. And working in Canada is my dream. So, I quit my job in 2015. I studied English and Computer Programming Course in Seneca College. That is why I am applying for a job with your company.
 
 ## What do you consider to be your major strengths? ##
-### Why do you think you are suited for this position? ###
->As you can see on my resume, I am very active and enjoy physical exercise. I play sports regularly because they make me happy. Through my previous work, I could learn that Being fit also helps me concentrate better and work longer hours without feeling tired.
-What would you say your biggest weakness is?
-My weak point is that I try to do too many things at once. These days, I've been prioritizing my work in order of importance. This is because I want to fully complete a task before moving on to another. It has proven to be much more time efficient.
+>My most strength is ‘can-do attitude’. My life motto is not to sweat the small stuff. I tend not to worry too much and usually enjoy physical exercise such as swimming. Through my previous working experience, I could learn that being healthy helps me concentrate better and work longer hours without feeling tired. As well it gives me the positive mind.
 
 ## Why did you choose your major? ##
 ### What is your major and why did you choose that major? ###
 ### How has your college experience prepared you for your career? ###
->Actually, I majored Chemistry in my University, but I was not interested in my major. So, after graduation, I started studying Java Programming in Hyundai Information technology education center because I was fascinated with computers and also Internet was started booming over the world. After that I worked as full-time developer for a software company where I could build my program skill. My major and work experience have layed a strong foundation for a career in programming. Also, through Seneca College Computer Programming Course, I could study new technology like NodeJS, Angular, and Java 8 version.
+>I believe in computer programming area, knowledge and experience are the most important foundation. Actually, I majored Chemistry in my University because in my hometown there are so many big size industry such as Hyundai Mobil, Hyundai Chemical Heavy industry, and SK Energy and so on. But I realized that I was not interested in Chemistry. So, after graduation, in 1998, I started studying Java Programming in Hyundai Information technology education center because I was fascinated with computer and also Internet was started booming at that time. After that, I worked as full-time developer for a software company. Also, in 2016 and 2017, in Seneca College Computer Developing Course, I studied C and C++, NodeJS, Angular as well as Java 8 version. And I got GPA grade 3.9 out of 4. Therefore, I got skill and experience from my work and also I got the confidence and new knowledge from my major in college. I can still study new technology.
 
 ## Where do you see yourself in five years? ##
 ### What are your long-term goals? ###
->My short-term goal is rapidly adapting to the company, and through improving my English communication skill, I would like to communicate with my co-worker more well. In the very short term, I’d like to get my computer certificate. My long-term goals are growing with a company where I continue to learn and taking on more responsibilities. Once I gain more experience, I'd like to move on from a technical to management position where I can lead a team.
+>My short-term goal is rapidly adapting to my company, and through improving my English communication skill, I would like to communicate with my co-workers more effectively. My long-term goal is growing with a company. And once I gain more experience, I’d like to move on from a developer to technical management position.
 
 ## Do you prefer working alone or in a team? ##
 ### Do you prefer to work alone or with others? ###
 ### Do you work more effectively on alone or in a group situation? ###
->I believe that both are equally important, so I like to work in an environment where there is a combination of both. Its important to work in teams because we can share ideas and learn from each other. But it’s also great to work at my own pace. Therefore, I wouldn't mind working independently towards a team goal.
+>I believe that both are equally important, so I like to work in an environment where there is a combination of both. It’s important to work in teams because we can share ideas and learn from each other. But it’s also great to work at my own pace. Actually, in my experience, I participated in the meeting at day, and I coded at night.
 
 ## What is your ideal work environment? ##
 ### What do you consider important when looking for a job? ###
->My ideal work environment would be one in which there is respect for individuals' ideas and appreciation for good work. I would like to belong to a workplace that gives enough space and helps employees grow. Also, there should also be healthy team work, good communication, and a common vision that is shared by everyone.
+>My ideal work environment would be one in which there is respect for individuals’ ideas and appreciation for good job. I would like to belong to a workplace that gives enough space and helps employees grow. Also, there should be healthy team work, good communication, and a common vision that is shared by everyone. Such working environment is my ideal workplace.
 
 ## How do you handle stress and pressure? ##
 ### Do you work well under stress/pressure? ###
->I'm the kind of person who stays calm under pressure and handles stress fairly easily. I always prioritize my responsibilities so I have a clear idea of what needs to be done. This has helped me effectively manage pressure as a student and on the job. From a personal perspective, I manage stress by visiting the gym several nights a week. Exercise is a great stress reliever. 
+>In my case, exercise is a great stress solution. I manage stress by visiting the gym several times a week. Also, I’m the kind of person who stays calm under pressure and handles stress fairly easily. I prioritize my responsibilities so I have a clear idea of what needs to be done now. This has helped me effectively manage pressure as a student or as an employee. 
 
 ## Tell me about your work experience. ##
 ### Where did you work? ###
 ### What did you do in your previous company? ###
->I already worked as Java programming developer in Korea for about 10 years. I could improve the developing skill of Java application and the understanding ability of a database system through several projects. In 2004, I participated in the performance innovation (PI) project of one of biggest steel maker in the world, POSCO, which is used Java component-based development (CBD) architecture. This project has contributed to improving the business processes of customer's company via efficient managing steel production activities from plan to ship. After that, I have been recognized the IT technical skills and the sense of responsibility and was selected as maintenance team member for providing IT service to customers until 2015.
+>I worked as Java web programming developer in Korea for over 10 years. I could improve the developing skill with Java language and the understanding ability of a database system through several projects. In terms of my biggest career, in 2004, I participated in POSCO performance innovation project. POSCO is one of biggest steel maker in the world. It has over hundred factories and over 10,000 employees. This project is used Java component-based development (CBD) architecture. In this project, I analyzed and developed the business process of some factories. I believe that this project has contributed to improving the business processes of customer’s company via efficient managing products from planning to shipping. After that, I have been recognized the IT technical skills and the sense of responsibility and was selected as POSCO manufacturing system maintenance team member for providing IT service to customers, and I operated the system for 5 factories in Korea and 1 factory in Indonesia until 2015.
 
 ## What are you good at? ##
 ### What skills do you have? ###
 ### What have you learned at work? ###
 ### Do you have special knowledge in this area? ###
 ### What knowledge or specialty do you have? ###
->In POSCO maintenance team, I learned management skills,  I have a sense of responsibility, and I have the ability to meet deadlines. Also, I have acquired/ learned/ gained problem-solving skills. However, the most important thing that I learned from my previous work is the sense of organization. I can understand the company culture, so I can consider company’s goal more prioritize than individual’s one. 
+>In POSCO manufacturing system maintenance team, I learned the system management skills, I had a sense of responsibility for the system, and I had the mind to meet deadlines for developing software. Moreover, the most important thing that I learned from my previous work is the sense of organization. POSCO is the big size company, so there are many system technical supporting teams such as the system architecture team, the quality assurance team, and global standardization team and so on. I had to corporate with the teams and had to follow the company standardization. I can understand the company culture, so I can consider that company’s goal should be more prioritized than individual’s one. 
 
 ### What is your motto? ##
->My life motto is not to sweat the small stuff. I tend not to worry too much. I live by the motto, ‘just do it.’ It’s better to try and face something rather than just worrying about it.
+>My life motto is not to sweat the small stuff. If I do my best, then I tend not to worry too much. The good result should follow me. ‘Just do it.’ It’s better to try something rather than just worrying about it.
 
 ### Who is your role model? ##
->My father is my role model. He has taught me Life is short and so it is important to enjoy life while it lasts.
+>My father is my role model. In Korea, usually fathers take responsibility for their family finance. That is why Korean fathers are more faithful for their companies. My father also worked as an engineer in Samsung Company for his entire working career. In that sense, I really respect him.
 
 ### What do you know about this company? ##
 ### Why do you want to work here? ###
 ### What do you know about our philosophy? ###
 ### Tell us what you know about our business philosophy. ###
->I personally respect CEO David Johnson’s business philosophy. His business philosophy challenged many business people in the world. Mr. Johnson has a vision to expand environment-friendly businesses worldwide. I am closely in line with his green business scheme. I would be honored to be in part of your green business projects. I promise to contribute my strength sand expertise to the growth of your new business.
+>I personally respect CEO David Johnson’s business philosophy. He says that “human resource are the most important asset in company”. I am closely in line with his human management philosophy. I would be honored to be part of thought about employees, and I would like to contribute my expertise to the growth of your value.
 
 ## Are you familiar with any of the work we have done in the past? ##
->If I understand correctly, your recent project in Singapore is creating quite a global stir 파문. I think the success of that project is guaranteed.
+>I like your latest product, which is considered with eco-friendly thought. Today, climate change and nature environment pollution are the most important part of human’s survival and on earth. So, eco-friendly business is reflected this era’s requirement.
 
 ## What business area of this company are you interested in? ##
 ### What area of our business are you interested in? ###
 ### What specific task do you want to perform? ###
 ### How would you be able to contribute to our business? ###
 ### What experience of yours relates to our line of business? ###
->I would like to be a part of Web Project. Since I’ve spent many years in Web developing company, I believe I am apt to work on Web developing department. I will contribute to developing new product. My skills will be utilized to support this company. I strongly believe that this company can achieve sustainable competitiveness with strategic and high quality application.
+>For my last career, I worked as a part of Web Project. Since I’ve spent many years in Web developing company, I believe I can contribute to Web developing department. My skills will be utilized to support Web application developing part. However, if this company offers me different area such as developing general application or mobile app, then I will regard it as my new opportunity to improve my career.
 
 ## Tell me about your military experience. ##
->I joined the army in 1993. I was discharged from the army in 1995. It was difficult to be away from family and friends. The military drill was hard to bear at first. I remember staying on guard all night in snow. I was shy and a bit selfish, but in the army I came to understand seniority better. From my military experience, I learned a sense of respect and the spirit of cooperation.
+>I joined the army in 1993 to 1995. It was difficult to be away from family and friends. The military drill was hard to bear at first. I was shy and a bit selfish, but from my military experience, I learned leadership, the spirit of cooperation, and how to overcome the difficulty. Also, I felt the sense of respect with my co-workers. All these experience became my asset in my career.
 
 ## What makes you the best candidate for this position? ##
->First of all, I think an ideal candidate your company needs is the one who has strong interest and expertise in this field. My genuine curiosity in things around me fit well with the description of a talented technician you’re looking for. I truly believe that my attention to detail and technical application skills will be able to perform any task accurately and timely.
+### Why do you think you are suited for this position? ###
+>First of all, I think an ideal candidate your company needs is the one who has strong interest and expertise in this field. I really wanted to come true my dream, which is working in Canada. So, I studied English and up-to-date technology with young students, and I got the GPA 3.9 out of 4. I think there are so many good programmers in this area, but the good programmer doesn’t guarantee to become a good employee. I was never absent in school or in work without asking. I have good developing and operating experience for a system, which can contribute your company. I understand company culture, and I am aware of why developer need to abide by the standardization and policy. I believe these experience makes me better employee.
 
 ## Why did you leave your last job? ##
 ### Why did you quit your last job? ###
->My two years working at the last company was very rewarding. My main duties were analyze the customer services request and reflect it to existing system without any impact. However, I felt a strong urge to challenge myself and explore other opportunities. So I decided to leave my previous job in order to develop my potential. I would like to develop my specialty further. So, I came in Canada with my family, and study English and new up-to-date technology. That is
+>My 10 years working at the last company was very rewarding. My main duties were analyzing the customer services request and reflecting it to existing system without any impact. However, I felt a strong desire to challenge myself and explore other opportunities. Moreover, working in Canada is my dream. So I decided to leave my previous job in order to develop my potential. I would like to develop my specialty further. So, I came in Canada with my family, and studied English and up-to-date technology with young students in Seneca College. That is why I apply to your company now.
 
-## why I applied for this position. ##
-### What is your expected salary range? ###
+## What is your expected salary range? ##
 ### What starting salary would you expect? ###
 ### What was your last salary? ###
 ### What starting salary would you expect? ###
->Considering my previous work experience, I averaged about $300 per day. However, it is negotiable. I believe I am well-trained and skilled for this job and I am confident you will feel the same, thereby presenting me with a fair offer.
+>Considering my previous work experience, I averaged about $300 per day. However, it is negotiable because I haven’t worked it in Canada. However, I believe I am well-trained and skilled for this job and I am confident you will feel the same. Therefore, I hope this company present me with a fair offer.
 
 ## When would you start to work? ##
->I will be able to start working after my graduation, which is maximum two months from now.  I expected to graduate on the end of this year, but due to college employee’s strike, the schedules should be changed. After graduation, I will available to start work with your company at any time. I will try my best to accommodate your schedule.
+>I will be able to start working after my graduation, which is maximum two months later from now. I hope to graduate on the end of this year, but due to college employee’s strike, the schedules should be changed. After graduation, I will available to start work with your company at any time. I will try my best to accommodate your schedule.
 
 ## My questions for interviewee ##
 >How does one advance in the company?
