@@ -10,13 +10,7 @@ Also, data structure is an abstracted data type (ADT) to handle a algorithmatic 
 ## Euclidean algorithm ##
 Euclidean algorithm is a way to find the **greatest common divisor** of two positive integers.
 
-In function `int gcd(int u, int v)`, 
-
-```
-1. If v is greater than u, exchange u and v; otherwise, u is assigned the value u minus v. 
-2. Until u value is 0, loop. 
-3. If u becomes 0, then v is greatest common divisor.
-```
+Here is a function gcd `int gcd(int u, int v)`, which receive two integers 'u' and 'v' as the passed parameters and return type also integer. if u value is greater than 0, then the while statement is looping. Inside the while statement, if v is greater than u, then exchange u and v; in this case, t is the temporary variable for exchange u and v; otherwise, u is assigned the value of u minus v. If u becomes 0, then the while statement is finished, and finally return v as greatest common divisor.
 
 ```java
 int gcd(int u, int v) 
@@ -37,18 +31,17 @@ int gcd(int u, int v)
     return v;
 }
 ```
-But, when the between u and v is big, this case requires many loop for operating minus between u and v.<br /> 
-What is the advance way? <br />
+For example, give u is 4, and v is 2. First, ask if u is greater than 0, true because now u is 4, v is 2. Next, v is greater than u, false. So, u is assignee  4 - 2, and v is still 2. In next while loop, ask if u is greater than 0, true because now u is 2, v is 2. Next, v is greater than u, false. So, u is assigned 2 - 2, and v is still 2. In next while loop, ask if u is greater than 0, false. So cursor is move to return statement, and return value is 2. Therefore the greatest common divisor is 2.
 
-The answer is using the rest value of divide.<br />
+|---|---|---|---|---|---|---|---|
+|u=4,v=2<br>if u>0, true|if u<v, false|u=4-2|u=2,v=2<br>if u>0, true|if u<v, false|u=2-2|u=0,v=2<br>if u>0, false|return 2|
 
-In function `int gcd(int u, int v)`, 
+But, when the gap between u and v is big, it requires many loop for operating minus between u and v. 
+So, what is the advance way? <br />
 
-```
-1. If v is not 0, u is assigned the value u divide v.
-2. Exchange u and v until v value is 0. 
-3. v is 0, then the greatest common divisor is u.
-```
+The answer is using remainder operation.<br />
+
+In the same function gcd `int gcd(int u, int v)`, if v value is greater than 0, then the while statement is looping. Inside the while statement, u is assigned v and v is assigned the value of u remainder v, t is the temporary variable to store the remainder vlaue. If v becomes 0, then the while statement is finished, and finally return u as greatest common divisor.
 
 ```java
 int gcd (int u, int v) 
@@ -56,37 +49,41 @@ int gcd (int u, int v)
     int t; // the temporary variable for exchange u and v
     while (v > 0) // loop while v is greater than 0  
     { 
-        // u is assigned the value u divide v, and exchange u and v
         t = u % v;
-        u = v;
-        v = t;
+        u = v; // u is assigned v 
+        v = t; // v is assigned the value of u remainder v
     }
     // if v is 0, escape the loop, and return u value as greatest common divisor.    
     return u;
 }
 ```
 
-Table1 shows how many steps there are in two GCM algorithm. The later one has far less steps, and the more large the agument value is, the more steps there are.    
+For example, give u is 4, and v is 2. First, ask if v is greater than 0, true because now u is 4, v is 2. So, u is 2, and v is assignee  4 % 2 . In next while loop, ask if v is greater than 0, false because now u is 2, v is 0. So cursor is move to return statement, and return value is 2. Therefore the greatest common divisor is 2.
+
+|---|---|---|---|
+|u=4,v=2<br>if v>0, true|v=4%2|u=2,v=0<br>if v>0, false|return 2|
+
+Table1 shows how many steps there are in two GCM algorithm. When using minus (-) operation, the 15 steps are needed, while when using remainder (%) operation, only 4 steps are needed. In first way, the larger the gap between two parameters is, the more steps it needs.    
 
 ### Using Minus VS Modulo operator ###
 
-|Using minus (-) operator|Using modulo (%) operator|
-|---|---|
-|  GCD(280,30)|GCD(280, 30)| 
-|= GCD(250,30)|= GCD(30,280)|
-|= GCD(220,30)|= GCD(280,30)|
-|= GCD(190,30)|= GCD(10,30)|
-|= GCD(160,30)|= GCD(30,10)|
-|= GCD(130,30)|= GCD(0,10)|
-|= GCD(100,30)|= GCD(10,0)|
-|= GCD(70, 30)|= 10|
-|= GCD(40, 30)||
-|= GCD(10, 30)||
-|= GCD(30, 10)||
-|= GCD(20, 10)||
-|= GCD(10, 10)||
-|= GCD(0,  10)||
-|= 10||
+|Step|Using minus (-) operator|Using modulo (%) operator|
+|---|---          |---         |
+|1  |  GCD(280,30)|GCD(280, 30)| 
+|2  |= GCD(250,30)|= GCD(30,10)|
+|3  |= GCD(220,30)|= GCD(10,0) |
+|4  |= GCD(190,30)|= 10|
+|5  |= GCD(160,30)||
+|6  |= GCD(130,30)||
+|7  |= GCD(100,30)||
+|8  |= GCD(70, 30)||
+|9  |= GCD(40, 30)||
+|10 |= GCD(10, 30)||
+|11 |= GCD(30, 10)||
+|12 |= GCD(20, 10)||
+|13 |= GCD(10, 10)||
+|14 |= GCD(0,  10)||
+|15 |= 10||
 
 Now, the other way will be introduced, which is using recusive function.<br />
 Recusive function is calling itself.<br />
