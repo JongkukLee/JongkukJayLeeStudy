@@ -244,59 +244,80 @@ That's it for all inserting and deleting node in double-linked list. Next, we ar
 
 ## Stack ##
 
->Stack is a data structure with the same entrance and exit, and block the bottom. Stack is "LAST IN-FIRST OUT" (LIFO), which mean that the fisrt input data will be poped in the last order. The operations are push and pop. <br />
+>Stack is a data structure with the same entrance and exit, and block the bottom. Stack is "LAST IN-FIRST OUT", called 'LIFO', which means that the fisrt input data will be poped in the last order. The operations are push and pop functions. <br />
 
-To implement stack, there are a using array way (array stack) and a using list (list stack). The skeletone of array stack includes an exceptions, its constructor/destructor, helper functions, push/pop/getTop/removeAll functions, and some fields are needed to store data, to represent the insert/delete positions, and to represent the size of array. Also, the skeletone of list includes exceptions, its  constructor/destructor, helper functions, push/pop/getTop/removeAll functions, and a field is needed to store data.<br />
-Note that actually, simplelist is stack itself!<br />
+Figure stack.1 shows the conception of the Stack data structure and algorithm. In most left figure, there are five elements, and the cursor indicates the most top position. When 'PUSH X' occurs, the 'X' must be located on the most top, and cursor will indicate to new top position. When poping from a stack, the element of the most top must be poped, and the cursor will indicate new top position.    
+### Figure stack1. the Conception of Stack ###
+![Image]({{ site.globalurl }}/contents/img/stack1.jpg)
+
+To implement stack, there are a using array stack and list stack. The skeletone of array stack includes an exceptions, its constructor/destructor, helper functions, push/pop/getTop/removeAll functions, and some fields are needed to store data, to represent the insert/delete positions, and to represent the size of array. Also, the skeletone of list stack includes exceptions, its  constructor/destructor, helper functions, push/pop/getTop/removeAll functions, and a field is needed to store data.<br />
+Note that actually a simple linked list is a stack itself!<br />
 
 ## Queue ##
 
->Queue is a data structure with seperate entrance and exit, and open both entrance and exit. Stack is "FIRST IN FIRST OUT" (FIFO), which mean that the fisrt put data will be gotten in the first. The operations are put and get.
+>Queue is a data structure, which has different positions in entrance and exit, and open both entrance and exit. Queue is "FIRST IN FIRST OUT" (FIFO), which mean that the fisrt put data will be gotten in the first. The operations are put and get functions.
 
-To implement queque, there are a using array way (array queue) and a using list way (list queue). In terms of array queue, we have to use circular queue. Why is the circular queue is needed? While putting and getting queue in array queue, the position of queue will go to the end of array. Therefore, when it arrives at the end of array, we have to copy all elements to the beginning of array; on the other hand, the circular queue do not need to copy.<br />
+Figure queue.1 shows the conception of the Queue data structure and algorithm. In most left figure, there are five elements, and the front indicates the exit posision, and the rear indicates the entrance position. When getting from a queue, the element of the front must be gotten, and the front pointer will indicate new front position. When 'PUT X' occurs, the 'X' must be located on the rear position, and rear will indicate to new entrance point.
 
-### circular queue operation ###
+### Figure queue1. the Conception of Queue ###
+![Image]({{ site.globalurl }}/contents/img/queue2.jpg)
 
-In this figure, front points the position to get data, and rear points the empty space to put data. 
+To implement queque, there are a using array queue and list queue. In terms of array queue, we have to use circular queue. Why is the circular queue is needed? Figure queue2 and Figure queue3 show how to operate in general style queue and circular queue respectively. While putting and getting elements in array queue, the position of the front and rear will go to the end of array. But, the array has the fixed size for saving elements, so we can't use the index beyond the size of array. Therefore, whenever it arrives at the end of array, we have to copy all elements to the beginning of the array; on the other hand, the circular queue do not need to copy.<br />
 
+### Figure queue2. General Queue operation ###
+![Image]({{ site.globalurl }}/contents/img/queue3.jpg)
+
+In figure queue3, the front indicates the point to get the element from the queue, and the rear indicates the point to put new element into the queue. 
+
+### Figure queue3. Circular Queue operation ###
 ![Image]({{ site.globalurl }}/contents/img/queue1.jpg)
 
-When the 'front' and 'rear' refer to the same index of array, we call it **'Empty condition'**, and whenever element value is assigned to array, the rear refers to the next index. If the rear is located the right before the front, we call it 'Full condition'. <br />
+When the 'the front' and 'the rear' refer to the same index of circluar array, we call it **'Empty condition'**, and whenever an element is put to circluar array queue, the rear refers to the next index. If the rear indicates the right before the front, we call it **Full condition**. In the full conditon, if new element is tried to put, then an exception must be happened.<br />
 
 The skeletone of circular queue includes an exceptions, its constructor/destructor, helper functions, put/get/increase/decrease functions, and some fields are needed to store data, to represent the number of data, and to represent the size of array. Also, the skeletone of ListQueue includes exceptions, its constructor/destructor, helper functions, put/get functions, and a field is needed to store data.<br />
 
 [DSA555](https://cathyatseneca.gitbooks.io/data-structures-and-algorithms/content/)
 
-## Notation ##
+Next, we are talking about **'Notation'**.
 
-Infix notation is that there is an operator between two operands (ex: A + B), and postfix potation is that there is operator after two operands (A B +); on the other hand, prefix notation is that there is an operator before two operands (+ A B). <br />
+## Notation ##
+In data structure and algorithm, there are three kinds of notation: prefix notation, infix notation, and postfix notation. Prefix notation is that there is an operator before two operands (+ A B). Infix notation is that there is an operator between two operands (ex: A + B), and postfix notation is that there is operator after two operands (A B +). <br />
+
+In human being perspective, infix notation is easy to calulate, but in computer, postifx notaion is calculated easier than infix one. So, now we will see how to change infix notation to postfix notation,
 
 ### Post notation ###
 To change infix notation to postfix notation, 
 
-1. use the precedence of operator: '(' : 0, +-: 1, */ : 2
-2. If meeting '(', push operand from stack
-3. If meeting ')', add element to the result until getting '(', and throw away '('
-4. If meeting operator, pop and add the element to the result until getting lower operator, and throw away itself.
-5. add operands
+1. Determine the precedence of operator: '(' : 0, '+' and '-': 1, '*' and '/' : 2
+2. If meeting '(', push it into the stack
+3. If meeting ')', pop elements and add them to the result until meeting '(', and throw away '(' and ')'.
+4. If meeting operator, pop the elements and add them to the result until meeting upper level operator than itself, and push itself.
+5. If meeting operand, add operand to the result.
 6. When all input is complete, pop the rest all operators and add them to the result.
 
-![Image]({{ site.globalurl }}/contents/img/postfix1.jpg)
+When we change the (2*(3+6/2)+2)/4+3, the result is 2362/+*2+4/3+.
 
-To calculate th postfix, 
-1. push the operator from stack when meeting operand.
-2. pop two times operator, operate two values, and push the result in stack.
-3. Last one reamining in stack is the final result
+<!--![Image]({{ site.globalurl }}/contents/img/postfix1.jpg)-->
 
-![Image]({{ site.globalurl }}/contents/img/postfix2.jpg)
+And in this time, we will see how to calculate postfix notaion in computer.
+
+To calculate the postfix notation, 
+1. If meeting operand, push the operand into the stack.
+2. If meeting operator, pop an operand from the stack, put it on the right of the operator, and pop it again from the stack, and put it on the left of the operator. Calulate them, and push only result into stack, and throw away the operator and the poped two operands.
+3. The last one left in stack is the final result.
+<!-- ![Image]({{ site.globalurl }}/contents/img/postfix2.jpg) -->
 
 ## Tree ##
 
 > Tree is a nonlinear data structure, which is consisted of node (vertex) and link (edge). Node has data, and linke represents the relationship between two nodes. Tree has at least a root, which is the top level node. All nodes have a parent node except root, but node can have serveral children node. The path from a node to other is unique.
 
+![Image]({{ site.globalurl }}/contents/img/tree12.jpg)
+
+Especially, the binary tree is the most useful and is utilized at many parts. So, now we will see about the binary tree.
+
 ### Binary Tree ###
 
-> All nodes have less than or equal two nodes: left child and right child. Parse three is used to fomular calculation, heap tree is used to sort, and binary search tree is for searching.<br />
+> Binary tree is a tree data structure that all nodes have maximum two nodes: left child and right child. **Parse three** is used to calculate, **heap tree** is used to sort, and **binary search tree** is for searching.<br />
 
 Another categorization is: 
 
@@ -305,7 +326,7 @@ Another categorization is:
 |all level node is filled with <br />except the last node, and last <br />nodes are left node.|all level nodes are filled with|
 |![Image]({{ site.globalurl }}/contents/img/binary1.jpg)|![Image]({{ site.globalurl }}/contents/img/binary2.jpg)|
 
-There are two way to create binary tree: array and linkedlist. Array is effective in complete binary tree case, and is used heap sort algorithm. <br />
+There are two way to create binary tree: array tree and linked list tree. Array can be used in only complete binary tree case and is used heap sort algorithm. <br />
 
 |---|---|
 |To intialize the tree structure, we may use the start node <br />and the end node to use nodes between the start and end nodes with <br />the same logic.|![Image]({{ site.globalurl }}/contents/img/tree1.jpg)|
