@@ -85,10 +85,9 @@ Table1 shows how many steps there are in two GCM algorithm. When using minus (-)
 |14 |= GCD(0,  10)||
 |15 |= 10||
 
-Now, the other way will be introduced, which is using recusive function.<br />
-Recusive function is calling itself.<br />
-Recusive function have to two factors; one is that it must have the stop point; the sencond is that the argument must be reduced.<br />    
-v value is continuously reduce, and once it will be 0, return u value as greatest common divisor; otherwise, recusive function will call itself until v becomes 0.<br /> 
+Now, the other way will be introduced, which is using recusive function. Recusive function is calling function itself. Recusive function has two conditions; one is that it must have the end point; the sencond is that the problem must be reduced.<br />
+
+Here is a function gcd_recustion `int gcd_recursion(int u, int v)`, which receive two integers 'u' and 'v' as the passed parameters and return type also integer. In line 6th, v value is continuously reduced by asigning u % v, and once it will be 0, then return u as greatest common divisor; otherwise, the recusive function will call the function itself until v becomes 0.<br /> 
 
 ```java
 int gcd_recursion(int u, int v) 
@@ -99,32 +98,41 @@ int gcd_recursion(int u, int v)
         return gcd_recursion(v, u%v);
 }
 ```
+### Figure1. GCD recusive funtion in tree structure ###
 
->**NOTE: recusive function can provide more conprehensive source code; however, it uses more cost to call function.**  
+![Image]({{ site.globalurl }}/contents/img/recusive2.jpg)
+
+>**Note that the recusive function can provide more conprehensive source code; however, it uses more cost to call function.**  
+
+Let's move to next topic, array.
 
 ## Array ##
-Array is collection of data of same type: (int, float, double, char), which uses contiguous storage in a memory, the fixed size, and it can approach to the memory with index (0, 1, 2, ..., n).<br />
-How to project mulit-dimensions array like one-dimension array? 
+Array is a data collection in same type, for example, int, float, double, char, which uses contiguous storage in a memory, and it has the fixed size, and it can approach to the memory with index (0, 1, 2, ..., n).<br />
+Now I am talking aobut how to project mulit-dimensions array like one-dimension array? 
 <br />
-We can write an array including three rows and three columns.
+We can write an array with three rows and three columns. It can be written: 
 <br />
+```
 int array [3][3] = {
-{
-{ 1, 2, 3 },
-{ 4, 5, 6 },
-{ 7, 8, 9 }
+    { 1, 2, 3 },
+    { 4, 5, 6 },
+    { 7, 8, 9 }
 };
+```
+or, it can be used like one-dimension array:
+```
+int array[3][3] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+```
 <br />
-or
-<br />
-int array[3][3] =
-{ 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-<br />
-Each elments of this array are stored like below in memory.
+Each elments of this array are contiguously stored in memory:
 <br />
 ![Image]({{ site.globalurl }}/contents/img/array1.jpg)
 <br />
-Here is two-dimensions array: 
+The index 0 to 2 is the first row or first-dimension, the index 3 to 5 is the second row, and the index 6 to 8 is third row.<br />
+
+Here there are two ways to approach the element of two-dimensions array.
+
+In first source code snipet, we can access each element with row and column. It is very normal way.
 
 ```java
 int average(int m[][], int n1, int n2) 
@@ -140,7 +148,7 @@ int array[3][3];
 int average = average(array, 3, 3);
 ```
 
-We can use two-dimensions array like one-dimentsion array: 
+However, we can also access two-dimensions array like one-dimentsion array. Note the line 7 `sum += m[i * n2 + j];` of the second source code snipet.
 
 ```java
 int average(int m[][], int n1, int n2) 
@@ -156,7 +164,7 @@ int array[3][3];
 int average = average(array, 3, 3);
 ```
 
-Multi-demensions array also has same way:
+Multi-demensions array also has same way; the way of accessing multi-dimensions array,
 
 ```java
 int tri[3][4][2];
@@ -168,7 +176,7 @@ int func(int t[][4][2], int n1, int n2, int n3)
 r = func(tri);
 ```
 
-We can use it like one-dimension array:
+and the way of accessing one-dimension array.
 
 ```java
 int tri[3][4][2];
@@ -181,45 +189,58 @@ r = func(tri, 3, 4, 2);
 ```
 
 ## Linked List ##
-The member variables of linked list are a data and a link that points to another node.<br />
-The linked list is the data structure that is non-contiguous storage, has variable size, access the random pointer, can **reverse iteration**.<br />
+The linked list is the data structure that is stored non-contiguous storage in memory, has variable size, access the random pointer, can **reverse iteration**.<br />
+The member variables of linked list are a data and a link that points to next node.<br />
+
 Figure1 shows the arrangement of the linked list in memory and the conceptional arragement of it.<br />
 
 ### Figure1. Physical and Logical concept of linked list ###
 
 ![Image]({{ site.globalurl }}/contents/img/linkedlist1.jpg)
 
+Physically, there are not contiguous in the memory. In physical concept of lisked list, each node is located in different memory area. However, in logical concept of linked list, the start node refers to 'L' node, 'L' refers to 'I', and 'I' refers to 'N' and so on. all elements are connected in order. So, it has more advantage in a inserting operation than in a searching operation. 
+
 ### simple linked list ###
-The simple linked list is simple one way linked list, which has data and next pointer. The operations are initialization, destruction, insertNext, deleteNext, and iteration & retrieval. <br />
+The simple linked list is one way linked list, which has data and next pointer. The operations are initialization, destruction, insertNext, deleteNext, and iteration & retrieval. <br />
 
 Simple list skeleton uses a class template, node struct to represent the node, includes the constructor, insert, and delete operation. <br />
 
 |---|---|
-|**In constructor**, the head node and tail node are created, <br />and connect with each other.|![Image]({{ site.globalurl }}/contents/img/simplelinkedlist1.jpg)|
+|**In constructor**, the head node and tail node are created, <br />and initialized by connecting with each other. The next ponter of the head node <br />refers to the address of the tail node, and the next pointer of the tail node refers to the tail node itself.|![Image]({{ site.globalurl }}/contents/img/simplelinkedlist1.jpg)|
 
-**Insert function** receives the information of current node, and a new node will be inserted after the current node. The next of new node is assigned the information of current. The next of current information refers to the informaton of new node. <br />
+Let's insert new node.
+
+**Insert function** receives the information of current node, and a new node will be inserted after the current node. The next pointer of new node is assigned the next pointer of current node. That is the address of the next node. The next pointer of current node refers to the address of new node. Now, the new node is inserted. <br />
 ![Image]({{ site.globalurl }}/contents/img/simplelinkedlist2.jpg)
 
+To delete a node, 
+
 |---|---|
-|**Delete function** receives the information of current node, <br />and a new node will be deleted after the current node. <br />The next of current node refers to the next information of deleted node. The next of current information is disconnected.|![Image]({{ site.globalurl }}/contents/img/simplelinkedlist3.jpg)|
+|**delete function** receives the information of current node, <br />and the node after the current node will be deleted. <br />The next pointer of current node refers to the next pointer <br />of deleted node. That is the address of the next node. The next pointer of deleted ndoe will be disconnected. Now the deleted node has nothing connection with any node|![Image]({{ site.globalurl }}/contents/img/simplelinkedlist3.jpg)|
+
+So far, we see about simple linked list. From now on, we will see double linked list.
 
 ## Doubly Linked List ##
 
-Doubly linked list is two way linked list, and each node has two fields for refering to the previous and to the next node information. As operation, there are initialization, destruction, insertNext, insertBefore, deleteAt, iteration & retrieval.<br />
+Doubly linked list is two way linked list, and each node has two fields for refering to the address of the previous and the next node. As operation, there are initialization, destruction, insertNext, insertBefore, deleteAt, iteration & retrieval.<br />
 
 |---|---|
-|**In constructor**, the head node and tail node are created, <br />and the previous of head node refers to itself, the next refers <br />to the information of tail. The previous of tail node refers <br />to the information of head, and the next refers to itself.|![Image]({{ site.globalurl }}/contents/img/doublelinkedlist1.jpg)| 
+|**In constructor**, the head node and tail node are created, <br />and the previous pointer of head node refers to head node itself, the next pointer refers <br />to the address of tail node. The previous pointer of tail node refers <br />to the address of head node, and the next pointer refers to the tail node itself.|![Image]({{ site.globalurl }}/contents/img/doublelinkedlist1.jpg)| 
 
-InsertNext function is very similar to the simple linked list, which receives the information of current node, and a new node will be inserted after the current node. The next of new node assigns to the information of the next field of current. The next of current information refers to the informaton of new node. <br />
-
-![Image]({{ site.globalurl }}/contents/img/doublelinkedlist2.jpg)
-
-InsertBefore function receives the information of current node, and a new node will be inserted before the current node. The previous of new node assigns the information of the prevous field of current. The previous of current information refers to the informaton of new node. <br />
+InsertNext function is very similar to the simple linked list, which receives the information of current node, and a new node will be inserted after the current node. The next pointer of new node assigns to the next pointer of current node. That is the address of the next node. The next pointer of current node refers to the address of new node. <br />
 
 ![Image]({{ site.globalurl }}/contents/img/doublelinkedlist3.jpg)
 
+InsertBefore function receives the information of current node, and a new node will be inserted before the current node. The previous pointer of new node assigns the prevous pointer of current node. That is the address of the previous node. The previous of current node refers to the address of new node. <br />
+
+![Image]({{ site.globalurl }}/contents/img/doublelinkedlist2.jpg)
+
+Next is the delete function.
+
 |---|---|
-|**Delete function** receives the information of  current node, <br />and a new node will be deleted after  the current node. The <br />next of current node refers to the next information of deleted node. The next  of current information is disconnected.|![Image]({{ site.globalurl }}/contents/img/doublelinkedlist4.jpg)|
+|**Delete function** receives the information of  current node, <br />and a new node after the current node will be deleted. The <br />next pointer of current node refers to the next pointer of <br />deleted node. That is the address of next node. The previous <br />pointer of the pointer of the deleted node refers to the <br />previous pointer of the deleted node. That is the address of the previous node. The previous and next pointer of current node are disconnected.|![Image]({{ site.globalurl }}/contents/img/doublelinkedlist4.jpg)|
+
+That's it for all inserting and deleting node in double-linked list. Next, we are talking about stack and queue.
 
 ## Stack ##
 
@@ -230,7 +251,8 @@ Note that actually, simplelist is stack itself!<br />
 
 ## Queue ##
 
-Queue is a data structure with seperate entrance and exit, and open both entrance and exit. Stack is "FIRST IN FIRST OUT" (FIFO), which mean that the fisrt put data will be gotten in the first. The operations are put and get. <br />
+>Queue is a data structure with seperate entrance and exit, and open both entrance and exit. Stack is "FIRST IN FIRST OUT" (FIFO), which mean that the fisrt put data will be gotten in the first. The operations are put and get.
+
 To implement queque, there are a using array way (array queue) and a using list way (list queue). In terms of array queue, we have to use circular queue. Why is the circular queue is needed? While putting and getting queue in array queue, the position of queue will go to the end of array. Therefore, when it arrives at the end of array, we have to copy all elements to the beginning of array; on the other hand, the circular queue do not need to copy.<br />
 
 ### circular queue operation ###
