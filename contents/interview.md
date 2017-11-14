@@ -75,16 +75,16 @@ layout: default
 
 ## Why did you leave your last job? ##
 ### Why did you quit your last job? ###
->My 10 years working at the last company was very rewarding. My main duties were analyzing the customer services request and reflecting it to existing system without any impact. However, I felt a strong desire to challenge myself and explore other opportunities. Moreover, working in Canada is my dream. So I decided to leave my previous job in order to develop my potential. I would like to develop my specialty further. So, I came in Canada with my family, and studied English and up-to-date technology with young students in Seneca College. That is why I apply to your company now.
+>My 10 years working experience in POSCO system maintenance team was very rewarding for me. My main duties were analyzing the customer requests and developing and reflecting them to the existing running system without any impact. I learned many programming and operating skills from the job. However, during last 2 years I felt a strong desire to challenge myself and want to explore other opportunities to improve myself. Moreover, working in Canada is my dream. So I decided to leave my previous job in order to develop my potential. I would like to develop my specialty further. So, I came in Canada, and studied English and Computer Developer Course in Seneca College. That is why I am here to apply to your company now.
 
 ## What is your expected salary range? ##
 ### What starting salary would you expect? ###
 ### What was your last salary? ###
 ### What starting salary would you expect? ###
->Considering my previous work experience, I averaged about $300 per day. However, it is negotiable because I haven’t worked it in Canada. However, I believe I am well-trained and skilled for this job and I am confident you will feel the same. Therefore, I hope this company present me with a fair offer.
+>Considering my previous work experience, I averaged about $70,000 annually, plus incentive per any projects. But, it is negotiable because I haven’t worked it in Canada. However, I believe I am well-trained and skilled for this job and I am confident you will feel the same to me. Therefore, I hope this company present me with a fair offer.
 
 ## When would you start to work? ##
->I will be able to start working after my graduation, which is maximum two months later from now. I hope to graduate on the end of this year, but due to college employee’s strike, the schedules should be changed. After graduation, I will available to start work with your company at any time. I will try my best to accommodate your schedule.
+>I will be able to start working after my graduation, which is maximum two months later from now. I expect to graduate in the end of this year. However, due to college employee’s strike, the schedule should be changed. After graduation, I will available to start working with your company at any time. I will try my best to accommodate your schedule.
 
 ## My questions for interviewee ##
 >How does one advance in the company?

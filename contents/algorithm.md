@@ -205,18 +205,18 @@ The simple linked list is one way linked list, which has data and next pointer. 
 
 Simple list skeleton uses a class template, node struct to represent the node, includes the constructor, insert, and delete operation. <br />
 
-|---|---|
-|**In constructor**, the head node and tail node are created, <br />and initialized by connecting with each other. The next ponter of the head node <br />refers to the address of the tail node, and the next pointer of the tail node refers to the tail node itself.|![Image]({{ site.globalurl }}/contents/img/simplelinkedlist1.jpg)|
+**In constructor**, the head node and tail node are created, and initialized by connecting with each other. The next ponter of the head node refers to the address of the tail node, and the next pointer of the tail node refers to the tail node itself. Now all member variables are initialized.
+
+![Image]({{ site.globalurl }}/contents/img/simplelinkedlist1.jpg)
 
 Let's insert new node.
 
-**Insert function** receives the information of current node, and a new node will be inserted after the current node. The next pointer of new node is assigned the next pointer of current node. That is the address of the next node. The next pointer of current node refers to the address of new node. Now, the new node is inserted. <br />
+**Insert function** receives the information of current node, and a new node will be inserted after the current node. The next pointer of new node refters to where the next pointer of current node indidates. That is the address of the next node. The next pointer of current node refers to the address of new node. Now, the new node is inserted. <br />
 ![Image]({{ site.globalurl }}/contents/img/simplelinkedlist2.jpg)
 
-To delete a node, 
+**Delete function** receives the information of current node, and the node after the current node will be deleted. The next pointer of current node refers to where the next pointer of deleted node indicates. That is the address of the next node. The next pointer of deleted ndoe will be disconnected. Now the deleted node has nothing connection with any nodes.
 
-|---|---|
-|**delete function** receives the information of current node, <br />and the node after the current node will be deleted. <br />The next pointer of current node refers to the next pointer <br />of deleted node. That is the address of the next node. The next pointer of deleted ndoe will be disconnected. Now the deleted node has nothing connection with any node|![Image]({{ site.globalurl }}/contents/img/simplelinkedlist3.jpg)|
+![Image]({{ site.globalurl }}/contents/img/simplelinkedlist3.jpg)
 
 So far, we see about simple linked list. From now on, we will see double linked list.
 
@@ -224,29 +224,29 @@ So far, we see about simple linked list. From now on, we will see double linked 
 
 Doubly linked list is two way linked list, and each node has two fields for refering to the address of the previous and the next node. As operation, there are initialization, destruction, insertNext, insertBefore, deleteAt, iteration & retrieval.<br />
 
-|---|---|
-|**In constructor**, the head node and tail node are created, <br />and the previous pointer of head node refers to head node itself, the next pointer refers <br />to the address of tail node. The previous pointer of tail node refers <br />to the address of head node, and the next pointer refers to the tail node itself.|![Image]({{ site.globalurl }}/contents/img/doublelinkedlist1.jpg)| 
+**In constructor**, the head node and tail node are created, and the previous pointer of head node refers to head node itself, the next pointer refers to the address of tail node. The previous pointer of tail node refers to the address of head node, and the next pointer refers to the tail node itself. Now, all member variables are initialized.
 
-InsertNext function is very similar to the simple linked list, which receives the information of current node, and a new node will be inserted after the current node. The next pointer of new node assigns to the next pointer of current node. That is the address of the next node. The next pointer of current node refers to the address of new node. <br />
+![Image]({{ site.globalurl }}/contents/img/doublelinkedlist1.jpg) 
+
+**InsertNext function** is very similar to the simple linked list, which receives the information of current node, and a new node will be inserted after the current node. The next pointer of new node refers to where the next pointer of current node indicates. That is the address of the next node. The previous pointer of the new node refers to the address of current node. The next pointer of current node refers to the address of new node. Now, the new node is inserted. <br />
 
 ![Image]({{ site.globalurl }}/contents/img/doublelinkedlist3.jpg)
 
-InsertBefore function receives the information of current node, and a new node will be inserted before the current node. The previous pointer of new node assigns the prevous pointer of current node. That is the address of the previous node. The previous of current node refers to the address of new node. <br />
+**InsertBefore function** receives the information of current node, and a new node will be inserted before the current node. The previous pointer of new node refers to where the prevous pointer of current node indicates. That is the address of the previous node. The next pointer of previous node refers to the address of new node. The previous pointer of current node refers to the address of new node. The next pointer of the new node refers to the address of current node. Now, the new node is inserted. <br />
 
 ![Image]({{ site.globalurl }}/contents/img/doublelinkedlist2.jpg)
 
-Next is the delete function.
+**Delete function** receives the information of  current node, and the node after the current node will be deleted. The next pointer of current node refers to where the next pointer of deleted node indicates. That is the address of next node. The previous pointer of where the pointer of the deleted node indicates, refers to the address of the current node. The previous pointer and next pointer of the delete node are disconnected. Now the deleted node has nothing connection with any nodes. 
 
-|---|---|
-|**Delete function** receives the information of  current node, <br />and a new node after the current node will be deleted. The <br />next pointer of current node refers to the next pointer of <br />deleted node. That is the address of next node. The previous <br />pointer of the pointer of the deleted node refers to the <br />previous pointer of the deleted node. That is the address of the previous node. The previous and next pointer of current node are disconnected.|![Image]({{ site.globalurl }}/contents/img/doublelinkedlist4.jpg)|
+![Image]({{ site.globalurl }}/contents/img/doublelinkedlist4.jpg)
 
-That's it for all inserting and deleting node in double-linked list. Next, we are talking about stack and queue.
+Next, we are talking about another interesting topic: **Stack and Queue**.
 
 ## Stack ##
 
->Stack is a data structure with the same entrance and exit, and block the bottom. Stack is "LAST IN-FIRST OUT", called 'LIFO', which means that the fisrt input data will be poped in the last order. The operations are push and pop functions. <br />
+>Stack is a data structure with the same entrance and exit, and the bottom is blocked. Stack is "LAST IN-FIRST OUT" operation called 'LIFO', which means that the fisrt input data will be poped in the last order. The operations are push and pop functions. <br />
 
-Figure stack.1 shows the conception of the Stack data structure and algorithm. In most left figure, there are five elements, and the cursor indicates the most top position. When 'PUSH X' occurs, the 'X' must be located on the most top, and cursor will indicate to new top position. When poping from a stack, the element of the most top must be poped, and the cursor will indicate new top position.    
+Figure stack.1 shows the conception of the Stack data structure and algorithm. In the left figure, there are five elements into a stack, and the cursor indicates the most top position. When 'PUSH X' occurs in the middle picture, the element 'X' must be located on the most top, and cursor will indicate to new top position. When poping from a stack in the right picture, the most top element must be poped, and the cursor will indicate new top position.    
 ### Figure stack1. the Conception of Stack ###
 ![Image]({{ site.globalurl }}/contents/img/stack1.jpg)
 
@@ -255,26 +255,26 @@ Note that actually a simple linked list is a stack itself!<br />
 
 ## Queue ##
 
->Queue is a data structure, which has different positions in entrance and exit, and open both entrance and exit. Queue is "FIRST IN FIRST OUT" (FIFO), which mean that the fisrt put data will be gotten in the first. The operations are put and get functions.
+>Queue is a data structure, which has different positions in entrance and exit, and both entrance and exit are opened. Queue is "FIRST IN FIRST OUT" operation called 'FIFO', which mean that the fisrt put data will be gotten in the first. The operations are put and get functions.
 
-Figure queue.1 shows the conception of the Queue data structure and algorithm. In most left figure, there are five elements, and the front indicates the exit posision, and the rear indicates the entrance position. When getting from a queue, the element of the front must be gotten, and the front pointer will indicate new front position. When 'PUT X' occurs, the 'X' must be located on the rear position, and rear will indicate to new entrance point.
+Figure queue1 shows the conception of the Queue data structure and algorithm. In the left picture, there are five elements in a queue, and the front indicates the exit position, and the rear indicates the entrance position. When getting from a queue in the middle picture, the most front element must be exited, and the front pointer will indicate new front position. When 'PUT X' occurs int the last picture, the 'X' must be located on the rear position, and the rear will indicate to new entrance point.
 
 ### Figure queue1. the Conception of Queue ###
 ![Image]({{ site.globalurl }}/contents/img/queue2.jpg)
 
-To implement queque, there are a using array queue and list queue. In terms of array queue, we have to use circular queue. Why is the circular queue is needed? Figure queue2 and Figure queue3 show how to operate in general style queue and circular queue respectively. While putting and getting elements in array queue, the position of the front and rear will go to the end of array. But, the array has the fixed size for saving elements, so we can't use the index beyond the size of array. Therefore, whenever it arrives at the end of array, we have to copy all elements to the beginning of the array; on the other hand, the circular queue do not need to copy.<br />
+To implement queque, there are a using array queue and list queue. In terms of array queue, we have to use circular queue. Why is the circular queue needed? Figure queue2 and Figure queue3 show how to operate in general style queue and circular queue respectively. While putting and getting elements in array queue, the position of the front and rear will move toward the end of array. But, the array has the fixed size in memory, so we can't use the index beyond the size of array. Therefore, whenever it arrives at the end of array, we have to copy all elements to the beginning of the array; on the other hand, the circular queue do not need the copy logic to implement it.<br />
 
 ### Figure queue2. General Queue operation ###
 ![Image]({{ site.globalurl }}/contents/img/queue3.jpg)
 
-In figure queue3, the front indicates the point to get the element from the queue, and the rear indicates the point to put new element into the queue. 
+Figure queue3 demonstrates the circular queue. The front indicates the exit position in the queue, and the rear indicates the entrance position in the queue. 
 
 ### Figure queue3. Circular Queue operation ###
 ![Image]({{ site.globalurl }}/contents/img/queue1.jpg)
 
-When the 'the front' and 'the rear' refer to the same index of circluar array, we call it **'Empty condition'**, and whenever an element is put to circluar array queue, the rear refers to the next index. If the rear indicates the right before the front, we call it **Full condition**. In the full conditon, if new element is tried to put, then an exception must be happened.<br />
+When the 'the front' and 'the rear' refer to the same index of circluar array, we call it **'Empty condition'**, and whenever an element is put into the circluar array queue, the rear refers to the next index of the last element. If the rear indicates the right before the front, we call it **Full condition**. In the full conditon, if new element is tried to put, then an exception must be happened.<br />
 
-The skeletone of circular queue includes an exceptions, its constructor/destructor, helper functions, put/get/increase/decrease functions, and some fields are needed to store data, to represent the number of data, and to represent the size of array. Also, the skeletone of ListQueue includes exceptions, its constructor/destructor, helper functions, put/get functions, and a field is needed to store data.<br />
+The skeletone of a circular arrry queue includes an exceptions, its constructor/destructor, helper functions, put/get/increase/decrease functions, and some fields are needed to store data, to represent the number of data, and to represent the size of array. Also, the skeletone of the list queue includes exceptions, its constructor/destructor, helper functions, put/get functions, and a field is needed to store data.<br />
 
 [DSA555](https://cathyatseneca.gitbooks.io/data-structures-and-algorithms/content/)
 
@@ -323,28 +323,39 @@ Another categorization is:
 
 |Complete Binary Tree|Perfect Binary Tree|
 |---|---|
-|all level node is filled with <br />except the last node, and last <br />nodes are left node.|all level nodes are filled with|
+|all level node is filled with <br />except the last node.|all level nodes are filled with|
 |![Image]({{ site.globalurl }}/contents/img/binary1.jpg)|![Image]({{ site.globalurl }}/contents/img/binary2.jpg)|
 
-There are two way to create binary tree: array tree and linked list tree. Array can be used in only complete binary tree case and is used heap sort algorithm. <br />
+There are two way to create binary tree: array tree and linked list tree. Array must be used in only complete binary tree case and is used heap sort algorithm. **Here we will see about a linked list tree**.<br />
 
-|---|---|
-|To intialize the tree structure, we may use the start node <br />and the end node to use nodes between the start and end nodes with <br />the same logic.|![Image]({{ site.globalurl }}/contents/img/tree1.jpg)|
+To intialize the tree structure, we may use the start node and the end node. That is to use nodes between the start and end nodes with the same logic. What if are there no start and end nodes here? We should seperately implement logics for the start node, the end node, and nodes between them.<br />
+In tree data structure, the right and left pointers of the start node refer to the address of the end node, and the left and right node of the end node refer to itself.
 
-The root node is the left of the start node. All leaf nodes refer to the end node. Binary tree skeleton has node struct, start / end node, constructor / desctructor, removeAll function.
+![Image]({{ site.globalurl }}/contents/img/tree1.jpg)
+
+ The left pointer of the start node indicates to the root node. All leaf nodes refer to the end node. Binary tree skeleton has node struct, start / end node, constructor / desctructor, removeAll function.
 ![Image]({{ site.globalurl }}/contents/img/tree2.jpg)
  
-To visit all nodes, **tree traversal** is used, which are stack-based and queque-based traversal. Stack-based traversal has **'pre-order'**, **'post-order'**, and **'in-order'**, and queue-based traversal has '**level-order**'. 
+To visit all nodes, **tree traversal** is used, which has a stack-based and a queque-based traversal. Stack-based traversal has **'pre-order'**, **'post-order'**, and **'in-order'**, and queue-based traversal has '**level-order**'. 
 
-Let's move to inplemenation of traversal. To visit all of nodes of the below tree,
-![Image]({{ site.globalurl }}/contents/img/tree3.jpg)
-
-|pre-order|in-order|post-order|level-order|
-|1. visit to root, 2. visit to left subtree, 3. visit to right subtree.|1. visit to left subtree, 2. visit to root, 3. visit to right subtree.|1. visit to left subtree, 2. visit to right subtree, 3. visit to root|level-order traversal is to visit from top to bottom, and frm left to right.|
+|in pre-order|in in-order|in post-order|in level-order|
+|1. visit to root, 2. visit to left subtree, 3. visit to right subtree.|1. visit to left subtree, 2. visit to root, 3. visit to right subtree.|1. visit to left subtree, 2. visit to right subtree, 3. visit to root|visit from top to bottom, and frm left to right.|
 |![Image]({{ site.globalurl }}/contents/img/tree4.jpg)|![Image]({{ site.globalurl }}/contents/img/tree5.jpg)|![Image]({{ site.globalurl }}/contents/img/tree6.jpg)||
 |A->B->D->G->H->E->C->F->I|G->D->H->B->E->A->C->I->F|G->H->D->E->B->I->F->C->A|A->B->C->D->E->F->G->H->I|
 
-Generally, in pre-order traversal, recusive can be converted non-converted way using stack.
+Let's visit all of the below nodes. Assume that each node will print node's name when visiting.
+
+![Image]({{ site.globalurl }}/contents/img/tree3.jpg)
+
+First, in pre-order traversal, first move to root node and print A, then move to left node and print B, then move to left child node and print D, then move to left child and print G, G node has no child node, so move to right node and print H, in B node perspect, all left nodes are visited, so move to right child node and print E. Now in A node perspect, all left nodes are visited, so move to right node and print C, C has only right child node, so move to right child node and print F, then move to left child node and print I. Now all nodes are visited. So, the order is A->B->D->G->H->E->C->F->I.
+<br /><br />
+Second, in in-order traversal, the root node has left child node B, and B node has a left child node D, D has a left child node G, G has no child node. So, print G, then move to sub root D and print D, then move to right child node H and print H. In subroot B perspect, all left nodes are printed, so print B itself, then move to the right child node and print E. In root A perspect, all left noeds were printed, so print A itself, then mvoe to the right child node. C has no left node, so print C itself, then move to the right child F. Node F has the left node, so move to I, I has no child, so print I. In node I perspect, all left nodes are printed, so print F itself. Now, all nodes were visited.  So, the order is G->D->H->B->E->A->C->I->F.
+<br /><br />
+Third, in the post-order traversal, the root A has left child node B, and B node has a left child node D, D has a left child nod G, G has no child node. So, print G, then subroot D also has the right child node H, so move to H and print H. In subroot D perspect, all child nodes were visited, so print D itself. In subroot B perspect, all left nodes were visited, so move to the right node and print E, then print B itself. In the root node A perspect, all left nodes were visited. So, move to the right node C. C node has F node, and only F node has only I node. I node has no child node anymore. So, print I. F has no the right node, so print F itself. C node has no left node and all right nodes were visited, so print C itselft. In root node A perspect, all left and right child nodes were visited. So, print A itself. Now all nodes were visited, So the order is G->H->D->E->B->I->F->C->A.
+<br /><br />
+Lastly, in level-order, it is visited by the order from top node to bottom node, from left node to right node. So, the order is A->B->C->D->E->F->G->H->I.
+
+Generally, in pre-order traversal, recusive function can be converted to non-recusive function using stack.
 
 ```cpp
 void BinaryTree::PreOrderTraverse_Stack(Node *pNode) 
@@ -363,7 +374,12 @@ void BinaryTree::PreOrderTraverse_Stack(Node *pNode)
     }
 }
 ```
-Level-order traversal shows how to visit all node with queue.
+![Image]({{ site.globalurl }}/contents/img/tree3.jpg)
+
+We will demonstrate how to use pre-order traversal of this tree in stack.
+According to this source code, Fisrt, push the roor node A. In while state, pop A, visit A and push the right child node B and the left child node C. Note that because we use a stack, so we must push the right child nod first. Then in loop the while statement and pop B, visit B and push the right child node E and left child node D. Then loop the while statement, pop D, visit D and push H and G. Then loop, and pop G. G has no child nodes. So, pop H, visit H. H has no child nodes. So, loop, and pop E. E has no child nodes. So, loop, and pop C, visit C and push the right node F. Here is no left node. So, loop, and pop F, visit F and push I. F has no right node. So, loop and pop I, visit I. Now all nodes are visited. Compare the order with the pre-order traversal. It has the same order: A->B->D->G->H->E->C->F->I. 
+
+Now we will see that in level-order traversal, the recusive function can be converted non-recusive function. Remember that the level-order traversal uses the queue. 
 
 ```cpp
 void BinaryTree::LevelOrderTraverse(Node *pNode) 
@@ -382,18 +398,36 @@ void BinaryTree::LevelOrderTraverse(Node *pNode)
     }
 }
 ```
-Now, you can demonstrate algotrithm of pre-order traversal and level-order traversal with stack and queue respectively.
+![Image]({{ site.globalurl }}/contents/img/tree3.jpg)
+
+We will demonstrate how to use level-order traversal of this tree in queue.
+According to this source code, Fisrt, put the root node A. In while state, get A, visit A and put the left child node B and the right child node C. Note that because we use a queue, so we must put the left child nod first. Then loop the while statement and get B, visit B and put the left child node D and right child node E. Then loop the while statement, get C, visit C and put F. C has no left child nodes. So, loop, and get D, visit D and put G and H. Then loop, get E and there are no child nodes. So, loop get F, visit F. F has only left node. So, put I. Then loop, and get G. G has no child node. So, loop, get H. H has no child nodes, so loop, get I. I has no child node. Now all nodes are visited. Compare the order with the level-order traversal. It has the same order: A->B->C->D->E->F->G->H->I.
 
 |pre-order|level-order|
 |---|---|
 |![Image]({{ site.globalurl }}/contents/img/tree7.jpg)|![Image]({{ site.globalurl }}/contents/img/tree8.jpg)|
 
 ### Parse Tree ###
-Parse tree is to consist a tree according to operation precedence. Operator is located in root, and operand is located on child. All operator is **non terminal**, and Operand is **terminal node**.
+Parse tree is to consist a tree according to operation precedence. The first order becomes leaf, and later order becomes the root. Therefore, operator is located in root, and operand is located on child. All operator is **non terminal**, and Operand is **terminal node**. Refer to figure parse tree1. The example of parse tree diagram. Fomular ((A+B)*(C-D))/E+(F*G) will become the below parse tree.
 
-How do you make parse tree using post notation?
+### Figure parse tree1. The example of parse tree diagram ###
+![Image]({{ site.globalurl }}/contents/img/tree9.jpg)
 
-To make parse, first create operand node, and push it to stack. Also, create operator node. After that, pop a node from stack, and make it as right child, and pop another node from stack, and make it as left child. Loop from 1 and 2. The last node of stack becomes root.
+Note that in parse tree:
+1. in-order traverse can illustrate infix notaion.
+2. pre-order traverse can illustrate prefix notation.
+3. post-order traverse can illustrate postfix notation.
+
+How do you make parse tree using post notation? Let's demonstrate how the parse tree is created in stack.
+<br /><br />
+To make parse tree in post notation, first, create operand nodes A and B, and push them to stack. Also, create operator node +. After that, to create an operator node subtree, pop the node B from stack, and make it as right child node of operator node, and pop the node A from stack, and make it as left child node of operator node. Then push the operator subtree into the stack. and repeat this process until the last subtree leaves in the stack, and the last subtree becomes the root tree.
+
+|---|---|
+|![Image]({{ site.globalurl }}/contents/img/tree10.jpg)|![Image]({{ site.globalurl }}/contents/img/tree11.jpg)|
+
+Note that the reason we use the post notation to make parse tree is because computer most easy calculate it in the post notation.
+<br /><br />
+The below source code demonstrates the logic to make parse tree in the post notation.
 
 ```cpp
 //1. push operand node to stack
@@ -438,23 +472,10 @@ void ParseTree::BuildParseTree(const String& strPostfix)
     m_pNodeHead->pLeft = NodeStack.Pop();
 }
 ```
-Through the above logic, fomular ((A+B)*(C-D))/E+(F*G) will become the below parse three.
-
-![Image]({{ site.globalurl }}/contents/img/tree9.jpg)
-
-Let's demonstrate how the parse tree is created in stack.
-
-|---|---|
-|![Image]({{ site.globalurl }}/contents/img/tree10.jpg)|![Image]({{ site.globalurl }}/contents/img/tree11.jpg)|
-
-Note that in parse tree:
-1. in-order traverse can illustrate infix notaion.
-2. pre-order traverse can illustrate prefix notation.
-3. post-order traverse can inllustrate postfix notation.
 
 ## Recursion ##
 
-Recursive Function calls itself and there are divide and conquer strategy in it. . One example is tree traversal.
+Recursive Function calls the function itself and there uses the divide and conquer strategy in it. One example is the tree traversal like below source code. In this source code, the function PreOrderTraverse calls PreOrderTraverse function itself to make the left and right child nodes.
 
 ```cpp
 void BinaryTree::PreOrderTraverse(Node *pNode) 
@@ -468,7 +489,7 @@ void BinaryTree::PreOrderTraverse(Node *pNode)
 }
 ```
 
-Recusive function has to meet two needs: the problem becomes smaller and there is the exit condition. In factorial algorithm, line `if (n == 0)` is the exit condition, and line `n * factorial(n – 1)` makes the size of theproblem smaller.
+Recusive function has to implement two requirements: one is that the problem must be reduced and another is there must be the exit condition. In factorial algorithm, line third `if (n == 0)` could be the exit condition, and line sixth `n * factorial(n – 1)` makes the problem smaller. Finally, the argument n will become 0 in this line and meet the exit condition, then function recusive is finished and return number 1.
 
 ```cpp
 int factorial (int n) 
@@ -476,17 +497,19 @@ int factorial (int n)
     if (n == 0) // exit condition
         return 1;
     else
-        return n * factorial(n – 1); // the problem size become smaller
+        return n * factorial(n – 1); // the problem become smaller
 }
 ```
+
+Let's move to more detail example, fibonacci.
 
 ### Fibonacci ###
 Fibonacci sequence is the series of the numbers, which defines that **"every number after the first two is the sum of the two preceding ones: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, .."** ([WIKIPIDA](https://en.wikipedia.org/wiki/Fibonacci_number)).
 <br /><br />
-The relation can be defined: F<sub>n</sub> = F<sub>n-1</sub> + F<sub>n-2</sub>, F<sub>1</sub> = F<sub>2</sub> =0
+The relation can be defined: F<sub>n</sub> = F<sub>n-1</sub> + F<sub>n-2</sub>, F<sub>1</sub> = F<sub>2</sub> = 1
 <br />
 
-The source code example of fibonacci is :
+The source code example of fibonacci is like this.
 ```cpp
 int fibonacci(int n) 
 {
@@ -496,13 +519,16 @@ int fibonacci(int n)
         return fibonacci(n – 1) + fibonacci(n – 2);
 }
 ```
+As you can see, in fibonacci funtion, when parameter n is number 1 or 2, the function recusion is finished, and return nubmer 1; otherwise, the function calls itself repeatly.
+<br />
 
-Figure recusive 1 shows how it can be demonstrated in a parse tree structure. To find the number of sequence 5th in fibonacci, input the value of 5 in ``int fibonacci(n)``. So, it calls ``fibonacci(5)``, and ``fibonacci(5)`` has two leaf nodes: ``fibonacci(4)`` and ``fibonacci(3)``. ``fibonacci(4)`` also has two leaf nodes: ``fibonacci(3)`` and ``fibonacci(2)``. Since we already deinfine the value of ``fibonacci(1)`` and ``fibonacci(2)`` as **'1'**, when adding all return values, the result is **'5'**.
+Figure recusive 1 shows how it can be demonstrated in a parse tree structure. To find the number of 5th in fibonacci sequence, input the number 5 as the argument in line 5th ``int fibonacci(n)``. So, it calls ``fibonacci(5)``, and ``fibonacci(5)`` has two leaf nodes: ``fibonacci(4)`` and ``fibonacci(3)``. ``fibonacci(4)`` also has two leaf nodes: ``fibonacci(3)`` and ``fibonacci(2)``. Since we already deinfine the value of ``fibonacci(1)`` and ``fibonacci(2)`` is **'1'**, the last child node will return value 1. So, when adding all return values, the final result is **'5'**.
 
 #### Figure recusive 1. recusive tree diagram for fibonacci ####
 ![Image]({{ site.globalurl }}/contents/img/recusive1.jpg)
 
-Consider how we can write fibonacci as non-recusive function.
+Consider how we can write fibonacci as non-recusive function. 
+
 ```cpp
 int fibonacci_nr(int n) 
 {
@@ -520,17 +546,17 @@ int fibonacci_nr(int n)
     return r;
 }
 ```
-This table shows the operating step of the above source code.
+
+The below table shows the operating step of the above source code. When the argument value is 5, the step0 is the initializtion of this function. In the step1, r is a + b whose value is 2, and a is assigned b value 1, b is assined value r 2, in the step2, r is 3, and a is assigned b value 2, b is assined value r 3, in the step3, r is 5, and a is assigned b value 3, b is assined r 5, in step 4, n is not great than 2, so while statement is finished, and return r, so the fincal result is 5. It is the same value to the result of using recusive fucntion.
+
 #### Table recusive 1. non-recusive function ####
 
-|step|	a|	b|	r1|
-|---|---|---|---|
-|1	|1	|1	|2|
-|2	|1	|r1	|3|
-|3	|2	|r2	|5|
+|step   |n > 2    |r      |a      |b      |
+|-------|---------|-------|-------|-------|
+|0	    |5        |0      |1	  |1	  |
+|1	    |5>2,true |2      |1	  |2	  |
+|2	    |4>2,true |3      |2	  |3	  |
+|3	    |3>2,true |5      |3	  |5	  |
+|4	    |2>2,false|5      |3	  |5	  |
 
-
-
-
-
-
+When we compare between recusive fibonacci function and non-recusive fibonacci function, the soruce of the recusive function is simpler and readable. However, recusive function should be spent more cost to call funtion itself repeatly. So, when not repeating the recusive function too much, use the recusive function; otherwise, use the non-recusive function.
