@@ -286,30 +286,30 @@ In data structure and algorithm, there are three kinds of notation: prefix notat
 In human being perspective, infix notation is easy to calulate, but in computer, postifx notaion is calculated easier than infix one. So, now we will see how to change infix notation to postfix notation,
 
 ### Post notation ###
-To change infix notation to postfix notation, 
+To change infix notation to postfix notation using a stack, 
 
 1. Determine the precedence of operator: '(' : 0, '+' and '-': 1, '*' and '/' : 2
 2. If meeting '(', push it into the stack
 3. If meeting ')', pop elements and add them to the result until meeting '(', and throw away '(' and ')'.
 4. If meeting operator, pop the elements and add them to the result until meeting upper level operator than itself, and push itself.
 5. If meeting operand, add operand to the result.
-6. When all input is complete, pop the rest all operators and add them to the result.
+6. When all input are completed, pop the rest all operators and add them to the result.
 
-When we change the (2*(3+6/2)+2)/4+3, the result is 2362/+*2+4/3+.
+When we change this infix notation (2*(3+6/2)+2)/4+3 to the postfix notation, the result is like this: 2362/+*2+4/3+.
 
 <!--![Image]({{ site.globalurl }}/contents/img/postfix1.jpg)-->
 
-And in this time, we will see how to calculate postfix notaion in computer.
-
-To calculate the postfix notation, 
+Next, to calculate the postfix notation using a stack, 
 1. If meeting operand, push the operand into the stack.
-2. If meeting operator, pop an operand from the stack, put it on the right of the operator, and pop it again from the stack, and put it on the left of the operator. Calulate them, and push only result into stack, and throw away the operator and the poped two operands.
-3. The last one left in stack is the final result.
+2. If meeting operator, pop an operand from the stack, put it on the right of the operator, and pop it again from the stack, and put it on the left of the operator, and calulate them, and push only result into the stack, and throw away the operator and the poped two operands.
+3. Repeat 1 and 2 util the last one is left.
+4. The last one is the final result.
+
 <!-- ![Image]({{ site.globalurl }}/contents/img/postfix2.jpg) -->
 
 ## Tree ##
 
-> Tree is a nonlinear data structure, which is consisted of node (vertex) and link (edge). Node has data, and linke represents the relationship between two nodes. Tree has at least a root, which is the top level node. All nodes have a parent node except root, but node can have serveral children node. The path from a node to other is unique.
+> Tree is a nonlinear data structure, which is consisted of node (vertex) and link (edge). Node has data, and link represents the connection between two nodes. Tree has at least a root, which is the top level node. All nodes have a parent node except root, but node can have serveral children node. The path from a node to the other is unique.
 
 ![Image]({{ site.globalurl }}/contents/img/tree12.jpg)
 
@@ -317,18 +317,20 @@ Especially, the binary tree is the most useful and is utilized at many parts. So
 
 ### Binary Tree ###
 
-> Binary tree is a tree data structure that all nodes have maximum two nodes: left child and right child. **Parse three** is used to calculate, **heap tree** is used to sort, and **binary search tree** is for searching.<br />
+> Binary tree is a tree data structure that all nodes have maximum two nodes: left child and right child. **Parse three** is used in calculating, **heap tree** is used in sorting, and **binary search tree** is used in searching.<br />
 
-Another categorization is: 
+Another categorization is a complete binary tree and a perfect binary tree: 
+Complete Binary Tree is all level node is filled except the last node.
 
-|Complete Binary Tree|Perfect Binary Tree|
-|---|---|
-|all level node is filled with <br />except the last node.|all level nodes are filled with|
-|![Image]({{ site.globalurl }}/contents/img/binary1.jpg)|![Image]({{ site.globalurl }}/contents/img/binary2.jpg)|
+![Image]({{ site.globalurl }}/contents/img/binary1.jpg)
 
-There are two way to create binary tree: array tree and linked list tree. Array must be used in only complete binary tree case and is used heap sort algorithm. **Here we will see about a linked list tree**.<br />
+Perfect Binary Tree is all level nodes are filled.
 
-To intialize the tree structure, we may use the start node and the end node. That is to use nodes between the start and end nodes with the same logic. What if are there no start and end nodes here? We should seperately implement logics for the start node, the end node, and nodes between them.<br />
+![Image]({{ site.globalurl }}/contents/img/binary2.jpg)
+
+There are two way to create binary tree: array tree and linked list tree. Array tree must be used in only complete binary tree case and is used in heap sort algorithm. But, now **Here we will see about a linked list tree**.<br />
+
+To intialize the tree structure, we may use the start node and the end node. That is because we use in same logic for all nodes: the root and the leaf nodes. What if are there no start and end nodes here? We should seperately implement logics for the start node, the end node, and nodes between them.<br />
 In tree data structure, the right and left pointers of the start node refer to the address of the end node, and the left and right node of the end node refer to itself.
 
 ![Image]({{ site.globalurl }}/contents/img/tree1.jpg)
