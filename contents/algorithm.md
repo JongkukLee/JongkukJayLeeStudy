@@ -330,18 +330,19 @@ Perfect Binary Tree is all level nodes are filled.
 
 There are two way to create binary tree: array tree and linked list tree. Array tree must be used in only complete binary tree case and is used in heap sort algorithm. But, now **Here we will see about a linked list tree**.<br />
 
-To intialize the tree structure, we may use the start node and the end node. That is because we use in same logic for all nodes: the root and the leaf nodes. What if are there no start and end nodes here? We should seperately implement logics for the start node, the end node, and nodes between them.<br />
-In tree data structure, the right and left pointers of the start node refer to the address of the end node, and the left and right node of the end node refer to itself.
+To intialize the tree structure, we may use the start node and the end node. the right and left pointers of the start node refer to the address of the end node, and the left and right pointer of the end node refer to the end node itself.
 
 ![Image]({{ site.globalurl }}/contents/img/tree1.jpg)
 
- The left pointer of the start node indicates to the root node. All leaf nodes refer to the end node. Binary tree skeleton has node struct, start / end node, constructor / desctructor, removeAll function.
+What if are there no start and end nodes here? We have to implement different logics according to node types: the root node and the leaf nodes.
+
+To form the below diagram, the left pointer of the start node indicates to the address of the root node 'A'. All last leaf nodes refer to the address of the end node. Binary tree skeleton has exceptions, node struct, start / end node, constructor / desctructor, removeAll functions.
 ![Image]({{ site.globalurl }}/contents/img/tree2.jpg)
  
-To visit all nodes, **tree traversal** is used, which has a stack-based and a queque-based traversal. Stack-based traversal has **'pre-order'**, **'post-order'**, and **'in-order'**, and queue-based traversal has '**level-order**'. 
+To visit all nodes, **tree traversal** is used, which has a stack-based and a queque-based traversal. Stack-based traversal has **'pre-order'**, **'in-order'**, and **'post-order'**, and queue-based traversal has '**level-order**'. 
 
 |in pre-order|in in-order|in post-order|in level-order|
-|1. visit to root, 2. visit to left subtree, 3. visit to right subtree.|1. visit to left subtree, 2. visit to root, 3. visit to right subtree.|1. visit to left subtree, 2. visit to right subtree, 3. visit to root|visit from top to bottom, and frm left to right.|
+|1. visit to root, 2. visit to left subtree, 3. visit to right subtree.|1. visit to left subtree, 2. visit to root, 3. visit to right subtree.|1. visit to left subtree, 2. visit to right subtree, 3. visit to root|visit from top to bottom, and from left to right.|
 |![Image]({{ site.globalurl }}/contents/img/tree4.jpg)|![Image]({{ site.globalurl }}/contents/img/tree5.jpg)|![Image]({{ site.globalurl }}/contents/img/tree6.jpg)||
 |A->B->D->G->H->E->C->F->I|G->D->H->B->E->A->C->I->F|G->H->D->E->B->I->F->C->A|A->B->C->D->E->F->G->H->I|
 
@@ -349,15 +350,21 @@ Let's visit all of the below nodes. Assume that each node will print node's name
 
 ![Image]({{ site.globalurl }}/contents/img/tree3.jpg)
 
-First, in pre-order traversal, first move to root node and print A, then move to left node and print B, then move to left child node and print D, then move to left child and print G, G node has no child node, so move to right node and print H, in B node perspect, all left nodes are visited, so move to right child node and print E. Now in A node perspect, all left nodes are visited, so move to right node and print C, C has only right child node, so move to right child node and print F, then move to left child node and print I. Now all nodes are visited. So, the order is A->B->D->G->H->E->C->F->I.
-<br /><br />
-Second, in in-order traversal, the root node has left child node B, and B node has a left child node D, D has a left child node G, G has no child node. So, print G, then move to sub root D and print D, then move to right child node H and print H. In subroot B perspect, all left nodes are printed, so print B itself, then move to the right child node and print E. In root A perspect, all left noeds were printed, so print A itself, then mvoe to the right child node. C has no left node, so print C itself, then move to the right child F. Node F has the left node, so move to I, I has no child, so print I. In node I perspect, all left nodes are printed, so print F itself. Now, all nodes were visited.  So, the order is G->D->H->B->E->A->C->I->F.
-<br /><br />
-Third, in the post-order traversal, the root A has left child node B, and B node has a left child node D, D has a left child nod G, G has no child node. So, print G, then subroot D also has the right child node H, so move to H and print H. In subroot D perspect, all child nodes were visited, so print D itself. In subroot B perspect, all left nodes were visited, so move to the right node and print E, then print B itself. In the root node A perspect, all left nodes were visited. So, move to the right node C. C node has F node, and only F node has only I node. I node has no child node anymore. So, print I. F has no the right node, so print F itself. C node has no left node and all right nodes were visited, so print C itselft. In root node A perspect, all left and right child nodes were visited. So, print A itself. Now all nodes were visited, So the order is G->H->D->E->B->I->F->C->A.
-<br /><br />
-Lastly, in level-order, it is visited by the order from top node to bottom node, from left node to right node. So, the order is A->B->C->D->E->F->G->H->I.
+First, in pre-order traversal, the order is the root - the left child node - the right child node. So, move to the root node and print A, then move to the left child node and print B, then move to  the left child node and print D, then move to  the left child and print G, G node has no child node, so move to  the right node and print H, in subroot B node perspect, all left nodes were visited, so move to  the right child node and print E. Now in the root A node perspect, all left nodes were visited, so move to the right node and print C, C has only right child node, so move to the right child node and print F, then move to the left child node and print I. Now all nodes are visited. So, the travesal path is A->B->D->G->H->E->C->F->I.
 
-Generally, in pre-order traversal, recusive function can be converted to non-recusive function using stack.
+![Image]({{ site.globalurl }}/contents/img/tree3.jpg)
+
+Second, in in-order traversal, the order is the left child node - the root - the right child node. The root node has  a left child node B, and B node has a left child node D, D has a left child node G, G has no child node. So, print G, then move to subroot D and print D, then move to right child node H and print H. In subroot B perspect, all left nodes are printed, so print B itself, then move to the right child node and print E. In root A perspect, all left noeds were printed, so print A itself, then mvoe to the right child node. C has no left node, so print C itself, then move to the right child F. Node F has the left node, so move to I, I has no child, so print I. In node F perspect, all left nodes are printed, so print F itself. Now, all nodes were visited. So, the traversal path is G->D->H->B->E->A->C->I->F.
+
+![Image]({{ site.globalurl }}/contents/img/tree3.jpg)
+
+Third, in the post-order traversal, the order is the left child node - the right child node - the root. The root A has left child node B, and B node has a left child node D, D has a left child nod G, G has no child node. So, print G, then subroot D also has the right child node H, so move to H and print H. In subroot D perspect, all child nodes were visited, so print D itself. In subroot B perspect, all left nodes were visited, so move to the right node and print E, then print B itself. In the root node A perspect, all left nodes were visited. So, move to the right node C. C has only F node, and F node has only I node. I node has no child node anymore. So, print I. F has no the right node, so print F itself. C has no left node and all right nodes were visited, so print C itselft. In root node A perspect, all left and right child nodes were visited. So, print A itself. Now all nodes were visited, So the traversal path is G->H->D->E->B->I->F->C->A.
+
+![Image]({{ site.globalurl }}/contents/img/tree3.jpg)
+
+Lastly, in level-order, it is visited by the order from top node to bottom node, from left node to right node. So, the traversal path is A->B->C->D->E->F->G->H->I.
+
+Generally, in pre-order traversal, a recusive function can be converted to a non-recusive function using stack.
 
 ```cpp
 void BinaryTree::PreOrderTraverse_Stack(Node *pNode) 
@@ -378,10 +385,10 @@ void BinaryTree::PreOrderTraverse_Stack(Node *pNode)
 ```
 ![Image]({{ site.globalurl }}/contents/img/tree3.jpg)
 
-We will demonstrate how to use pre-order traversal of this tree in stack.
-According to this source code, Fisrt, push the roor node A. In while state, pop A, visit A and push the right child node B and the left child node C. Note that because we use a stack, so we must push the right child nod first. Then in loop the while statement and pop B, visit B and push the right child node E and left child node D. Then loop the while statement, pop D, visit D and push H and G. Then loop, and pop G. G has no child nodes. So, pop H, visit H. H has no child nodes. So, loop, and pop E. E has no child nodes. So, loop, and pop C, visit C and push the right node F. Here is no left node. So, loop, and pop F, visit F and push I. F has no right node. So, loop and pop I, visit I. Now all nodes are visited. Compare the order with the pre-order traversal. It has the same order: A->B->D->G->H->E->C->F->I. 
+We will demonstrate how to use pre-order traversal of this tree in a stack.
+According to this source code, Fisrt, push the root node A in the stack. In while statement, pop A, visit A and push the right child node C and the left child node B. Note that because we use a stack, so we must push the right child nod first. Then loop the while statement and pop B, visit B and push the right child node E and left child node D. Then loop the while statement, pop D, visit D and push H and G. Then loop, and pop G. G has no child nodes. So, pop H, visit H. H has no child nodes. So, loop, and pop E. E has no child nodes. So, loop, and pop C, visit C and push the right node F. Here is no left child node. So, loop, and pop F, visit F and push I. F has no right child node. So, loop and pop I, visit I. Now all nodes are visited. Compare the order with the pre-order traversal. It has the same order: A->B->D->G->H->E->C->F->I. 
 
-Now we will see that in level-order traversal, the recusive function can be converted non-recusive function. Remember that the level-order traversal uses the queue. 
+Now we will see that in level-order traversal, the recusive function can be converted non-recusive function. Remember that the level-order traversal uses the queue data structure. 
 
 ```cpp
 void BinaryTree::LevelOrderTraverse(Node *pNode) 
