@@ -364,7 +364,9 @@ Third, in the post-order traversal, the order is the left child node - the right
 
 Lastly, in level-order, it is visited by the order from top node to bottom node, from left node to right node. So, the traversal path is A->B->C->D->E->F->G->H->I.
 
-Generally, in pre-order traversal, a recusive function can be converted to a non-recusive function using stack.
+Generally, a recusive function can be converted to a non-recusive function using a stack.
+
+### Tree Source Code1. Non-Recusive Pre-Order Traverse Function.  
 
 ```cpp
 void BinaryTree::PreOrderTraverse_Stack(Node *pNode) 
@@ -383,12 +385,16 @@ void BinaryTree::PreOrderTraverse_Stack(Node *pNode)
     }
 }
 ```
-![Image]({{ site.globalurl }}/contents/img/tree3.jpg)
+![Image]({{ site.globalurl }}/contents/img/tree7.jpg)
 
-We will demonstrate how to use pre-order traversal of this tree in a stack.
-According to this source code, Fisrt, push the root node A in the stack. In while statement, pop A, visit A and push the right child node C and the left child node B. Note that because we use a stack, so we must push the right child nod first. Then loop the while statement and pop B, visit B and push the right child node E and left child node D. Then loop the while statement, pop D, visit D and push H and G. Then loop, and pop G. G has no child nodes. So, pop H, visit H. H has no child nodes. So, loop, and pop E. E has no child nodes. So, loop, and pop C, visit C and push the right node F. Here is no left child node. So, loop, and pop F, visit F and push I. F has no right child node. So, loop and pop I, visit I. Now all nodes are visited. Compare the order with the pre-order traversal. It has the same order: A->B->D->G->H->E->C->F->I. 
+We will demonstrate how to use the pre-order traversal of this tree in a stack.
+According to Tree Source Code1, fisrt, push the root node A in the stack. In while statement, pop the root node A from the stack, print A and push the right child node C and the left child node B. Note that because we use a stack, we must push the right child node first. Then loop the while statement and pop the node B from the stack, print B and push the right child node E and the left child node D. Then, loop the while statement, pop the node D from the stack, print D and push the the node H and G. Then, loop the while statement, and pop the node G. G has no child nodes anymore. So, loop again, and pop the node H from the stack, print H. H has no child nodes anymore. So, loop, and pop the node E. E has no child nodes. So, loop, and pop the node C from the stack, print C and push the right node F. C is no left child node. So, loop, and pop the node F from the stack, print F and push I. F has no right child node. So, loop and pop the node I from the stack, print I. Now all nodes were printed. Compare the path with the pre-order traversal. It has the exact same path: A->B->D->G->H->E->C->F->I. 
 
-Now we will see that in level-order traversal, the recusive function can be converted non-recusive function. Remember that the level-order traversal uses the queue data structure. 
+Note that a recusive function can also be converted a non-recusive function in in-order and post-order traversal, but it is more complecated to demonstrate them. 
+
+Now we will see that in level-order traversal, the recusive function can be converted to a non-recusive function. Remember that the level-order traversal uses the queue data structure. 
+
+### Tree Source Code2. Non-Recusive Level-Order Traverse Function. 
 
 ```cpp
 void BinaryTree::LevelOrderTraverse(Node *pNode) 
@@ -407,36 +413,31 @@ void BinaryTree::LevelOrderTraverse(Node *pNode)
     }
 }
 ```
-![Image]({{ site.globalurl }}/contents/img/tree3.jpg)
+![Image]({{ site.globalurl }}/contents/img/tree8.jpg)
 
-We will demonstrate how to use level-order traversal of this tree in queue.
-According to this source code, Fisrt, put the root node A. In while state, get A, visit A and put the left child node B and the right child node C. Note that because we use a queue, so we must put the left child nod first. Then loop the while statement and get B, visit B and put the left child node D and right child node E. Then loop the while statement, get C, visit C and put F. C has no left child nodes. So, loop, and get D, visit D and put G and H. Then loop, get E and there are no child nodes. So, loop get F, visit F. F has only left node. So, put I. Then loop, and get G. G has no child node. So, loop, get H. H has no child nodes, so loop, get I. I has no child node. Now all nodes are visited. Compare the order with the level-order traversal. It has the same order: A->B->C->D->E->F->G->H->I.
-
-|pre-order|level-order|
-|---|---|
-|![Image]({{ site.globalurl }}/contents/img/tree7.jpg)|![Image]({{ site.globalurl }}/contents/img/tree8.jpg)|
+According to Tree Source Code2, fisrt, put the root node A into the queue. In while statement, get the root node A from the queue, print A and put the left child node B and the right child node C. Note that because we use a queue, we must put the left child nod first (it is opposite to a stack). Then loop the while statement and get the node B from the queue, print B and put the left child node D and right child node E. Then loop the while statement, get the node C, print C and C has no left child node, so put the the right node F. Next, loop again, and get the node D, print D and put the node G and H. Then, loop again, get the node E and print E. E has no child nodes. So, loop again, and get the node F from the queue, print F. F has only left node I, so put the node I. Loop again, and get the node G and print G. G has no child node. So, loop, and get the node H and print H. H has no child nodes, so loop again, and get the node I and print I. I has no child node. So, now all nodes were printed. Compare the path with the level-order traversal. It has the exact same path: A->B->C->D->E->F->G->H->I.
 
 ### Parse Tree ###
-Parse tree is to consist a tree according to operation precedence. The first order becomes leaf, and later order becomes the root. Therefore, operator is located in root, and operand is located on child. All operator is **non terminal**, and Operand is **terminal node**. Refer to figure parse tree1. The example of parse tree diagram. Fomular ((A+B)*(C-D))/E+(F*G) will become the below parse tree.
+Parse tree is to consist a tree according to operation precedence. The first order becomes leaf, and later order becomes the root. Therefore, operator is located in root, and operand is located on child. All operator is **non terminal**, and Operand is **terminal node**. Refer to figure parse tree1. The example of parse tree diagram. Fomular ((A+B) * (C-D)) / E + (F * G) will become the below parse tree.
 
 ### Figure parse tree1. The example of parse tree diagram ###
 ![Image]({{ site.globalurl }}/contents/img/tree9.jpg)
 
 Note that in parse tree:
-1. in-order traverse can illustrate infix notaion.
-2. pre-order traverse can illustrate prefix notation.
-3. post-order traverse can illustrate postfix notation.
+1. the in-order traverse can illustrate the infix notaion.
+2. the pre-order traverse can illustrate the prefix notation.
+3. the post-order traverse can illustrate the postfix notation.
 
-How do you make parse tree using post notation? Let's demonstrate how the parse tree is created in stack.
+How do you make a parse tree using the post notation? Let's demonstrate how the parse tree is created in a stack.
 <br /><br />
-To make parse tree in post notation, first, create operand nodes A and B, and push them to stack. Also, create operator node +. After that, to create an operator node subtree, pop the node B from stack, and make it as right child node of operator node, and pop the node A from stack, and make it as left child node of operator node. Then push the operator subtree into the stack. and repeat this process until the last subtree leaves in the stack, and the last subtree becomes the root tree.
+To make parse tree in post notation, first, create operand nodes A and B, and push them into the stack. Also, create operator node +. After that, to create an operator node subtree, pop the node B from the stack, and make it as right child node of operator node +, and pop the node A from the stack, and make it as left child node of operator node +. Then, push the operator subtree into the stack, and repeat this process until the last subtree leaves in the stack, and the last subtree will be the root tree.
 
 |---|---|
 |![Image]({{ site.globalurl }}/contents/img/tree10.jpg)|![Image]({{ site.globalurl }}/contents/img/tree11.jpg)|
 
-Note that the reason we use the post notation to make parse tree is because computer most easy calculate it in the post notation.
+Why do we use the post notation to make parse tree? That is because computer most easy calculate it in the post notation.
 <br /><br />
-The below source code demonstrates the logic to make parse tree in the post notation.
+The below source code shows the algorithm to make parse tree in the post notation.
 
 ```cpp
 //1. push operand node to stack
@@ -498,7 +499,7 @@ void BinaryTree::PreOrderTraverse(Node *pNode)
 }
 ```
 
-Recusive function has to implement two requirements: one is that the problem must be reduced and another is there must be the exit condition. In factorial algorithm, line third `if (n == 0)` could be the exit condition, and line sixth `n * factorial(n – 1)` makes the problem smaller. Finally, the argument n will become 0 in this line and meet the exit condition, then function recusive is finished and return number 1.
+To implement a recusive function, there are two requirements: one is that the problem must be reduced and another is that it needs the end condition. In factorial function, line third `if (n == 0)` could be the end condition, and line sixth `n * factorial(n – 1)` makes the problem smaller. Finally, when the argument n becomes 0 and meet the exit condition, the function call is finished and return value 1.
 
 ```cpp
 int factorial (int n) 
@@ -510,7 +511,7 @@ int factorial (int n)
 }
 ```
 
-Let's move to more detail example, fibonacci.
+Let's move to more complecated example, fibonacci.
 
 ### Fibonacci ###
 Fibonacci sequence is the series of the numbers, which defines that **"every number after the first two is the sum of the two preceding ones: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, .."** ([WIKIPIDA](https://en.wikipedia.org/wiki/Fibonacci_number)).
