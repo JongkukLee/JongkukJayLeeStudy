@@ -483,6 +483,8 @@ void ParseTree::BuildParseTree(const String& strPostfix)
 }
 ```
 
+Let's move to more interesting topic, **Recusion**.
+
 ## Recursion ##
 
 Recursive Function calls the function itself and there uses the divide and conquer strategy in it. One example is the tree traversal like below source code. In this source code, the function PreOrderTraverse calls PreOrderTraverse function itself to make the left and right child nodes.
@@ -511,15 +513,18 @@ int factorial (int n)
 }
 ```
 
-Let's move to more complecated example, fibonacci.
+Now, I will give you more complecated example, fibonacci.
 
 ### Fibonacci ###
-Fibonacci sequence is the series of the numbers, which defines that **"every number after the first two is the sum of the two preceding ones: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, .."** ([WIKIPIDA](https://en.wikipedia.org/wiki/Fibonacci_number)).
-<br /><br />
+Fibonacci sequence is the series of the numbers, which defines that **"every number after the first two is the sum of the two preceding ones: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ..."** ([WIKIPIDA](https://en.wikipedia.org/wiki/Fibonacci_number)).
+
+For example, here is a group of number: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
+There is no two preceding numbers for the first number 0. There is no two preceding numbers for the second number 1. For third number 1, sum two preceding numbers: 0 plus 1; the answer is 1. For next number 2, sum two preceding numbers: 1 plus 1; the answer is 2. Next, 1 plus 2 is 3, and 2 + 3 is 5 and so on. 
+
 The relation can be defined: F<sub>n</sub> = F<sub>n-1</sub> + F<sub>n-2</sub>, F<sub>1</sub> = F<sub>2</sub> = 1
 <br />
 
-The source code example of fibonacci is like this.
+The source code of the fibonacci is like this.
 ```cpp
 int fibonacci(int n) 
 {
@@ -529,10 +534,10 @@ int fibonacci(int n)
         return fibonacci(n – 1) + fibonacci(n – 2);
 }
 ```
-As you can see, in fibonacci funtion, when parameter n is number 1 or 2, the function recusion is finished, and return nubmer 1; otherwise, the function calls itself repeatly.
+As you can see, in fibonacci funtion, when parameter n is number 1 or 2, the function call is finished, and return nubmer 1; otherwise, the function calls itself repeatly.
 <br />
 
-Figure recusive 1 shows how it can be demonstrated in a parse tree structure. To find the number of 5th in fibonacci sequence, input the number 5 as the argument in line 5th ``int fibonacci(n)``. So, it calls ``fibonacci(5)``, and ``fibonacci(5)`` has two leaf nodes: ``fibonacci(4)`` and ``fibonacci(3)``. ``fibonacci(4)`` also has two leaf nodes: ``fibonacci(3)`` and ``fibonacci(2)``. Since we already deinfine the value of ``fibonacci(1)`` and ``fibonacci(2)`` is **'1'**, the last child node will return value 1. So, when adding all return values, the final result is **'5'**.
+Figure recusive 1 shows how it can be demonstrated in a parse tree structure. To find 5th number in fibonacci sequence, input the number 5 as the argument in line 5th ``int fibonacci(n)``. So, it calls ``fibonacci(5)``, and ``fibonacci(5)`` has two leaf nodes: ``fibonacci(4)`` and ``fibonacci(3)``. ``fibonacci(4)`` also has two leaf nodes: ``fibonacci(3)`` and ``fibonacci(2)``. Since we already deinfine the value of ``fibonacci(1)`` and ``fibonacci(2)`` is **'1'**, the last child nodes will return value 1. So, when adding all return values, the final result is **'5'**.
 
 #### Figure recusive 1. recusive tree diagram for fibonacci ####
 ![Image]({{ site.globalurl }}/contents/img/recusive1.jpg)
@@ -557,7 +562,7 @@ int fibonacci_nr(int n)
 }
 ```
 
-The below table shows the operating step of the above source code. When the argument value is 5, the step0 is the initializtion of this function. In the step1, r is a + b whose value is 2, and a is assigned b value 1, b is assined value r 2, in the step2, r is 3, and a is assigned b value 2, b is assined value r 3, in the step3, r is 5, and a is assigned b value 3, b is assined r 5, in step 4, n is not great than 2, so while statement is finished, and return r, so the fincal result is 5. It is the same value to the result of using recusive fucntion.
+The below table shows the operating steps of the above source code. When the argument value is 5, the step0 initializes the function. In the step1, r is a + b: 2, and a is assigned b: 1, b is assined r: 2, in the step2, r is 3, and a is assigned b: 2, b is assined r: 3, in the step3, r is 5, and a is assigned b: 3, b is assined r: 5, in step 4, n is not great than 2, so the loop is finished, and return r: 5, so the final result is 5. It is the same value to when using recusive fucntion.
 
 #### Table recusive 1. non-recusive function ####
 
@@ -569,4 +574,4 @@ The below table shows the operating step of the above source code. When the argu
 |3	    |3>2,true |5      |3	  |5	  |
 |4	    |2>2,false|5      |3	  |5	  |
 
-When we compare between recusive fibonacci function and non-recusive fibonacci function, the soruce of the recusive function is simpler and readable. However, recusive function should be spent more cost to call funtion itself repeatly. So, when not repeating the recusive function too much, use the recusive function; otherwise, use the non-recusive function.
+When we compare between a recusive fibonacci function and a non-recusive fibonacci function, the soruce of the recusive function is simpler and readable. However, the recusive function should be spent more cost to call funtion itself repeatly. So, when not repeating to call function too much, use the recusive function; otherwise, use the non-recusive function.
