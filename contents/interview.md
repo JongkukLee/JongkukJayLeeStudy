@@ -10,6 +10,9 @@ layout: default
 ## What do you consider to be your major strengths? ##
 >My most strength is ‘can-do attitude’. My life motto is not to sweat the small stuff. I tend not to worry too much and usually enjoy physical exercise such as swimming. Through my previous working experience, I could learn that being healthy helps me concentrate better and work longer hours without feeling tired. As well it gives me the positive mind.
 
+## What would you say your biggest weakness is? ##
+My weak point is that I try to do too many things at once. These days, I've been prioritizing my work in order of importance. This is because I want to fully complete a task before moving on to another. It has proven to be much more time efficient.
+
 ## Why did you choose your major? ##
 ### What is your major and why did you choose that major? ###
 ### How has your college experience prepared you for your career? ###
