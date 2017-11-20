@@ -575,3 +575,75 @@ The below table shows the operating steps of the above source code. When the arg
 |4	    |2>2,false|5      |3	  |5	  |
 
 When we compare between a recusive fibonacci function and a non-recusive fibonacci function, the soruce of the recusive function is simpler and readable. However, the recusive function should be spent more cost to call funtion itself repeatly. So, when not repeating to call function too much, use the recusive function; otherwise, use the non-recusive function.
+
+
+## Sort ##
+
+>Sort is to re-arrange data set in a certain order such as ascending and descending, which has two basic operations: a comparison and an exchange. For example, in a database system, there might be key fields and records. The key could be subject to comparison, and records could be subject to exchanging.
+
+### Selection Sort ###
+
+>Selection Sort is finding the smallest value in the unordered part of array and to puting it after the ordered part of array.
+
+For example, there is data set: 1 3 4 5 10 8 6 7 9 11 12. 1 3 4 5 are already sorted by an ascending order, yet 10 8 6 7 9 11 12 are not ordered. So, first, find the smallest value by comparing the elements in the unorder part, that is 6, and exchange it with 10. As a result, the order part is 1 3 4 5 6, and the unordered part is 8 10 7 9 11 12. Repeat this logic until all elements are sorted.
+
+#### Figure Sort1. Selection Sort ####
+
+![Image]({{ site.globalurl }}/contents/img/selectionsort1.jpg)
+
+#### Table Sort1. Comparision and Exchange in Selection Sort ####
+
+|ordered part|unorder part|State      |
+|------------|------------|-----------|
+|1 3 4 5|10 8 6 7 9 11 12|Before comparision and exchange |
+|1 3 4 5 6|8 10 7 9 11 12|After comparision and exchange |
+|1 3 4 5 6 8 9 10 11 12||Complete of comparision and exchange |
+
+### Insertion Sort ###
+
+>Insertion Sort is inserting the elements of the unordered part into the proper place of the ordered part in an array.
+
+For example, there is data set: A G L O R I T H M. A G L O R are already sorted by an ascending order, yet I T H M are not ordered. So, choose the first element of the unorder part, that is I, and insert it by comparing and exchanging ti with the elements in the ordered part. As a result, the order part is A G I L O R, and the unordered part is T H M. Repeat this logic until all elements are sorted.
+
+#### Figure Sort2. Insertion Sort ####
+
+![Image]({{ site.globalurl }}/contents/img/insertionsort1.jpg)
+
+#### Table Sort2. Comparision and Exchange in Insertion Sort ####
+
+|ordered part|unorder part|State      |
+|------------|------------|-----------|
+|A G L O R|I T H M|Before comparision and exchange |
+|A G I L O R|T H M|After comparision and exchange |
+|A G H I L M O R T||Complete of comparision and exchange |
+
+### Bubble Sort ###
+
+>Bubble Sort is sorting the elements through comparign and swapping the element with adjacent element from the begining element to the array size - 1.
+
+For example, there is data set: A G L I O H M R T. R T are already sorted by an ascending order, yet A G L I O H M are not ordered. So, choose the first element of in the unorder part, that is A, compare it with adjacent element, that is G, and exchange each other, but in this case, G is greater than A, so there is no swapping. Next, G and L also no swapping, L and I needs the swapping, So, now the order is A G I L O H M R T. Next, L and O doesn't need the swapping. Next, O and H need the swapping. So, now the order is A G I L H O M R T. Next, O and M need the swapping. So, now the order is A G I L H M O R T. At this time, A G I L H M is the unordered part. O R T is the ordered part. Then, repeat this logic until all elements are sorted.
+
+#### Figure Sort3. Bubble Sort ####
+
+![Image]({{ site.globalurl }}/contents/img/bubblesort1.jpg)
+
+#### Table Sort3. Comparision and Exchange in Bubble Sort ####
+
+|ordered part|unorder part|State      |
+|------------|------------|-----------|
+|A G L I O H M|R T|Before comparision and exchange |
+|A G I L H M |O R T|After comparision and exchange |
+|A G H I L M O R T||Complete of comparision and exchange |
+
+
+
+
+
+
+
+
+
+
+
+
+
