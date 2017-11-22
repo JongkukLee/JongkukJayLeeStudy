@@ -636,14 +636,69 @@ For example, there is data set: A G L I O H M R T. R T are already sorted by an 
 |A G H I L M O R T||Complete of comparision and exchange |
 
 
+### Merge Sort ###
+
+> Merge sort is sorting more than one sorted lists. 
+
+The algorithm is: 
+
+1. Compare the first element of each list.<br />
+2. Pick the smaller of the two and copy the smaller to the result list.<br />
+3. Increase the index of that list to the next element.<br />
+4. Continue until one of the list is completely copied.<br />
+5. Copy the remainder of the rest of the list.<br />
+
+For example, there are two sorted lists; one is A E L N R, and another is O R S T.
+
+|A  |E  |L  |N  |R  |
+|O  |R  |S  |T  |   |
+|   |   |   |   |   |   |   |   |   |
+
+Compare the first elements of each list: A and O, and the smallest is A. So, copy A to the result list. Now, increase the index.
+
+|E  |L  |N  |R  |
+|O  |R  |S  |T  |   |
+|A  |   |   |   |   |   |   |   |   |
+
+Compare the first elements: E and O, and smallest is E. So, copy E to the result list. Now, increase the index.
+
+|L  |N  |R  |
+|O  |R  |S  |T  |   |
+|A  |E  |   |   |   |   |   |   |   |
+
+Repeat the logic until one list is consumed.
+
+|N  |R  |
+|O  |R  |S  |T  |   |
+|A  |E  |L  |   |   |   |   |   |   |
+
+|R  |
+|O  |R  |S  |T  |   |
+|A  |E  |L  |N  |   |   |   |   |   |
+
+|R  |
+|R  |S  |T  |   |
+|A  |E  |L  |N  |O  |   |   |   |   |
+
+|R  |
+|S  |T  |   |
+|A  |E  |L  |N  |O  |R  |   |   |   |
+
+|   |
+|S  |T  |   |
+|A  |E  |L  |N  |O  |R  |R  |   |   |
+
+When the one list is consumed, copy the rest part to the result list    .
+
+
+|   |
+|   |
+|A  |E  |L  |N  |O  |R  |R  |S  |T  |
+
+### Quick Sort ###
 
 
 
-
-
-
-
-
-
+### Heap Sort ###
 
 
