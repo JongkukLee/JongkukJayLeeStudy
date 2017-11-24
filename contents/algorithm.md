@@ -690,15 +690,110 @@ Repeat the logic until one list is consumed.
 
 When the one list is consumed, copy the rest part to the result list    .
 
-
 |   |
 |   |
 |A  |E  |L  |N  |O  |R  |R  |S  |T  |
 
 ### Quick Sort ###
+> Partition is to arrange the lower values than pivot value in the left side of pivot and to arrange the upper values than pivot value in right side of pivot. So, Quick Sort is to repeat to call the partition function. It is efficient because two nodes, which are away each other, are changed.
 
+The algorithm of Quick Sort is like this:
 
+1. Pick a value from the array as the pivot. Usually, it is the last element of array.
+2. Let variable i as front, j as back.
+3. Advance i until you find a value array[i] is greater than the pivot.
+4. Move j towards front of array until array[j] is less than the pivot.
+5. Swap these array[i] and array[j].
+6. Repeat step 3 to 5 until i index is greater than j index.
+7. Exchange array[i] and pivot value each other.
+8. The i is used to break the array up into two pieces.
+9. Repeat step 1 to 8 in these two new arrays util the number of array becomes 1.
+
+For example, there is data set: A G O L I O T H M. Let's pick 'R' as pivot value. i is the front of this array, and j is the end of this array.
+
+|i  |   |   |   |   |   |   |j  |pv |
+|A  |L  |G  |O  |R  |I  |T  |H  |M  |
+
+Advace i util finding array[i] is greater than pivot. Move j toward front until array[j] is less than the pivot, and swap the values. 
+
+|   |   |   |i  |   |   |   |j  |   |
+|A  |L  |G  |H  |R  |I  |T  |O  |M  |
+
+Repeat these steps until i index is greater than j index.
+
+|   |   |   |   |i  |j  |   |   |   |
+|A  |L  |G  |H  |I  |R  |T  |O  |M  |
+
+|   |   |   |   |j  |i  |   |   |   |
+|A  |L  |G  |H  |I  |R  |T  |O  |M  |
+
+Exchange array[i] and pivot value each other.
+
+|   |   |   |   |j  |i  |   |   |   |
+|A  |L  |G  |H  |I  |M  |T  |O  |R  |
+
+we can break the array into two arrays; one is A L G H I; another is T O R.
+
+|   |   |   |   |j  |i  |   |   |   |
+|A  |L  |G  |H  |I  |M  |T  |O  |R  |
+
+Move i to the first, and repeat the above step again in the left array.
+
+|i  |   |   |j  |pv |   |   |   |   |
+|A  |L  |G  |H  |I  |M  |T  |O  |R  |
+
+|j  |i  |   |   |   |   |   |   |   |
+|A  |G  |H  |I  |L  |M  |T  |O  |R  |
+
+The left array is the same way to the right array.
+
+|   |   |   |   |   |   |i  |j  |pv |
+|A  |G  |H  |I  |L  |M  |T  |O  |R  |
+
+|   |   |   |   |   |   |j  |i  |pv |
+|A  |G  |H  |I  |L  |M  |O  |R  |T  |
+
+Now quick sort for all elements is completed.
+
+|A  |G  |H  |I  |L  |M  |O  |R  |T  |
 
 ### Heap Sort ###
+>In computer science, a heap is a specialized tree-based data (**complete binary tree**) structure that satisfies the heap property, which is implementation of an abstract data type called a priority queue.[WIKIPIDA](https://en.wikipedia.org/wiki/Heap_(data_structure))
+
+> Priority Queue can insert new data, and get the highest priority data. As the example of priority, there are Stack, Queue, and Heap.
+
+Stack has Push and Pop operations and is “LAST IN-FIRST OUT” operation called ‘LIFO’. That is the first pushing date must be popped in the first. 
+Queue has Put and Get operations and is “FIRST IN FIRST OUT” operation called ‘FIFO’. That is the fisrt puting data will be gotten in the first.
+Heap has Insert and Remove operation and the highest value must be removed in the first.
+
+In Heap date structure, the highest key value is the highest priority and the value of the parent node must be greater than two child nodes, so the value of the root node is the highest priority.
+
+Let's see the insertion operation in the Heap. 
+
+This example refers to [cathyatseneca.gitbooks.io](https://cathyatseneca.gitbooks.io/data-structures-and-algorithms/content/sorting/insertion_into_a_binary_heap.html)
+Insert into a heap the following values in order: 10,6,20,5, 16, 17, 13,2
+We will use smaller values has higher priority as our priority ordering.
+An insertion node will be located the last poistion of complete binary tree and compare and exchange with the parent node. It is called **'UpHeap'**.
+
+So, first, insert 10. Next, insert 6. 6 is the higher priority than 10, so exchange position each other. Next, insert 20 in the last position of the tree. 20 is not higher priotiy than 6, so no exchange here. Next, insert 5 in the last position of the tree. 5 is higher than 10, so exchange each other, and 5 is higher than 6, so exchange again. With the same manner, repeat the insertion operation until inserting the last data 2.
+
+![Image]({{ site.globalurl }}/contents/img/heapsort1.jpg)
+
+![Image]({{ site.globalurl }}/contents/img/heapsort2.jpg)
+
+![Image]({{ site.globalurl }}/contents/img/heapsort3.jpg)
+
+![Image]({{ site.globalurl }}/contents/img/heapsort4.jpg)
+
+Another important operation is remove operation. To remove the node, remember that we need to remove the highest priority node and next priority node will be placed to the deleted position without violating the Heap Order Property. In heap data structure, the highest priority node means the **'Root'** node.
+
+Next example refers to [cathyatseneca.gitbooks.io](https://cathyatseneca.gitbooks.io/data-structures-and-algorithms/content/sorting/delete_from_a_binary_heap.html)
+
+First, remove the root node, and compare and exchange between nodes without violating the Heap Order Property.
+
+In here, remove the root node 2, and compare two child nodes: 5 and 13. 5 is higher than 13. So, 5 becomes the parent. Next, compare 6 and 16. 6 is higher than 16. So, 6 becomes the parent. Now, complete binary tree is completed without violating the Heap Order Property.
+
+![Image]({{ site.globalurl }}/contents/img/heapsort5.jpg)
+
 
 
