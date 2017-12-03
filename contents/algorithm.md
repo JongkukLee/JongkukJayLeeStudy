@@ -795,5 +795,59 @@ In here, remove the root node 2, and compare two child nodes: 5 and 13. 5 is hig
 
 ![Image]({{ site.globalurl }}/contents/img/heapsort5.jpg)
 
+We can see how to convert the heap data structure to an array. To convert, we will use level-order traversal trip, which is moving from the top to the bottom and from the left to the right.
+
+![Image]({{ site.globalurl }}/contents/img/heapsort6.jpg)
+
+In the array, we can find the relation between parent nodes and child nodes.
+The parent node of J index node is J/2, and the left node of J index node is J*2, and the right node is J*2+1. Another important part is that there is the inner nodes until the half of N (N/2).
+
+UpHeap/Insert Operation
+![Image]({{ site.globalurl }}/contents/img/heapsort7.jpg)
+
+```cpp
+void UpHeap(TYPE a[], int k) 
+{
+    TYPE v;
+    v = a[k];
+    while (a[k/2] < v && k > 1) {
+        // Find the insert position and insert
+        a[k] = a[k/2];
+        k /= 2;
+    }
+    a[k] = v;
+}
+void Insert(TYPE a[], int& n, TYPE v) 
+{
+    a[++n] = v; // Add node
+    UpHeap(a, n); // UpHeap with the added node
+}
+
+```
+DownHeap/Extract Operation
+![Image]({{ site.globalurl }}/contents/img/heapsort7.jpg)
+```cpp
+void DownHeap(TYPE a[], int n, int k) 
+{
+    int i;
+    TYPE v = a[k]; // Actually, a[k] is the root
+    while (k <= n/2) { // Check if the inner node is
+        i = k * 2; // i is the index of the left child node of a[k]
+        if (i < n && a[i] < a[i+1]) i++; // Choose the node of the bigger value
+        if (v >= a[i]) break; // Break when there is in the heap condition
+        a[k] = a[i]; // Insert when not satisfied in the heap condition
+        k = i;
+    }
+    a[k] = v; // k is the index of where the root value v need to insert.
+}
+
+TYPE Extract(TYPE a[], int& n) 
+{
+    TYPE v = a[1]; // Notice that the root value is the highest value of the tree.
+    a[1] = a[n--]; // Replace the end node to the root
+    DownHeap(a, n, 1); // DownHeap with the root. 
+    return v;
+}
+```
 
 
