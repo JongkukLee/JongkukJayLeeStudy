@@ -393,42 +393,6 @@ export class LoanDetailsPage implements OnInit, OnDestroy {
   }
 }
 ```
-<a [routerLink]="['product-list']" [queryParams]="{ page: 99 }">Go to Page 99</a>
-goToPage(pageNum) {
-    this.router.navigate(['/product-list'], { queryParams: { page: pageNum } });
-}
-
-```js
-import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-
-@Component({
-  selector: 'product-list',
-  template: `<!-- Show product list -->`
-})
-export default class ProductList {
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router) {}
-
-  ngOnInit() {
-    this.sub = this.route
-      .queryParams
-      .subscribe(params => {
-        // Defaults to 0 if no query param provided.
-        this.page = +params['page'] || 0;
-      });
-  }
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
-  }
-
-  nextPage() {
-    this.router.navigate(['product-list'], { queryParams: { page: this.page + 1 } });
-  }
-}
-```
 
 
 In horse.component.ts, use the new function(s) in the service 

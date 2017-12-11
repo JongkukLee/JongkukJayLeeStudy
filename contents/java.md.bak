@@ -89,5 +89,3 @@ Interface Predicate<T>: Represents a predicate (boolean-valued function) of one 
 Interface Consumer<T>: Represents an operation that accepts a single input argument and returns no result.
 Interface BiConsumer<T,U>: Represents an operation that accepts two input arguments and returns no result.
 
-Reference site1: [http://jinson.tistory.com/208](http://jinson.tistory.com/208)
-
