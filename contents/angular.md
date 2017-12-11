@@ -447,3 +447,158 @@ In horse.component.ts, use the new function(s) in the service
       </tr>
     </table>
     <hr>
+----------------------------------------------------------------------------
+```js
+app.module.ts
+import { HttpClientModule } from "@angular/common/http";
+...
+imports: [ ... HttpClientModule ...],
+  providers: [DataManagerService],
+...
+
+data-manager.service.ts
+import { Injectable } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs/Observable";
+import { Post, Comment, Geo, Address, Company, User } from "./vm-typicode";
+
+@Injectable()
+export class DataManagerService {
+  // Fields
+  private teachers: string[] = [];
+  private url = "http://jsonplaceholder.typicode.com";
+
+    constructor(private http: HttpClient) { 
+    // Load the teachers collection
+    this.teachers.push('Pat');
+    this.teachers.push('Peter');
+    this.teachers.push('Sharmin');
+    this.teachers.push('Sunny');
+    this.teachers.push('James');
+  }
+  // Functions
+  getTeachers() {
+    return this.teachers;
+  }
+  getPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.url}/posts`)
+  }
+  getComments(): Observable<Comment[]> {
+    return this.http.get<Comment[]>(`${this.url}/comments`)
+  }
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.url}/users`)
+  }
+}
+
+horse.component.ts
+import { Component, OnInit } from '@angular/core';
+import { DataManagerService } from "./data-manager.service";
+import { Post } from "./vm-typicode";
+...
+export class HorseComponent implements OnInit {
+
+  posts: Post[];
+  
+  constructor(private m: DataManagerService) { }
+
+  ngOnInit() {
+    this.getPosts();
+  }
+
+  getPosts(): void {
+    this.m.getPosts()
+    .subscribe(posts => this.posts = posts);
+  }
+}
+horse.component.html
+  <div class="panel-body">
+    <p>All posts:</p>
+    <table class="table table-striped">
+      <tr>
+        <th>User ID</th>
+        <th>Title</th>
+        <th>Body</th>
+      </tr>
+      <tr *ngFor='let p of posts'>
+        <td>{{p.userId}}</td>
+        <td>{{p.title}}</td>
+        <td>{{p.body}}</td>
+      </tr>
+    </table>
+
+<a *ngFor="let product of products"
+  [routerLink]="['/product-details', product.id]">
+  {{ product.name }}
+</a>
+
+goToProductDetails(id) {
+  this.router.navigate(['/product-details', id]);
+}
+
+
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+@Component({
+  selector: 'product-details',
+  template: `
+    <div>
+      Showing product details for product: 
+    </div>
+  `,
+})
+export class LoanDetailsPage implements OnInit, OnDestroy {
+  id: number;
+  private sub: any;
+
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    this.sub = this.route.params.subscribe(params => {
+       this.id = +params['id']; // (+) converts string 'id' to a number
+
+       // In a real app: dispatch action to load the details here.
+    });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
+}
+
+<a [routerLink]="['product-list']" [queryParams]="{ page: 99 }">Go to Page 99</a>
+goToPage(pageNum) {
+    this.router.navigate(['/product-list'], { queryParams: { page: pageNum } });
+}
+
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
+@Component({
+  selector: 'product-list',
+  template: `<!-- Show product list -->`
+})
+export default class ProductList {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router) {}
+
+  ngOnInit() {
+    this.sub = this.route
+      .queryParams
+      .subscribe(params => {
+        // Defaults to 0 if no query param provided.
+        this.page = +params['page'] || 0;
+      });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
+
+  nextPage() {
+    this.router.navigate(['product-list'], { queryParams: { page: this.page + 1 } });
+  }
+}
+```
