@@ -447,7 +447,7 @@ In horse.component.ts, use the new function(s) in the service
       </tr>
     </table>
     <hr>
-----------------------------------------------------------------------------
+
 ```js
 app.module.ts
 import { HttpClientModule } from "@angular/common/http";
