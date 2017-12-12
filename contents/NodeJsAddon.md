@@ -27,9 +27,9 @@ https://chromium.googlesource.com/chromium/src/+/master/docs/windows_build_instr
 
 https://medium.com/dailyjs/how-to-build-v8-on-windows-and-not-go-mad-6347c69aacd4
 
-npm install -g node-gyp
-npm install --global --production windows-build-tools
-input binding.gyp, hello.cc, hello.js
-node-gyp configure --msvs_version=2015 --python C:\Users\jlee465\.windows-build-tools\python27\python.exe
-node-gyp build
-node hello.js
+1. npm install -g node-gyp
+2. npm install --global --production windows-build-tools
+3. input binding.gyp, hello.cc, hello.js
+4. node-gyp configure --msvs_version=2015 --python C:\Users\jlee465\.windows-build-tools\python27\python.exe
+5. node-gyp build
+6. node hello.js
