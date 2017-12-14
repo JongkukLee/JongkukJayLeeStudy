@@ -602,3 +602,12 @@ export default class ProductList {
   }
 }
 ```
+## Week 10 ##
+**The major topics discussed were: **
+1. Methods of Creating Forms in Angular (ie: Template Driven, Reactive, Dynamic)
+2. Working with Template-Driven Forms / Two way data binding using [(NgModel)] to update Component data.
+3. CSS Classes added during Form Element Editing
+4. Form Validation & Checking for / displaying errors
+
+
+
