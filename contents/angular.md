@@ -602,12 +602,125 @@ export default class ProductList {
   }
 }
 ```
-## Week 10 ##
-**The major topics discussed were: **
-1. Methods of Creating Forms in Angular (ie: Template Driven, Reactive, Dynamic)
-2. Working with Template-Driven Forms / Two way data binding using [(NgModel)] to update Component data.
-3. CSS Classes added during Form Element Editing
-4. Form Validation & Checking for / displaying errors
+
+## WEEK 10 ##
+
+Methods of Creating Forms in Angular:
+1. Template Driven: use an HTML template in a component with one-way read-only data binding (using ``) and two-way data binding
+2. Reactive: more programming in the conmponent class, explicitly declare, configure, and manage about a form
+3. Dynamic: use metadata on the data model to generate forms dynamically
+
+To work with Angular forms, 
+1. configure an Angular app to use HTML forms,
+2. bind data using **“two-way”** binding with **[(NgModel)]**
+3. submit the form
+4. add CSS Classes during Form Element Editing
+5. validate & check the atate (**“untouched”**, **“dirty”**, **“invalid”**) of a form for displaying errors
+
+In app.module.ts, import the FormsModule, add FormsModule to the “imports” array
+
+```js
+import { Component, OnInit } from '@angular/core';
+
+export class Driver{
+    name: string; 
+    description: string; 
+    ownedTransportation: string[]; 
+    favouriteTransportation: string; 
+    driverLicence: boolean; 
+    vehicleUse: string; 
+}
+
+export class option{
+  value: string;
+  text: string;
+}
+
+@Component({
+  selector: 'app-driver',
+  templateUrl: './driver.component.html',
+  styleUrls: ['./driver.component.css']
+})
+export class DriverComponent implements OnInit {
+
+  constructor() { }
+ 
+  // the data that will be used in the form
+  driverData: Driver;
+
+  // Define the preset list of "transportation" options
+  transportationList: option[] = [
+    {value: "C", text: "Car"},
+    {value: "B", text: "Bus"},
+    {value: "M", text: "Motorcycle"},
+    {value: "H", text: "Helicopter"}
+  ];
+
+  ngOnInit() {
+
+    // Populate the "driverData" with some static data (this would normally come from a data service)
+    this.driverData = {
+      name: "Richard Hammond",
+      description: "Richard is a motor vehicle enthusiast",
+      ownedTransportation: ["C", "M"], 
+      favouriteTransportation: "M",
+      driverLicence: true, 
+      vehicleUse: "pleasure"
+    };
+    
+  }
+}
+```
+Use ‘ngForm’ to assign a reference variable of form
+```html
+<form (ngSubmit)='onSubmit()'> or 
+<form #f='ngForm' (ngSubmit)='onSubmit(f)'>
+```
+In component, use the form reference
+```js
+import { NgForm } from "@angular/forms";
+onSubmit(f: NgForm): void { }
+```
+And we can gain gain access to the aggregate value (f.value) as well as, 
+
+State|Class if true|Class if false|Explain
+The control has been visited.|`ng-touched`|`ng-untouched`|touched(f.touched)
+The control's value has changed.|`ng-dirty`|`ng-pristine`|user interaction properties like dirty(f.dirty)
+The control's value is valid.|`ng-valid`|`ng-invalid`|validity status(f.valid)
+
+inspect/test that the two-way binding: {{driverData | json}}
+
+How to handle errors
+```html
+<input type="text" class="form-control" id="name" name="name" 
+  [(ngModel)]="driverData.name" required autofocus #name="ngModel">
+//Access it’s “error” property: {{name.errors | json}}
+//ex) initially show “null”, f deleting text, we will see { "required": true } 
+
+//To conditionally show a warning
+<div *ngIf="name.errors && name.errors.required">
+  <strong>Warning:</strong> "Full Name:" is required.
+</div>
+
+```
+### “Binding” the data / Form Events ###
+```html
+<input type="text" class="form-control" id="name" name="name" [(ngModel)]="driverData.name" required autofocus>
+<textarea class="form-control" id="description" name="description" [(ngModel)]="driverData.description"></textarea>
+<select multiple class="form-control" id="ownedTransportation" name="ownedTransportation" [(ngModel)]="driverData.ownedTransportation">
+        <option *ngFor = "let transportation of transportationList" [value]="transportation.value">{{transportation.text}}</option>
+</select>
+<select class="form-control" id="favouriteTransportation" name="favouriteTransportation" [(ngModel)]="driverData.favouriteTransportation">
+          <option *ngFor = "let transportation of transportationList" [value]="transportation.value">{{transportation.text}}</option>
+</select>
+<input type="checkbox" id="driverLicence" name="driverLicence" [(ngModel)]="driverData.driverLicence" />
+<input type="radio" id="vehicleUseBusiness" name="vehicleUse" [(ngModel)]="driverData.vehicleUse" value="business" /> <label for="vehicleUseBusiness"> Business</label><br />
+<input type="radio" id="vehicleUsePleasure" name="vehicleUse" [(ngModel)]="driverData.vehicleUse" value="pleasure" /> <label for="vehicleUsePleasure"> Pleasure</label><br />
+<input type="radio" id="vehicleUseOther" name="vehicleUse" [(ngModel)]="driverData.vehicleUse" value="other" /> <label for="vehicleUseOther"> Other</label><br />
+```
+
+
+
 
 
 
