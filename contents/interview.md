@@ -89,6 +89,10 @@ layout: default
 ## When would you start to work? ##
 >I will be able to start working after my graduation, which is maximum two months later from now. I expect to graduate b the end of this year. However, due to college employee’s strike, the schedule should be changed. After graduation, I will available to start working with your company at any time. I will try my best to accommodate your schedule.
 
+## What is your currnet status in Canada? ##
+I graduated 2 year college course in Canada, and applied to Post Graduation Work Permit.
+So, I can work any company in Canada for at least 3 years.
+
 ## My questions for interviewee ##
 >How does one advance in the company?
 
@@ -104,53 +108,11 @@ layout: default
 
 >What might we discuss in a follow-up interview?
 
-## Greetings & Self-Introduction ##
->I am honored to be here. My name is Jongkuk Lee. You can also call me ‘Jei.’  I am interested in Internet technology because computers and the Internet are very important to our lives. That is why I am applying for a job with your company. 
+## HTML5 ##
+HTML5 is the latest revision of HTML containing much better support for media like video and audio tags.May 4, 2012
 
-## Describe your personality. ##
->I believe that I'm responsible and fair. I always try to be a good role model for my two sons. I'm also level headed when it comes to dealing with difficult situations.
+## Bootstrap ##
+Bootstrap is a "framework", that is a pre-built set of files with CSS
 
-## Describe your strengths. ##
->My strength is solving obstacles, and I have never given up developing programmings in difficult situations.
 
-## Why did you choose your major? / What is your major and why did you choose that major? ##
->I chose Computer Programmer as my major because I was fascinated with computers and Internet. In Korea, I worked as a full-time worker for a software company. My major and work experience have laid a strong foundation for a career in programming.
 
-## What are your short-term goals? ##
->After completing my degree, my goal is to gain employment in a company as a software developer. I want to be part of a team where I'm encouraged to learn new skills and challenged for excellent performance. With my educational experience, I will be able to make a valuable contribution to the organization.
-
-## How did you learn English? ##
->Although I am good at grammar, my speaking is a little weak. I've been taking classes at a language school for about 8 months. I also listen to English programs on the radio every morning. I've been improving, but I will continue to study hard until I can speak English more fluently.
-
-## How do you handle stress and pressure? ##
->I'm the kind of person who stays calm under pressure and handles stress fairly easily. I always prioritize my responsibilities so I have a clear idea of what needs to be done. This has helped me effectively manage pressure as a student and on the job.
-
-## Why should we hire you? ##
->I believe that you should hire me because I am a very good match for the qualifications you‘ve described. I am hungry to learn and eager to show you what I can do. Since I am  outgoing, hard-working and ambitious, I am sure to become a great asset to your company.
-
-## Could you tell me your professional skills? ##
->I can use a few programming language such as JSP, ASP and PHP and I developed Computer Application with a few DBMS and WAS. Particularly, I am good at using JAVA and Oracle.
-
-## How would you know our company? ##
->I saw your job advertisement on the job posting web site of Seneca college.
-
-## Tell me about your work experience. ##
->I participated in developing several Portal Web Sites between 1999 and 2001. And I participated in developing ‘POSCO MES Project’ between 2002 and 2004. POSCO is the second largest steel maker in the world. MES is ‘Manufacturing Execution System’ and company invested around $300 millions for this system. I participated in this project as a developer. After that I worked as an operator of ‘POSCO MES Maintenance Team’ since 2015.
-
-## Why did you move to Canada? ##
->Working abroad is one of my dreams, and I would like to work with international computer programmers. Most of all, I feel that English is the most powerful language in the world.
-
-## What is your strength? ##
->I have acquired/ learned/ gained problem-solving skills from several project experience. So, solving an obstacle is my most strength. Another strength is that I have strong responsibility in my work. For example, I’ve never given up any projects even if those were very tough.
-
-## When would you start to work? ##
->Now, I am an international student. So, I need to check my timetable. But I will try my best to accommodate your schedule. And I believe that computer programmer doesn’t need to stay at a company for developing. Despite of home, I can do my task.
-
-## What starting salary would you expect? ##
->Considering my previous work experience, I averaged about $300 per day. However, it is negotiable. I believe I am well-trained and skilled for this job and I am confident you will feel the same, thereby presenting me with a fair offer.
-
-## When can you start working for us? ##
->I am available to start work with your company at any time. I will try my best to accommodate your schedule. 
-
-## What is your expected salary range? ##
->My resume speaks for itself. As you can see from my resume, I have all of the qualifications you are looking for. My previous work experience more than qualifies me for a starting salary of 35 million won annually. I am certain you will make a reasonable salary offer for me.

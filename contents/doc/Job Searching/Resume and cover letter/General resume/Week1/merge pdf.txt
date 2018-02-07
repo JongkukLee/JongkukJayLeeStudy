@@ -1,0 +1,14 @@
+Bachelor¡¯s degree in Computer Science or a related technical field
+Solid knowledge (7+ years) in J2EE/JEE software delivery or software development including multiple frameworks such as Hibernate, Spring MVC, Spring Security, SAML, OAuth, OIC
+2+ years of hands-on experience building RESTful/SOAP API solutions
+Proven experience in API management tools, like MuleSoft API Manager (preferably) or Apigee Edge
+Experience with configuration, deployment and testing of enterprise software applications
+Experience with SQL Server database, SQL and T-SQL
+Previous working experience with Mule ESB or MuleSoft Anypoint Platform is a definitive plus
+Experience with bug tracking and collaboration software: Jira, Confluence or similar
+Experience with Unit Testing frameworks and tools (Junit, MUnit or TestNG) and source control software (CVS, SVN, Git or similar)
+Experience working in financial industry and knowledge of banking products is a definite asset
+Self-starter who can take a concept and drive it through to the design and implementation
+Strong oral and written communication skills
+
+https://www.linkedin.com/in/jongkukjaylee/

@@ -602,6 +602,7 @@ export default class ProductList {
   }
 }
 ```
+<<<<<<< HEAD
 
 ## WEEK 10 ##
 
@@ -719,10 +720,270 @@ How to handle errors
 <input type="radio" id="vehicleUseOther" name="vehicleUse" [(ngModel)]="driverData.vehicleUse" value="other" /> <label for="vehicleUseOther"> Other</label><br />
 ```
 
-### WEEK11 ###
+
+
+=======
+## Week 10 ##
+**The major topics discussed were: **
+1. Methods of Creating Forms in Angular (ie: Template Driven, Reactive, Dynamic)
+2. Working with Template-Driven Forms / Two way data binding using [(NgModel)] to update Component data.
+3. CSS Classes added during Form Element Editing
+4. Form Validation & Checking for / displaying errors
+>>>>>>> 4c3dddfb9c1b60f20ce2214cb23177af4334ad40
+
+## Week 11 ##
+
+## Assignment6 ##
+- Set the value of the successMessage property to true ?
+  
+  onSubmit() {
+    this.saveEmployeeSubscription = this.emp.saveEmployee(this.employee).subscribe(() => {
+      this.log.writeLog('updated employee: ' + this.employee.FirstName + ' ' + this.employee.LastName);
+      this.successMessage = true;
+    }, err => { console.log('it is error!!'); } );
+    const timeSet = setTimeout(() => this.successMessage = false, 2500);
+  }
 
 
 
+## "Building" an Angular app & Creating a "Static" server in Node.js to serve it ##
+1. ng build
+   ng build --base-href=/my/app/
+   ng build --prod ==> Optimizing- pre-compiles (Ahead-of-Time (AOT) Compilation),  
+   ng build --prod --build-optimizer // further reduce bundle sizes 
 
 
+2. Static" server
+
+```js
+var express = require("express");
+var app = express();
+
+var HTTP_PORT = process.env.PORT || 8080;
+
+// setup the static folder 
+app.use(express.static("public")); 
+
+// Start the server
+app.listen(HTTP_PORT, function(){
+    console.log("Server listening on port: " + HTTP_PORT);
+});
+```
+3. copy contents of the “dist” directory (not the folder itself), into a “public” folder
+
+## Technology used in Angular testing (Jasmine, Angular Testing Utilities, Karma, Protractor) ##
+**Jasmine**- test framework, to write basic tests, with an HTML test runner<br>
+**Angular testing utilities**- create a test environment for the Angular application code<br>
+**Karma**- test runner, ideal for writing and running unit tests<br>
+**Protractor**- to write and run end-to-end (e2e) tests. End-to-end tests explore the application as users experience it
+
+## Jasmine syntax / key functions. ##
+
+simple unit test
+1. Open the file src/app/app.component.spec.ts & comment out
+2. Create a new file called 1st.spec.ts (The filename extension must be .spec.ts)
+3. Open the file and enter the following code
+4. Run the command npm test 
+
+```
+describe('1st tests', () => {
+    it('true is true', () => {
+        expect(true).toBe(true);
+    });
+});
+```
+**describe()**: begins with string and a function, string is a name or title for a spec suite, function is a block of code that implements the suite<br>
+**it()**: actually defines a “spec”, string and a function of the spec and the function is the spec, or test<br>
+**expect()**: used to build “Expections”, by providing a value, chained with a Matcher function <br>
+
+## Jasmine Matcher functions (ie; "toBe", "toBeDefined", etc) & creating simple tests using "describe()", "it()" and "expect()" ##
+```js
+toBe()
+it("The 'toBe' matcher compares with ===", function () {
+    var a = 12;
+    var b = a;
+
+    expect(a).toBe(b);
+    expect(a).not.toBe(null);
+});
+
+toBeDefined()
+it("The 'toBeDefined' matcher compares against `undefined`", function () {
+    var a = {
+        foo: "foo"
+    };
+
+    expect(a.foo).toBeDefined();
+    expect(a.bar).not.toBeDefined();
+});
+Manually failing a spec with ‘fail’
+var foo = function (x, callBack) {
+    if (x) {
+        callBack();
+    }
+};
+
+it("should not call the callBack", function () {
+    foo(false, function () {
+        fail("Callback has been called");
+    });
+});
+```
+
+**toEqual(), toMatch()**- regular expressions, toBeUndefined(), toBeNull(), toBeTruthy()- boolean casting testing, <br>
+**toBeFalsy()**- boolean casting testing, toContain()- contain in Array or string, toBeLessThan(), toBeGreaterThan(), <br>
+**toBeCloseTo()**- precision math comparison, toThrow()- function throws an exception, toThrowError()- specific thrown exception
+
+## Writing a test to ensure that an Angular component has certain elements in it's template (Recall: TestBed, ComponentFixture, Async, fixture.debugElement.query / queryAll, By.css(), By.all() etc.) ##
+1. ng g c componentOne <br/>
+component-one.component.css<br/>
+component-one.component.html<br/>
+component-one.component.spec.ts<br/>
+component-one.component.ts<br/>
+**TestBed**- creates an Angular testing module — an @NgModule class, with the configureTestingModule method to produce the module environment for the class, provides the functionality to enable the configuration of the testing module & to compile / create components<br/>
+**ComponentFixture**- ComponentFixture, a handle on the test environment surrounding the created component<br/>
+**async**- envoke the first of two beforeEach() setup methods- debugElement
+```js
+fixture.debugElement.query() // return one element (the first matching element)
+fixture.debugElement.queryAll() // return a collection of elements
+```
+```js
+import { By } from '@angular/platform-browser';
+By.all
+By.css(selector)
+By.directive(directive)
+```
+
+```js
+fixture.debugElement.queryAll(By.css('p'));
+
+it('must have at least 1 paragraph', () => {
+  let pElements = fixture.debugElement.queryAll(By.css('p'));
+  expect(pElements.length).toBeGreaterThan(0);
+});
+
+**ChatServer**
+```
+## week13 ##
+
+npm install --save express
+npm install --save socket.io
+```
+const express = require("express");
+const app = express();
+const path = require("path");
+
+const HTTP_PORT = process.env.PORT || 8080;
+
+// setup socket.io
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
+io.on('connection', function(socket){
+    console.log('a user connected'); // show when the user connected
+    
+    // assign them a temporary user name:
+    let tempUserName = "User-" + Math.floor(Math.random() * (100000 - 1 + 1)) + 1; 
+
+    socket.on('disconnect', function(){
+      console.log('user disconnected'); // show when the user disconnected
+    });
+
+    socket.on('chat message', function(msg){ // when the socket recieves a "chat message"
+        console.log("user sent: " + msg);
+        io.emit('chat message', tempUserName + ": " + msg); // send the message back to the users
+    });
+  });
+
+http.listen(HTTP_PORT,()=>{ // note - we use http here, not app
+    console.log("listening on: " + HTTP_PORT);
+});
+```
+
+io.emit()- message back to all clients listening, If we wanted to only communicate this message back to the original sender, we would use socket.emit() instead. 
+
+** ChatClient**
+
+npm install --save socket.io-client
+npm install --save-dev @types/socket.io-client
+npm install --save @types/socket.io-client --only=dev
+
+**ng g s Chat --module=app**
+
+```
+import { Injectable } from '@angular/core';
+import * as io from 'socket.io-client';
+import { Subject } from "rxjs/Subject";  
+
+@Injectable()
+export class ChatService {
+
+  private socket: SocketIOClient.Socket; // The client instance of socket.io
+  public getMessages: any; 
+
+  constructor() {
+    this.getMessages = new Subject(); 
+    
+    this.socket = io.connect('http://localhost:8080');
+
+    this.socket.on('chat message', (msg) => {
+      this.getMessages.next(msg); // send the new message
+    });
+
+  }
+
+  sendMessage(msg){
+    this.socket.emit('chat message', msg);
+  }
+
+}
+```
+
+```
+import { Component, OnInit } from '@angular/core';
+import {ChatService} from '../chat.service';
+
+@Component({
+  selector: 'app-chat-window',
+  templateUrl: './chat-window.component.html',
+  styleUrls: ['./chat-window.component.css']
+})
+export class ChatWindowComponent implements OnInit {
+
+  private getMessagesSub: any;
+  messages: string[] = [];
+  currentMessage: string;
+
+  constructor(private chatService: ChatService) { }
+
+  ngOnInit() {
+    this.getMessagesSub = this.chatService.getMessages.subscribe((data) => {
+      this.messages.push(data);
+    });
+  }    
+
+  sendMessage(){
+    this.chatService.sendMessage(this.currentMessage);
+    this.currentMessage = "";
+  }
+
+  ngOnDestroy(){    
+     if(this.getMessagesSub){this.getMessagesSub.unsubscribe();}   
+  } 
+
+}
+```
+
+```
+<div class="well" style="height: 300px; overflow-y: scroll; margin-top:15px">
+  <div *ngFor="let message of messages">{{message}}</div>
+</div>
+
+
+<form (ngSubmit)="sendMessage()">
+    <input type="text" name="currentMessage" class="form-control" [(ngModel)]="currentMessage" />
+    <br />
+    <button type="submit" class="btn btn-primary" >Send Message</button>
+</form>
+```
 

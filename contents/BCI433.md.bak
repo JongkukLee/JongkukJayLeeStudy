@@ -4,24 +4,201 @@ layout: default
 # BCI433
 ---
 
+## LAB 8 ##
+**GROUP Projet: **
+
+1. Runqry *n filename
+2. create view table
+
+```
+Create view EMPLOYEE AS (
+  SELECT * FROM SENECAPAY/EMPLOYEE
+)
+Create view WORKWEEK1 AS (
+  SELECT * FROM SENECAPAY/WORKWEEK1
+)
+Create view WORKWEEK2 AS (
+  SELECT * FROM SENECAPAY/WORKWEEK2
+)
+```
+
+```
+CREATE PYSICAL FILE 
+CPYF (F4) --> CREATE EMPLOYEE, WORKWEEK1, WORKWEEK2
+```
+
+3. MAKE LOGICAL FILE(LF): the program can be sorted
+
+```
+WORKWEEK1: It guarantees it will be displayed in accending order
+     A          R WORKWEEK1                 PFILE(WORKWEEK1)
+     A          K EMPNUM
+     A          K WORKSHIFT
+     A          K HRSWORKED     
+WORKWEEK2
+     A          R WORKWEEK2                 PFILE(WORKWEEK2)
+     A          K EMPNUM
+     A          K WORKSHIFT
+     A          K HRSWORKED      
+```
+
+4. In RPGLE FILE,
+USE: 
+
+```
+CHAIN
+%FOUND --> CHECK
+WRITE TO ERROR FILE
+
+QUERY, CHECK AND UPDATE
+```
+
+FOR EXAMPLE:
+
+```
+         FullKey.EMPNO = EMPNUM;
+         CHAIN %KDS(FullKey)        EMPLOYEE;
+         IF %FOUND(EMPLOYEE);
+           IF TYPENUM = 1;
+             UNIONDUES = 0.00;
+             YTDPAY = 0.00;
+             YTDTAX = 0.00;
+           ENDIF;
+
+           EXSR PAYSR;
+           UNIONDUES = UNIONDUES + 15.00;
+           YTDPAY = YTDPAY + REGULARPAY + OVERPAY;
+           YTDTAX = YTDTAX + YTDPAY * (0.2415);
+           UPDATE    EMPLOYEER;
+         ENDIF;
+```
+
+5. IN CLLE FILE,
+
+```
+             CHGVAR     &WEEKTYPE 'W O R K   W E E K     #1'
+             OVRPRTF    FILE(PAYRPTU) SPLFNAME(WEEK1PAY)
+             OVRDBF     WORKWEEK1 WRKWEEK1
+             CALL       PGM(PAYROLLPGU) PARM(&WEEKTYPE)
+             DSPSPLF    WEEK1PAY SPLNBR(*LAST)
+             RUNQRY     *N LAB8_V
+
+             CHGVAR     &WEEKTYPE 'W O R K   W E E K     #2'
+             OVRPRTF    FILE(PAYRPTU) SPLFNAME(WEEK2PAY)
+             OVRDBF     WORKWEEK2 WRKWEEK2
+             CALL       PGM(PAYROLLPGU) PARM(&WEEKTYPE)
+             DSPSPLF    WEEK2PAY SPLNBR(*LAST)
+             RUNQRY     *N LAB8_V 
+```
+
+**IMPORTANT KEYWORD: OVRPRTF, OVRDBF, DSPSPLF, RUNQRY**
+
+**WRKOUTQ DT433A11**
+
+### LAB 9 ###
+**Given source from teacher**
+
+PRE-KNOWLEDGE: 
+
+```
+RANDOM ACCESS CHAIN
+SEQ ACCESS
+READ
+READ E
+READ P
+```
+
+1. ADD RECORD: WRITE RECORD_FORMAT_NAME
+2. CHANGE RECORD: UPDATE RECORD_FORMAT_NAME
+3. REMOVE RECORD: DELETE RECORD_FORMAT_NAME
+
+STEPS TO SUCCESSFULLY RUN LAB 9
+
+1. Create a source physical file called LAB9
+2. Create a collection using parts of your id (mine is DT433A40 so I will use DT and A40. The U stands for update and is common for all ids. 
+   CREATE COLLECTION DTUA11 
+3. MAKE DATA: CPYF --> SALESSTAF2
+4. Copy the provided code in BCI433LIB/Lab9Code. The RPGLE program is called SLSTRNPGM and the CLLE program is called RUNLAB9.  Study these programs.
+5.  Change the CLLE code so it refers to your data and your output queue.
+
+
+**HOW TO CHECK PYSICAL DATA: DSPFD DTUA41/SALESSTAF2**
+**HOW TO CHECK RPGLE PGM: WRKOUTQ DT433A11 --> SELECT THE SPOOL OF LAB9 --> ENTER 5**
+
+3. CHANGE LIBULARY IN CLLE FILE FROM TEACHER'S TO YOURS
+
+IN RPGLE FILE, NOTICE
+
+```
+FSALESSTAF2UF A E           **K DISK** --> K MEANS KEY OF RECORD
+                      FullKey = TDept + TSalesID;
+                      CHAIN %KDS(FullKey)        SalesStaf2;
+                      SELECT;
+                        WHEN      %FOUND(SALESSTAF2);
+                        SELECT;
+                           WHEN      TCODE = 'C';
+                              EXSR      CHGREC;
+                           WHEN      TCODE = 'D';
+                              EXSR      DELREC;
+                           OTHER;
+                              EXSR      ERROR;
+                        ENDSL;
+                        WHEN      NOT %FOUND(SALESSTAF2);
+                           IF        TCODE = 'A';
+                              EXSR      ADDREC;
+                           ELSE;
+                              EXSR      ERROR;
+                           ENDIF;
+                        WHEN      %ERROR;
+                              EXSR      ERROR;
+                        ENDSL;
+                        EXCEPT    DETAIL;
+                        READ      SALESTRANS;   
+```
+
+IN CLLE,
+
+```
+PGM
+DLTF       DTUA11/SALESSTAF2
+      MONMSG     MSGID(CPF2105)
+      CPYF       FROMFILE(BCI433LIB/SALESSTAFF) TOFILE(DTUA11/SALESSTAF2) MBROPT(*REPLACE) +
+                   CRTFILE(*YES)
+
+      CLROUTQ    DT433A11
+
+   OVRPRTF FILE(QPQUPRFIL) SPLFNAME(BEFORE_UPD)
+   RUNQRY     *NONE DTUA11/SALESSTAF2 *PRINTER
+
+   OVRPRTF FILE(QPQUPRFIL) SPLFNAME(SALESTRANS)
+   RUNQRY *NONE BCI433LIB/SALESTRANS *PRINTER
+
+   OVRPRTF FILE(QPRINT) SPLFNAME(UPDREPORT)
+   OVRDBF     SALESSTAF2 DTUA11/SALESSTAF2
+   **CALL SLSTRNPGM** // call transaction program
+
+   OVRPRTF FILE(QPQUPRFIL) SPLFNAME(AFTER_UPD)
+   RUNQRY     *NONE DTUA11/SALESSTAF2 *PRINTER
+
+   DSPSPLF BEFORE_UPD
+   DSPSPLF SALESTRANS
+   DSPSPLF UPDREPORT
+   DSPSPLF AFTER_UPD
+
+   WRKOUTQ    DT433A11
+
+   **DSPJRN     JRN(DTUA11/QSQJRN) FILE((DTUA11/SALESSTAF2))** // display jurnal
+
+ENDPGM
+```
 
 ## LAB10 ##
+**Embeded SQL**
 
-PF-SRC MAKE FILTER
+PRE KNOWLEDGE:
+**CHECK WHAT IS STATIC AND DYNAMIC SQL IN RPGLE**
 
-WRKOBJPDM (F4)
-- DT433A11
-- PGM
-
-
-SQLCA
-SQLCODE
- = 0 SUCCESSFUL EXEC OF SQL
- > 0 SUCCESS EXEC WITH AS WARNING
- = 100 ROW NOT FOUND (NO MORE ROW)
- < 0 ERROR OCCURED (UNSUCCESS EXEC)
-
-
+HOW TO MAKE : PF-SRC MAKE FILTER
 
 SQLWN0 - SET TO 'W' IF AT LEAST ONE OTHER INDICATOR CONTAINS A 'W'. IT IS BLACK IF ALL THE OTHER INDICATORS ARE BLANK
 
@@ -31,18 +208,75 @@ SQLWN2 - CONTAINS 'W' IF NULL VALUES WERE ELIMINATED
 
 SQLWN3 - 
 
-SQLWNA - 
+SQLWNA -
 
+SQLCODE
+ 1. = 0 SUCCESSFUL EXEC OF SQL
+ 2. > 0 SUCCESS EXEC WITH AS WARNING
+ 3. = 100 ROW NOT FOUND (NO MORE ROW)
+ 4. < 0 ERROR OCCURED (UNSUCCESS EXEC)
+
+------------------------------------------------
+
+Process of Lab10
+
+1. CHANGE RPGLE --> SQLRPGLE (EMBEDED SQL) --> COMPILE WITH CRTSQLRPGI
+
+```
+//PRECOMPILE
+C/ EXEC SQL
+C+
+C/ END-EXEC
+   EXEC SQL
+
+   END-EXEC
+
+   --: COMMENT
+```
+
+2. CREATE COLLECTON CUSTSQLA11
+3. SET SCHEMA CUSTSQLA11
+4. create table
+
+```
+CREATE TABLE CUSTOMER17 AS (
+  SELECT * FROM BCI433LIB/CUSTOMER17
+  WITH DATA
+)
+CREATE TABLE CUSTOMER17 AS (
+  SELECT * FROM BCI433LIB/CUSTOMER17
+  WITH DATA
+)
+```
+
+5. WRKOBJPDM CUSTSQLA11 --> YOU CAN SEE TWO: CONTACTF17, CUSTOMERF17
+
+RUNQRY *N CONTACTF17<br/>
+CALL PHONESQLRA<br/>
+-- ADDLIBLE CUSTSQLA40
+
+6. CALL PHONESQLRA
+7. WRKSPLF --> QPRINT
+
+IN RPGLE FILE
+
+NOTICE: how to handle the SQL ERROR
+
+```
+         IF ((SQLCODE <> 0) OR (SQLWN0 = 'W'));
+           CONTACTTOTAL = -99999;
+         ENDIF;
+```
 
 -----------------------
-SLTCUSTCITY
- - TORONTO
-NEW DISCOUNT
- - 12
+SLTCUSTCITY - TORONTO
+
+NEW DISCOUNT - 12
 
 STATIC EMBEDED SQL STATEMMENT: FIGURE OUT WHEN IT IS COMPILED IN PRECOMPILE STAGE
 
 THE STRUCTURE DOES NOT CHANGE INT THE PROGRAM. THE PRECOMIILER WILL BUILD THE APPROPRIATE HIGH LEVEL LANGUAGE STATEMENTS. ONLY VALUES SUPPLIED BY HOST VARIABLES USED IN THE STATEMENT MAY CHANGE.
+
 ```
 EXEC SQL
 	UPDATE CUSTOMER
@@ -62,10 +296,11 @@ EXEC SQL
 	WHERE CUSTID = :SLTCUSTID;
 ```
 
-IF MULTIPLE ROWS ARE RETRIVED, THEN THIS STATEMENT FAILS
+IF MULTIPLE ROWS ARE RETRIVED, THEN THIS STATEMENT FAILS<br/>
 IF ONE ROW IS RETRIVED THIS STATEMENT SUCCEEDS
 
-	**:CSCITYNULL AND :CSDISCNULL ARE INDICATOR VARIABLES** IF THEY ARE SET TO -1 THAN THE VALUE WAS NULL
+**CSCITYNULL AND :CSDISCNULL ARE INDICATOR VARIABLES** IF THEY ARE SET TO -1 THAN THE VALUE WAS NULL
+
 ```
 EXEC SQL
 	SELECT	AVG(DISCOUNT) 
@@ -93,27 +328,346 @@ EXEC SQL
 	WHERE CUSTID = :SLCCUSTID;
 ```
 
+## lab 11 ##
+**Corsor**
 
-CONTACTF17	E	DS
+How to use the cursor?
+What is the cursor?
+
+```
+     D CustomerRecord  DS // FETCH NEXT from ALLPROVCURSOR into:  CustomerRecord
+     D CustId                         6
+     D FullName                      31
+     D City                          20
+     D Purchase                       7  2
+     D PDate                           D
+     D Province                      10
+     D ProvinceH       S             10 // control BREAK FIELD: check the change each province
+                    If ProvinceH = Province;
+                       Except Detail;
+                    Else;
+                       ProvinceH = Province;
+                       Except NewProv;
+                       Except Detail;
+                    EndIf;
+
+     D TotalCost       S              8  2
+     D TotalRecords    S              5  0
+     D TotalExtended   S              9  2
+     D OntarioTot      S              3  0 
+     D QuebecTot       S              3  0
+     D ManitobaTot     S              3  0
+     D EndOfFile       S               N  // true or false 
+```
+
+1.CREATE SQL
+
+```
+SELECT CUSTID, TRIM(FNAME) || ' ' ||  TRIM(LNAME),
+CITY, PURCHASE, PDATE, 'ONTARIO' AS PROVINCE
+FROM BCI433LIB/ONTARIO
+WHERE PURCHASE > 150
+UNION ALL
+SELECT CUSTID, TRIM(FNAME) || ' ' ||  TRIM(LNAME),
+CITY, PURCHASE, PDATE, 'QUEBEC' AS PROVINCE
+FROM BCI433LIB/QUEBEC
+WHERE PURCHASE > 150
+UNION ALL
+SELECT CUSTID, TRIM(FNAME) || ' ' ||  TRIM(LNAME),
+CITY, PURCHASE, PDATE, 'MANITOBA' AS PROVINCE
+FROM BCI433LIB/MANITOBA
+WHERE PURCHASE > 150 
+```
+
+2.execute sql
+
+```
+EXEC SQL
+  DECLARE ALL PROVCURSOR CURSOR
+  FOR
+  // SQL statement
+  FOR READ ONLY;  
+```
+
+3.use the cursor
+
+```
+EXEC SQL
+  OPEN ALLPROVCURSOR;
+  // error catch
+  IF SQLCODE <> 0 OR SQLWN0 = 'W';
+    ENDOFFILE = *ON;
+  ENDIF;
+ENDSR; 
+EXEC SQL
+  FETCH NEXT
+  FROM ALLPROVCURSOR
+  INTO :CUSTOMERRECORD;
+  // error catch
+
+EXEC SQL
+  CLOSE ALLPROVCURSOR;
+  // error catch
+```
+
+
+Work with object --> Object attribute --> QPF-SRC: all sources are displayed in the filter
+
+
+           DECLARE ALLPROVCURSOR CURSOR
+          FOR
+          SELECT O.ORDER_NUMBER, O.ORDER_DATE, O.CUSTOMER_NUMBER, OL.PART_NUMBER, OL.NUMBER_ORDERED, OL.QUOTED_PRICE
+	  FROM ORDERS O, ORDERLINE OL
+	  WHERE O.ORDER_NUMBER = OL.ORDER_NUMBER
+	  ORDER BY O.ORDER_NUMBER
+	  FOR READ ONLY;
 
 
 
+         BEGSR  ADDREC;
+                   SALESSTAF2DS = SALESTRANSDS;
+                   Phone   = %Dec(TPhone:10:0);
+                   WRITE     SALESTFR;
+         ENDSR;
+         BEGSR  CHGREC;
+                   SALESSTAF2DS = SALESTRANSDS;
+                   Phone   = %Dec(TPhone:10:0);
+                   UPDATE    SALESTFR;
+         ENDSR;
+         BEGSR  DELREC;
+                   DELETE    SALESTFR;
+         ENDSR;
+         BEGSR  ERROR;
+                   TFNAME = 'UPDATE/DELETE/CHANGE';
+                   TLNAME = 'E R R O R';
+         ENDSR; 
 
 
-	
+IF SWITCH = 1;
+ WRITE TITLE;
+ WRITE STATISTICS;
+ENDIF;
+*IN
+
+BEGSR GETSTATS
+	EXEC SQL
+	SELECT SUM(CSTBAL) INTO :TOTALCUSTB
+	FROM T2REVA40/CUSTOMER;
+	IF SQLCODE <> 0 OR SQLWN0 = 'W';
+		TOTALCUSTB = -999;
+	ENDIF;   
+ENDSR;
+
+## TEST2 REVIEW ##
+1. 
+ CREATE TABLE CUSTOMER AS (               
+   SELECT * FROM T2REVA40/CUSTOMER2)      
+   WITH DATA                                                         
+
+ CPYF FROMFILE(T2REVA40/CUSTOMER2) TOFILE(DT433A11/CUSTOMER) MBROPT(*REPLACE)
+
+2. 
+
+```
+     FCUSTOMER  UF   E           K DISK     RENAME(CUSTOMER:CUSTOMERR)
+     FORDERRPT1 O    E             PRINTER  OFLIND(*IN01)
+     DMain             PR                   EXTPGM('ORDERSQL')
+     DSwitch                          1  0
+     DMain             PI
+     DSwitch                          1  0
+     D ORDERRECORD     DS
+     D ORDERNUM                       5  0
+     D ORDERDATE                       D
+     D PARTNUMBER                     4
+     D NUMBERORD                      3  0
+     D QPRICE                         6  2
+     D ORDERNUMH       S              5  0
+     D CUSTNUMH        S              3
+     D TOTALRECORDS    S              5  0
+     D LOWQP           S             10  0
+     D TOTALCUSTE      S             10  0
+     D TOTALORD        S             10  0
+     D TOTALCUSTB      S             10  0
+     D ENDOFFILE       S               N
+      /FREE
+
+                IF Swich = 1;
+                  EXSR Getstats;
+                ENDIF;
+                EXSR PrepareFiles;
+                WRITE TITLE;
+                WRITE HEADING;
+                EXSR GETROW;
+                ORDERNUMBERH = ORDERNUMBER;
+                CUSTNUMH = CUTNUM;
+                WRITE NEWORDER;
+                DOW NOT ENDOFFILE;
+
+                  IF ORDERNUMH = ORDERNUM;
+                    WRITE DETAIL;
+                  ELSE;
+                    ORDERNUMH = ORDERNUM;
+                    EXSR UPDATECUST;
+                    WRITE TOTALS;
+                    ORDERTOT = ORDERTOT + QPRICE;
+
+                    IF *IN01 = *ON;
+                      WRITE TITLE;
+                      WRITE HEADINGS;
+                      *IN01 = *OFF;
+                    ENDIF;
+                    WRITE NEWORDER;
+                    WRITE DETAIL;
+                  ENDIF;
+                  ORDERTOT = ORDERTOT + QPRICE;
+                  TOTOALRECORDS = TOTALRECORDS + 1;
+                  EXSR GETROW;
+                ENDDO;
+                EXSR WRAUP;
+                IF SWITCH = 1;
+                  WRITE TITLE;
+                  WRITE STATISTICS;
+                ENDIF;
+                *INLR = *ON;
+                RETURN;
+      /END-FREE
+
+
+         BEGSR  PrepareFiles;
+        EXEC SQL
+            DECLARE ORDERCURSOR CURSOR
+          FOR
+             SELECT O.ORDER_NUMBER, O.ORDER_DATE,
+	          O.CUSTOMER_NUMBER, OL.PART_NUMBER,
+	          OL.NUMBER_ORDERED, OL.QUOTED_PRICE
+	      FROM ORDERS O, ORDERLINE OL
+	      WHERE O.ORDER_NUMBER = OL.ORDER_NUMBER
+	      ORDER BY O.ORDER_NUMBER
+	      FOR READ ONLY;
+
+        EXEC SQL
+            OPEN ORDERCURSOR;
+               IF SQLCODE <> 0 OR SQLWN0 = 'W';
+                 ENDOFFILE = *ON;
+               ENDIF;
+         ENDSR;
+
+         BEGSR     GETROW;
+        EXEC SQL
+          FETCH NEXT
+          FROM ORDERCURSOR
+          INTO :ORDERRECORD;
+
+          IF SQLCODE <> 0 OR SQLWN0 = 'W';
+            ENDOFFILE = *ON;
+          ENDIF;
+         ENDSR;
 
 
 
+         BEGSR WRAPUP;
+           EXSR UPDATECUST;
+        EXEC SQL
+          CLOSE ORDERCURSOR;
+          IF SQLCODE <> 0 OR SQLWN0 = 'W';
+            ENDOFFILE = *ON;
+          ENDIF;
+        EXEC SQL
+          SELECT SUM(CSTBAL) INTO :TOTALCUSTE
+          FROM T2REVA40/CUSTOMER;
+          IF SQLCODE <> 0 OR SQLWN0 = 'W';
+            TOTALCUSTB = -999;
+          ENDIF;
+
+
+         ENDSR;
+
+
+         BEGSR GETSTATS;
+	    EXEC SQL
+           CLOSE ALLPROVCURSOR;
+          IF SQLCODE <> 0 OR SQLWN0 = 'W';
+            ENDOFFILE = *ON;
+          ENDIF;
+        EXEC SQL
+	      SELECT COUNT(*) INTO :TOTALORD
+	      FROM T2REVA40/ORDERS;
+	      IF SQLCODE <> 0 OR SQLWN0 = 'W';
+		     TOTALORD = -999;
+	      ENDIF;
+        EXEC SQL
+          SELECT SUM(CSTBAL) INTO :TOTALCUSTB
+          FROM T2REVA40/CUSTOMER;
+
+          IF SQLCODE <> 0 OR SQLWN0 = 'W';
+            TOTALCUSTB = -999;
+          ENDIF;
+          EXEC SQL
+            SELECT MIN(OLQPRC) INTO: LOWQP FROM T2REVA40/ORDERLINE;
+
+         ENDSR;
+        // UPDATE CUSTOMER SUBROUTINE
+        BEGSR UPDATECUST;
+          CHAIN CUSTNUMH CUSTOMER;
+          IF %FOUND(CUSTOMER);
+            OLDBALANCE = CSTBAL;
+            CSTBAL = CSTBAL + ORDERTOT;
+            NEWBALANCE = CSTBAL;
+            IF CSTBAL > CSTCRD;
+              CSTCRD = CSTBAL;
+              OVERLIMIT = 'Credit Limit Adjusted';
+            ELSE;
+                OVERLIMIT = '';
+            ENDIF;
+            UPDATE CUSTOMERR;
+            CUSTNUMH = CUSTNUM;
+          ENDIF;
+
+        ENDSR;
+ ```
+
+ 	    /*EXEC SQL   */
+           /* FETCH ORDERCURSOR; */
+          /* IF SQLCODE <> 0 OR SQLWN0 = 'W'; */
+            ENDOFFILE = *ON;
+          ENDIF;    */
 
 
 
+         BEGSR GETSTATS;
+	    EXEC SQL
+              CLOSE ORDERCURSOR;
+          IF SQLCODE <> 0 OR SQLWN0 = 'W';
+            ENDOFFILE = *ON;
+          ENDIF;
+        EXEC SQL
+	      SELECT COUNT(*) INTO :TOTALORD
+	      FROM T2REVA40/ORDERS;
+	      IF SQLCODE <> 0 OR SQLWN0 = 'W';
+		     TOTALORD = -999;
+	      ENDIF;
+        EXEC SQL
+          SELECT SUM(CSTBAL) INTO :TOTALCUSTB
+          FROM T2REVA40/CUSTOMER;
 
+          IF SQLCODE <> 0 OR SQLWN0 = 'W';
+            TOTALCUSTB = -999;
+          ENDIF;
+          EXEC SQL
+            SELECT MIN(OLQPRC) INTO: LOWQP FROM T2REVA40/ORDERLINE;
 
-	
+         ENDSR;        
 
-
-
-
+OVRPRTF: apply the OVRPRTF command to all printer files by specifying *PRTF as the file name.
+OVRDBF: overrides the database file named in a CL procedure or program
+STATIC CALL: are bound at compile time
+DYNAMIC CALL: are resolved to addresses when the call is performed
+*PGM VS *MODULE
+CRTBNRPG VS CRTRPGMOD
+CRTBNDCL VS CRTCLMOD
+DYNAMIC CALL VS STATIC CALL
+CALL VS CALLB IN RPGLE STATEMENT
+CALL VS CALLPRC IN CLLE STATEMENT
 
 
 

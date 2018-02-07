@@ -85,7 +85,213 @@ Build-in Object: when jsp is converted, the build-in objects are automatically c
 
 ## Functional ##
 
-Interface Predicate<T>: Represents a predicate (boolean-valued function) of one argument.
-Interface Consumer<T>: Represents an operation that accepts a single input argument and returns no result.
-Interface BiConsumer<T,U>: Represents an operation that accepts two input arguments and returns no result.
+Interface Predicate<T>: Represents a predicate (boolean-valued function) of one argument.<br/>
+Interface Consumer<T>: Represents an operation that accepts a single input argument and returns no result.<br/>
+Interface BiConsumer<T,U>: Represents an operation that accepts two input arguments and returns no result.<br/>
+
+Reference site1: [http://jinson.tistory.com/208](http://jinson.tistory.com/208)<br/>
+
+Imperative Style: every step of what you want it to do<br/>
+Declarative Style: how to do it, declare your desired results, but not step by step<br/>
+Improved way: Imperative Style --> Declarative Style<br/>
+EX) Find if Chicago is in the collection of given cities.<br/>
+EX) A Better way<br/>
+EX) total discounted price values, Suppose we’re asked to total the prices greater than $20, discounted by 10%.<br/>
+EX) Improved way<br/>
+- Our code can resemble the requirement specification<br/>
+- Reduce the gap between the business needs and the code that implements it<br/>
+- Reducing the chances of the requirements being misinterpreted<br/>
+- The code flows along with logic in the same way as described in the requirements.<br/>
+New things in the code,<br/>
+stream(): Special Iterator<br/>
+Special Methods, provided lambda expression, puts the responses from these calls into a new collection<br/>
+filter(), map()<br/>
+reduce(): Special Methods, to get the final result<br/>
+
+Big Gain of Functional Style Code<br/>
+writing few lines of code, easily be parallelized, removes the thread-safety concerns, The code is more expressive, more concise, easier to understand <br/>
+### Why code in Functional Style? ###
+**Iteration on Steroids**<br/>
+Java now provides specialized internal iterators for various operations: one to simply loop, one to map data values, one to filter out select values, one to reduce, and several convenience functions to pick the min, the max, the average, and so on.<br/>
+**Enforcing Policies**<br/>
+There are two issues with this kind of approach. It often leads to duplication of effort and, in turn, increases maintenance cost. It’s easy to forget about exceptions that may be thrown in the application code.
+We could implement a proper try-finally block, but every time someone touches that code, we’d have to re-verify that it’s not broken. Instead of receiving a transaction, we could send the processing code to a well-managed function. To this method we send a piece of code that needs to run in the context of a transaction. We no longer have to worry about forgetting to perform the steps or about the exceptions being handled well. The policy enforcing function takes care of all that.<br/>
+**serial and parallel execution require**<br/>
+**Telling the Story**<br/>
+**Separation of Concerns**: create more reusable and extensible code<br/>
+
+### Lambda Example ###
+Syntax: (parameters) -> {expression body}
+EX) Hello Lambda Example
+
+|Methods in Java|Lambda Expression|
+|---------------|-----------------|
+|Name		|No name – function is anonymous|
+|Parameter list	|Parameter list|
+|Body		|Body – main part of the function|
+|Return Type	|No return type – java 8 compiler is able to infer the return type by checking the code.|
+
+|Expression|Explanation|
+|----------|-----------|
+|() -> {};						|No parameters, Empty block|
+|() -> {System.out.println(“Hello”);};			|No parameters, Block statement|
+|() -> 24						|No parameters, return integer 24|
+|(int x, int y) -> x + y;				|Two integers, return the sum|
+|(Object x) -> x					|Given and object, it returns it|
+|(Person p) -> p.age > 25 && p.salary < 2000		|Given reference to Person returns boolean|
+|n -> n % 2 == 0;					|Given a number returns a boolean|
+|(String s1, String s2) -> s1.length() + s2.length();	|Given two strings return an integer|
+
+1. Create your own functional interface using @FunctionalInterface 
+2. Use the pre-defined functional interfaces in Java 
+EX) interface Summable: FirstWay, SecondWay, and ThirdWay (Lambda Expression) class<br/>
+EX) interface StringConcat, Example class<br/>
+
+** Method References**: enable you compact, easy-to-read lambda expressions<br/>
+1. To an instance method of an object– object::instanceMethod<br/>
+EX) interface MyInterface, class Example <br/>
+2. To a static method of a class – Class::staticMethod<br/>
+EX) class Multiplication, class Example <br/>
+3. To an instance method of an arbitrary object of a particular type– Class::instanceMethod<br/>
+EX) class Example <br/>
+4. To a constructor– Class::new<br/>
+EX) interface MyInterface, class Hello,  and class Example <br/>
+
+### Streams ###
+stream is an abstraction that either produces or consumes information<br/>
+EX) Example without Streams: no parallelism<br/>
+EX) Example With Streams: happening parallelly<br/>
+the stream() method returns a stream of all the names, <br/>
+the filter() method returns another stream of names with length <br/>
+less than 6, <br/>
+the count() method reduces this stream to the result. <br/>
+**How the Streams work**: 1. Create a stream, 2. intermediate operations, 3. terminal operation<br/>
+**Stream Features**: 1. does not store the elements, 2. do not change the data of the source, 3. lazy in nature, not executed 
+until they are needed<br/>
+EX) Stream with Iterating and Displaying selected Integers<br/>
+EX) Concatenating two Streams<br/>
+
+## Java Collection Framework ##
+
+### Algorithms ###
+Two utility classes : Java.util.Arrays, Java.util.Collections<br/>
+There are 5 differences between Array and Collection as given below :
+1. Array is Fixed in Size. Where , Collection is Grow able in nature.
+2. Array stores homogeneous data . Where , Collection store both homogeneous as well as Heterogeneous data.
+3. In Array , there are no underlined Data Structures, whereas ,Collection has Underlined DS.
+4. Array is recommended in performance , whereas Collection is not.
+5. Array use more memory space compare to Collection.
+
+**Arrays**
+Contains static methods for sorting and searching<br/>
+Holds both primitive as well as Objects<br/>
+Sorting objects must also implement **Comparable or Comparator Inerfaces**<br/>
+EX) Sort an Array Example (Arrays.sort())<br/>
+EX) Sort an ArrayList Example (Collections.sort())<br/>
+EX) Sort an Object with Comparable<br/>
+**The Comparator Interface**<br/>
+The Comparable interface is only allow to sort a single property.<br/>
+To sort with multiple properties, you need Comparator.<br/>
+EX) public static Comparator<Fruit> FruitNameComparator = 
+					new Comparator<Fruit>() { ...}
+By updating the Fruit class and add the Comparator method, Fruit object can now sort either “quantity” or “fruitName”.
+
+### List, MAP, Set ###
+
+|List|MAP |Set |
+|----|----|----|
+|To allow duplicate elements |container object with key/ value pairs|Set contains no duplicate elements|
+|can access the element by index|Cannot contain duplicate keys||
+|add(index, element), get(index), remove(index)|put(key, value), get(key), remove(key)||
+|ArrayList, LinkedList|HashMap, TreeMap, LinkedHashMap||
+
+ArrayList- to support random access through an index without inserting or removing elements
+LinkedList- choose when requires the insertion or deletion
+> if not require insertion or deletion of elements, the most efficient data structure is the array
+
+|ArrayList|LinkedList|
+|---------|----------|
+|stores in an array|stores in a linked list|
+|Dynamically generated|Can grow or shrink dynamically|
+|If size is exceeded, copy all the elements to new array |Provides you the edge of inserting an deleting the elements at any position|
+
+<br/>
+
+|HashMap|TreeMap|LinkedHashMap|
+|-------|-------|-------------|
+|efficient for inserting or deleting Not ordered|SortedMap, is efficient for traversing the keys in a sorted order|extends HashMap, supports an ordering of the entries in the map|
+|random order|increasing order|, from least recently accessed to most recently|
+
+EX) public class TestMap { Create a HashMap, Create a TreeMap, Create a LinkedHashMap }
+
+|HashSet|TreeSet|LinkedHashSet|
+|-------|-------|-------------|
+|to store duplicate free elements|Guarantees sort|Extends HashSet, Supports the order|
+|Doesn’t maintain the order in which the elements being entered|first() and last() methods, return the first and last elements in the set|If you don’t need to main the order of the elements then use HashSet|
+
+EX) public class TestHashSet { Added twice, Lambda Expression replacing the Inner class Implementation }<br/>
+EX) public class TestLinkedHashSet { ... }
+
+
+Member test time for **hash set** is 20 milliseconds<br/>
+Remove element time for **hash set** is 27 milliseconds<br/>
+Member test time for **linked hash set** is 27 milliseconds<br/>
+Remove element time for **linked hash set** is 26 milliseconds<br/>
+Member test time for **tree set** is 47 milliseconds<br/>
+Remove element time for **tree set** is 34 milliseconds<br/>
+Member test time for **array list** is 39802 milliseconds<br/>
+Remove element time for **array list** is 16196 milliseconds<br/>
+Member test time for **linked list** is 52197 milliseconds<br/>
+Remove element time for **linked list** is 14870 milliseconds<br/>
+
+>Conclusion: Sets are more efficient than List for testing whether an element is in a set or list.
+
+## Java socket programming ##
+Java socket programming: facility to share data between different computing devices<br/>
+TCP (Transmission Control Protocol): connection based protocol, provides a reliable flow, server application binds port number<br/>
+UDP (User Datagram Protocol): non-connection based protocol, No guarantee of data arrival, Datagram-based communication, packet contains the port <br/>
+How does the computer know to which application to forward what data? Answer: Ports<br/>
+Port numbers range from 0 to 65,535 (16-bit), Well-known, 0 - 1023 <br/>
+URL (Uniform Resource Locator): reference to a source on the Internet<br/>
+Creating URL: URL myURL = new URL(“http://google.ca”)<br/>
+Absolute URL: contains all of the information necessary to reach the resource <br/>
+Relative URL: contains only enough information to reach the resource relative to<br/>
+URL myURL = new URL(“http://example.com/pages/”);<br/>
+URL page1URL = new URL(myURL, “page1.html);<br/>
+URL page2URL = new URL(“http”, “example.com”, “/pages/myfile.txt”)<br/>
+URL page2URL = new URL(“http”, “example.com”, 80, “/pages/myfile.txt”)<br/>
+```java
+EX) public class ParseURL {
+getAuthority(), getHost(), getPort(), getPath(), getQuery(), getFile(), getRef() }<
+```
+
+URL's openStream() method: to get a stream from URL, returns a java.io.InputStream object
+```java
+EX) URL’s openStream: public class URLReader { ...
+	BufferedReader in = new BufferedReader( new
+	InputStreamReader(seneca.openStream())); ...}
+```
+```java
+EX) URL Connection: public class ReadSites {...
+	URLConnection connn = u.openConnection();
+	InputStreamReader isr = new InputStreamReader(connn.getInputStream());
+	BufferedReader br = new BufferedReader(isr); ...}
+```
+```java
+EX) MyClient.java: Socket s=new Socket("localhost",6666); ... 
+	DataOutputStream(s.getOutputStream()); ...
+EX) MyServer.java: ServerSocket ss=new ServerSocket(6666); ... 
+	Socket s=ss.accept(); //establishes connection...
+	DataInputStream(s.getInputStream());
+EX) Read and Write both side Example: Server side, Client side
+```
+
+## Test2 Review ##
+
+
+
+
+
+
+
 
