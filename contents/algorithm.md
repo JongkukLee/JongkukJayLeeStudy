@@ -248,7 +248,7 @@ Next, we are talking about another interesting topic: **Stack and Queue**.
 
 Figure stack.1 shows the conception of the Stack data structure and algorithm. In the left figure, there are five elements into a stack, and the cursor indicates the most top position. When 'PUSH X' occurs in the middle picture, the element 'X' must be located on the most top, and cursor will indicate to new top position. When poping from a stack in the right picture, the most top element must be poped, and the cursor will indicate new top position.    
 ### Figure stack1. the Conception of Stack ###
-![Image]({{ site.globalurl }}/contents/img/stack1.jpg)
+![Image]({{ site.globalurl }}/contents/img/stack1.JPG)
 
 To implement stack, there are a using array stack and list stack. The skeletone of array stack includes an exceptions, its constructor/destructor, helper functions, push/pop/getTop/removeAll functions, and some fields are needed to store data, to represent the insert/delete positions, and to represent the size of array. Also, the skeletone of list stack includes exceptions, its  constructor/destructor, helper functions, push/pop/getTop/removeAll functions, and a field is needed to store data.<br />
 Note that actually a simple linked list is a stack itself!<br />
@@ -260,12 +260,12 @@ Note that actually a simple linked list is a stack itself!<br />
 Figure queue1 shows the conception of the Queue data structure and algorithm. In the left picture, there are five elements in a queue, and the front indicates the exit position, and the rear indicates the entrance position. When getting from a queue in the middle picture, the most front element must be exited, and the front pointer will indicate new front position. When 'PUT X' occurs int the last picture, the 'X' must be located on the rear position, and the rear will indicate to new entrance point.
 
 ### Figure queue1. the Conception of Queue ###
-![Image]({{ site.globalurl }}/contents/img/queue2.jpg)
+![Image]({{ site.globalurl }}/contents/img/queue2.JPG)
 
 To implement queque, there are a using array queue and list queue. In terms of array queue, we have to use circular queue. Why is the circular queue needed? Figure queue2 and Figure queue3 show how to operate in general style queue and circular queue respectively. While putting and getting elements in array queue, the position of the front and rear will move toward the end of array. But, the array has the fixed size in memory, so we can't use the index beyond the size of array. Therefore, whenever it arrives at the end of array, we have to copy all elements to the beginning of the array; on the other hand, the circular queue do not need the copy logic to implement it.<br />
 
 ### Figure queue2. General Queue operation ###
-![Image]({{ site.globalurl }}/contents/img/queue3.jpg)
+![Image]({{ site.globalurl }}/contents/img/queue3.JPG)
 
 Figure queue3 demonstrates the circular queue. The front indicates the exit position in the queue, and the rear indicates the entrance position in the queue. 
 
