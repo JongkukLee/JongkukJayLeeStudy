@@ -1,0 +1,159 @@
+How garbage collector knows that the object is not in use and needs to be removed? Garbage collector marks the unused objects via bookkeeping the references to the objects, and a garbage will collect and delete any unreferenced objects in memory. 
+Can Java thread object invoke start method twice? No, it throws IllegalThreadStateException
+Give the list of Java Object class methods.
+Can we call servlet destory() from service()? NO, if you call destory method from service(), it just execute the code written in the destory(), but it wont kill the servlet instance.
+Can we override static method? No,  we cannot override static methods because static methods are belogs to class, not belongs to object and inheritance will not be applicable for class members
+Can you list serialization methods? No, serialization interface does not have any methods because It is a marker interface.
+What is the difference between super() and this()? super() is used to call super class constructor, whereas this() used to call
+constructors in the same class.
+How to prevent a method from being overridden? By using final keyword to the method you can avoid overriding
+in a subcalss. Similarlly final keyword can be used at class level to
+prevent creating subclasses.
+Can we create abstract classes without any abstract methods? Yes, we can create abstract classes without any abstract methods.
+How to destroy the session in servlets? Servlet Engine is used to call destory(). 
+Can we have static methods in interface? Before Java 8, it is imposible, but Java 8 came with new feature called "default methods" with in interfaces
+What is transient variable? During serialization process, transient variable states will not be serialized. 
+Incase, there is a return at the end of try block, will execute finally block? Yes, the finally block will be executed even after writing return statement at the end fo try block. It returns after executing finally block.
+What is abstract class or abstract method? We cannot create instance for an abstract class. We can able to create
+instance for its subclass only. Abstract method does not containes any implementation. Its subclass must provide implementation for abstract methods.
+What is default value of a boolean? Default value of a boolean is false.
+When to use LinkedList or ArrayList? Accessing elements are faster with ArrayList, but  insertion and deletion is much faster with LinkedList.
+What is daemon thread? Daemon thread is a low priority thread. It runs in the back ground to take care of the garbage collection operation for the java runtime system.
+Does each thread in java uses seperate stack? In Java every thread maintains its own separate stack but they share the same memory.
+What is the difference between Enumeration and Iterator? Iterator can be useful if you want to manipulate the list and Enumeration is for read-only access.
+Does system.exit() in try block executes finally block? It will not execute finally block because the program will be terminated
+after System.exit() statement.
+What is fail-fast in java? A fail-fast system is nothing but immediately report any failure thatis likely to lead to failure. This is called fail-fast.
+What is final, finally and finalize? final is a keyword, which should be	initialized only once and cannot be changed. finally is a block, which always executes when the try-catch block exits. finalize is a method. Before an object is garbage collected, the runtime system calls its finalize() method. 
+In java, are true and false keywords? No, true, false are actually not keywords. They are literals. 
+What are the different session tracking methods? Cookies, URL rewriting, HttpSession,  and Hidden form fields. Using HTTP cookies, we can store information at browser side. With this method, the information is carried through url as request parameters. By using hidden form fields we can insert information in the webpages and these information will be sent to the server.
+What is the purpose of garbage collection? The garbage collection process is to identify the unreferenced objects and will discard them to reclaim or resue the resource.
+What are the types of ResultSet? TYPE_FORWARD_ONLY, TYPE_SCROLL_INSENSITIVE, TYPE_SCROLL_SENSITIVE are the type of ResultSet. In TYPE_FORWARD_ONLY, its cursor moves forward only, in TYPE_SCROLL_INSENSITIVE and TYPE_SCROLL_INSENSITIVE,  its cursor can move both forward and backward. TYPE_SCROLL_INSENSITIVE 
+is insensitive mode to changes of database source, but TYPE_SCROLL_SENSITIVE is senstive. The default is TYPE_FORWARD_ONLY.
+What is difference between wait and sleep methods in java? sleep() is a static method on Thread class; otherwise, wait() is a method on Object class. sleep() makes the current thread into the "Not Runnable" state during the specific time, but wait() is released from  the "Not Runnable" state when calling notice() method.
+What is servlet context? The servlet context is kind of application environment. Using the context, a
+servlet can obtain URL references to resources, and store attributes that
+other servlets in the context can use.
+What happens if one of the members in a class does not implement Serializable interface? NotSerializableException will be thrown.
+What is race condition? A race condition is a situation in which two or more threads or processes are reading or writing some shared data. Race conditions can lead to unpredictable results and subtle program bugs. 
+How to get current time in milli seconds? System.currentTimeMillis() returns the current time in milliseconds.
+How can you convert Map to List? We know that Map contains key-value pairs, whereas a list contains
+only objects. Since Entry class contains both key-value pair,
+Entry class will helps us to convert from Map (HashMap) to
+List (ArrayList). By using Map.entrySet() you will get Set
+object, which intern you can use it to convert to list object.
+What is strictfp keyword? By using strictfp keyword, we can ensure that floating point operations take place precisely.
+What is System.out in Java? System.out is called standard output stream, connected to console.
+What is difference between ServletOuptputStream and PrintWriter? ServletResponse.getOutputStream() returns a ServletOutputStream, does not encode the binary data. ServletResponse.getWriter() returns PrintWriter object. The PrintWriter uses the character encoding returned by getCharacterEncoding().
+What is java static import? By using static imports, we can import the static members from a class
+rather than the classes from a given package.
+When to use String and StringBuffer? When assigning the character array, we use String object, but String is immutable object.  So incase, we are going to do more modificatios on String, then use StringBuffer.
+What is difference between StringBuffer and StringBuilder? StringBuffer is synchronized, so it is thread-safe, but StringBuilder is not
+What is wrapper class in java? Java provides wrapper classes to move primitives to objects. 
+Is Iterator a Class? Iterator is an interface. It is not a class. It is used to iterate through each and every element in a list. Iterator is implemented Iterator design pattern.
+What is java classpath? The classpath is an environment variable to let the compiler know where the class files are available for import.
+Can a class in java be private? We can not declare top level class as private. Java allows only public and default modifier for top level classes in java. Inner classes can be private.
+Is null a keyword in java? The null value is not a keyword in java. true and flase are also not keywords in java. They are reserved words in java language.
+What is the initial state of a thread when it is started? When the thread is created and started, initially it will be in the ready state.
+What is the super class for Exception and Error? The super class or base class for Exception and Error is Throwable.
+What is Class.forName()? Class.forName() loads the class into the ClassLoader.
+Can interface be final? No. We can not instantiate interfaces, so in order to make interfaces useful we must create subclasses. The final keyword makes a class unable to be extended.
+What is the difference between exception and error? An error is an irrecoverable condition occurring at runtime like out of memory error. These kind of jvm errors cannot be handled at runtime. Exceptions are because of condition failures, which can be handled easily at runtime.
+What is default value of a local variables? The local variables are not initialized to any default values. 
+What is local class in java? In java, local classes can be defined in a block
+Can we initialise uninitialized final variable? Yes. We can initialise blank final variable in constructor, only in construtor. The condition here is the final variable should be non-static.
+Can we declare abstract method as final? No, we can not declare abstract method as final. We have to proved implementation to abstract methods in subclasses.
+Can we have finally block without catch block? Yes, we can have finally block without catch block.
+What is pass by value and pass by reference? Pass by value is passing a copy of the value, not the original reference, and pass by reference is passsing the address of the object, so that you can access the original object.
+Can we declare main method as private? Yes, but in runtime, it says main method is not public.
+What is the difference between preemptive scheduling and time slicing? Preemptive scheduling is the highest priority task executes until it enters the waiting or dead states or a higher priority task comes into existence. Time slicing: A task executes for a predefined slice of time and then reenters the pool of ready tasks. The scheduler then determines which task should execute next, based on priority and other factors.
+Can non-static member classes (Local classes) have static members? No, non-static member classes cannot have static members. 
+What are the environment variables do we neet to set to run Java? We need to set two environment variables those are PATH and CLASSPATH.
+Can you serialize static fields of a class? Since static fields are not part of object state, they are part of class, and serialization ignores the static fields.
+What is the difference between declaring a variable and defining a variable? Declaring variable does not have any reference to live object. But defining means combination of declaration and initialization. 
+Where can we use serialization? Whenever an object has to be sent over the network, those objects should be serialized.
+What modifiers are allowed for methods in an Interface? Only public and abstract modifiers are allowed for methods in an interfaces.
+What is the purpose of Runtime and System class? The purpose of the Runtime class is to provide access to the Java runtime system. The runtime information like memory availability, invoking the garbage collector, etc. The purpose of the System class is to provide access to system resources. It contains accessibility to standard input, standart output, error output streams, current time in millis, terminating the application, etc.
+Which one is faster? ArrayList or Vector? Why? ArrayList is faster than Vector. The reason is synchronization. Vector is synchronized. As we know synchronization reduces the performance.
+What is the difference between static synchronized and synchronized methods?
+What is the order of catch blocks when catching more than one exception? sub classes first, then followed by exception super classes.
+What is the difference between the prefix and postfix forms of the increment(++) operator? The prefix form first performs the increment operation and then returns the value of the increment operation. The postfix form first returns the current value of the expression and then performs the increment operation on that value. 
+What is hashCode? The hashcode of a Java Object is simply a number, it is 32-bit signed int, that allows an object to be managed by a hash-based data structure. 
+What is the difference between Hashtable and HashMap? The basic differences are Hashtable is synchronized and HashMap is not synchronized. Hashtable does not allow null values, and HashMap allows null values.
+What are the restrictions when overriding a method? The overriding method cannot be less visible than the method it overrides. i.e., a public method cannot be override to private. The overriding method may not throw any exceptions that may not be thrown by the overridden method.
+What is the use of assert keyword? Java assertion feature allows developer to put assert statements in Java source code to help unit testing and debugging. 
+What is adapter class?
+What is difference between break, continue and return statements? The break statement results in the termination of the loop, it will come out of the loop and stops further iterations. The continue statement stops the current execution of the iteration and proceeds to the next iteration. The return statement takes you out of the method. It stops executing the method and returns from the method execution.
+What is the difference between while and do-while statements? The while statement verifies the condition before entering into the loop to see whether the next loop iteration should occur or not. The do-while statement executes the first iteration without checking the condition, it verifies the condition after finishing each iteration. The do-while statement will always execute the body of a loop at least once.
+When does the compiler provides the default constructor? The compiler provides a default constructor if no other constructors are available in the class. 
+Difference between C++ and Java. Java doesnot support pointers. Java does not support multiple inheritances. Java does not include structures or unions. Java does not support destructor. In all these, C++ does, and C++ requires explicit memory management, while Java includes automatic garbage collection.
+Usages of java packages. Java packages helps to resolve naming conflicts when different packages have classes with the same names. This also helps you organize files within your project. For example, java.io package do something related to I/O
+What is dynamic class loading? Dynamic loading is a technique for programmatically invoking the functions of a class loader at run time. One example is Class.forName (String className); method, it is a static method. An instance of the loaded class is dynamically loaded the class and related exception is a ClassNotFoundException.
+What happens if you do not provide a constructor?
+Difference between shallow cloning and deep cloning of objects?
+Can we have interfaces with no defined methods in java?
+What is the difference between ¡°==¡± and equals() method?
+How can you create an immutable class in java?
+What are access modifiers?
+Can we have private constructor in java?
+Why do we need generics in java?
+What is the difference between a product and a project?
+How does substring() method works on a string?
+What is the difference between a Java Library and a framework?
+What is difference between Lambda Expression and Anonymous class?
+What is HTTP basic authentication?
+What is functional interface in java?
+What is the difference between HTTP methods GET and POST?
+What is difference between CountDownLatch and CyclicBarrier in Java?
+Can Enum extend any class in Java?
+Can Enum implements any interface in Java?
+Can we have constructor in abstract class?
+What is MVC pattern?
+What is ActionServlet in struts?
+What is the difference between servlet & Filter?
+What is ActionMapping in struts?
+What is the difference between application server and web server?
+What is the difference between JPA and Hibernate?
+What is difference between the Value Object and JDO?
+How Struts control data flow?
+What is Spring?
+What is Dependency Injection?
+What are the different types of dependency injections in spring?
+What is BeanFactory in Spring?
+What is difference between BeanFactory and ApplicationContext in spring?
+How to make a bean as singleton in spring?
+What is IOC or inversion of control?
+What are different types of spring auto-wiring modes?
+What are the limitations and disadvantages of spring autowiring?
+Is the spring singleton bean thread safe?
+Why ConcurrentHashMap is faster than Hashtable in Java?
+What is the difference between ConcurrentHashMap and Hashtable in Java?
+Difference between ConcurrentHashMap and Collections.synchronizedMap(Map)?
+What is the difference between ORM, JPA and Hibernate?
+What is stream pipelining in Java 8?
+What is interface default method in java 8?
+Java-8: Interface with default methods vs Abstract class.
+What is @SpringBootApplication annotation in Spring boot project?
+What Embedded Containers Does Spring Boot Support?
+What are the advantages and disadvantages of Spring Boot?
+What is Spring Boot Actuator?
+What is Spring Boot Initializr?
+How does Maven resolve version conflicts of dependencies?
+How to reload Spring Boot Application without restarting server?
+What is the difference between Spring Boot and the Spring framework?
+What are the key components of Spring Boot framework?
+What are the different types of bean scope in Spring framework?
+What are the standard Spring build-in events?
+What is Spring IoC container?
+Differences between BeanFactory and the ApplicationContext in Spring framework.
+Difference between constructor injection and setter injection in Spring.
+How Java-8 Streams differ from collections
+What are the various ways to obtain Streams in Java-8?
+List Java-8 Streams intermediate operations.
+List Java-8 Streams terminal operations.
+Can we reuse Java-8 Streams?
+Difference between map and flatMap methods in Java 8
+What is the difference between Closure and Lambda in Java 8?
+Does Java 8 Lambda supports recursive call?
+Can Java 8 default methods override equals, hashCode and toString?
+Hibernate Eager vs Lazy Fetch Type
